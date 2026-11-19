@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>حاسبة الإهلاك - محاسبة أون لاين</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>إهلاك الأصول الثابتة</h1>
+        <p>كيف نوزع تكلفة الأصل الثابت على سنوات عمره الإنتاجي؟</p>
+    </header>
+
+    <nav>
+        <a href="index.html">الرئيسية</a>
+        <a href="coa.html">شجرة الحسابات</a>
+        <a href="entries.html">قيود اليومية</a>
+        <a href="depreciation.html" class="active">حاسبة الإهلاك</a>
+        <a href="glossary.html">قاموس المصطلحات</a>
+    </nav>
+
+    <div class="container">
+        <div class="card">
+            <h2>ما هو الإهلاك (Depreciation)؟</h2>
+            <p>عندما تشتري سيارة أو آلة للشركة، فإن قيمتها تقل مع الاستخدام ومرور الزمن. الإهلاك هو توزيع تكلفة هذا الأصل كمصروف سنوي بدلاً من تحميل كل التكلفة على سنة الشراء فقط.</p>
+            <p style="margin-top: 10px;"><strong>معادلة القسط الثابت:</strong> (تكلفة الأصل - قيمة الخردة) ÷ العمر الإنتاجي بالسنوات</p>
+        </div>
+
+        <div class="card">
+            <h2>حاسبة إهلاك القسط الثابت</h2>
+            <div class="tool-box">
+                <label>تكلفة شراء الأصل:</label>
+                <input type="number" id="assetCost" placeholder="مثال: 60000">
+
+                <label>قيمة الخردة المتوقعة في نهاية العمر (ضع 0 إن لم توجد):</label>
+                <input type="number" id="salvageValue" value="0">
+
+                <label>العمر الإنتاجي (بالسنوات):</label>
+                <input type="number" id="usefulLife" placeholder="مثال: 5">
+
+                <button onclick="calcDepreciation()">احسب الإهلاك</button>
+                <div id="depResult" class="result" style="display:none;"></div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>جميع الحقوق محفوظة &copy; 2026 - موقع محاسبة أون لاين</p>
+    </footer>
+
+    <script>
+        function calcDepreciation() {
+            const cost = parseFloat(document.getElementById('assetCost').value);
+            const salvage = parseFloat(document.getElementById('salvageValue').value) || 0;
+            const life = parseFloat(document.getElementById('usefulLife').value);
+            const res = document.getElementById('depResult');
+
+            if (isNaN(cost) || isNaN(life) || life <= 0 || cost < salvage) {
+                res.style.display = 'block';
+                res.innerHTML = 'يرجى إدخال بيانات صحيحة (التكلفة أكبر من الخردة، والعمر أكبر من صفر).';
+                return;
+            }
+
+            const annual = (cost - salvage) / life;
+            const monthly = annual / 12;
+
+            res.style.display = 'block';
+            res.innerHTML = `قسط الإهلاك السنوي: ${annual.toFixed(2)} <br> قسط الإهلاك الشهري: ${monthly.toFixed(2)}`;
+        }
+    </script>
+</body>
+</html>
