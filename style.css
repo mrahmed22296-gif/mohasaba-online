@@ -337,3 +337,67 @@ footer {
 footer strong {
     color: white;
 }
+/* مكتبة الكتب */
+.filter-bar {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin-bottom: 1.5rem;
+    align-items: center;
+}
+
+.filter-btn {
+    background: white;
+    color: var(--primary);
+    border: 1px solid var(--border);
+    padding: 0.55rem 1.1rem;
+    border-radius: 50px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    font-size: 0.9rem;
+}
+
+.filter-btn:hover, .filter-btn.active {
+    background: var(--accent);
+    color: white;
+    border-color: var(--accent);
+}
+
+.book-category {
+    display: inline-block;
+    background: #e0f2fe;
+    color: var(--accent);
+    font-size: 0.8rem;
+    font-weight: 700;
+    padding: 3px 10px;
+    border-radius: 20px;
+    margin-bottom: 0.7rem;
+}
+
+.book-meta {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    margin: 0.8rem 0 1.2rem;
+    padding-top: 0.8rem;
+    border-top: 1px solid var(--border);
+}
+
+.btn-outline {
+    display: inline-block;
+    text-align: center;
+    text-decoration: none;
+    background: transparent;
+    color: var(--accent);
+    border: 2px solid var(--accent);
+    padding: 0.65rem 1.2rem;
+    border-radius: 10px;
+    font-weight: 700;
+    width: 100%;
+    transition: all 0.2s ease;
+}
+
+.btn-outline:hover {
+    background: var(--accent);
+    color: white;
+}
