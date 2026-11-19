@@ -1,1 +1,92 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>قيود اليومية - محاسبة أون لاين</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>قيود اليومية المحاسبية</h1>
+        <p>تعلّم كيف تُسجل العمليات المالية اليومية بطريقة القيد المزدوج</p>
+    </header>
 
+    <nav>
+        <a href="index.html">الرئيسية</a>
+        <a href="coa.html">شجرة الحسابات</a>
+        <a href="entries.html" class="active">قيود اليومية</a>
+        <a href="depreciation.html">حاسبة الإهلاك</a>
+        <a href="glossary.html">قاموس المصطلحات</a>
+    </nav>
+
+    <div class="container">
+        <div class="card">
+            <h2>مُولّد القيود المحاسبية السريع</h2>
+            <p>اختر نوع العملية المالية لمعرفة طرفي القيد (المدين والدائن) فوراً:</p>
+            <div class="tool-box">
+                <label>اختر العملية:</label>
+                <select id="transactionType" onchange="generateEntry()">
+                    <option value="">-- اختر عملية مالية --</option>
+                    <option value="capital">إيداع رأس مال نقدي في البنك لتأسيس الشركة</option>
+                    <option value="cash_sale">بيع بضاعة للعميل واستلام المبلغ نقداً</option>
+                    <option value="credit_sale">بيع بضاعة للعميل بالآجل (على الحساب)</option>
+                    <option value="rent">دفع إيجار المكتب عن طريق البنك</option>
+                    <option value="purchase_asset">شراء أثاث مكتبي بالآجل من المورد</option>
+                </select>
+                <div id="entryOutput" class="result" style="display:none;"></div>
+            </div>
+        </div>
+
+        <div class="card">
+            <h2>نموذج شكل قيد اليومية</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>مدين</th>
+                        <th>دائن</th>
+                        <th>البيان (اسم الحساب)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>10,000</td>
+                        <td>-</td>
+                        <td>من حـ / البنك (أصل زاد)</td>
+                    </tr>
+                    <tr>
+                        <td>-</td>
+                        <td>10,000</td>
+                        <td>إلى حـ / إيرادات المبيعات (إيراد زاد)</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <footer>
+        <p>جميع الحقوق محفوظة &copy; 2026 - موقع محاسبة أون لاين</p>
+    </footer>
+
+    <script>
+        function generateEntry() {
+            const type = document.getElementById('transactionType').value;
+            const out = document.getElementById('entryOutput');
+            const entries = {
+                capital: "من حـ / البنك (مدين) <br> إلى حـ / رأس المال (دائن) <br><small>السبب: زاد أصل البنك وزادت حقوق الملكية.</small>",
+                cash_sale: "من حـ / الصندوق (مدين) <br> إلى حـ / المبيعات (دائن) <br><small>السبب: زاد أصل النقدية وزادت الإيرادات.</small>",
+                credit_sale: "من حـ / العملاء - الذمم المدينة (مدين) <br> إلى حـ / المبيعات (دائن) <br><small>السبب: زاد حقنا لدى العملاء وزادت الإيرادات.</small>",
+                rent: "من حـ / مصروف الإيجار (مدين) <br> إلى حـ / البنك (دائن) <br><small>السبب: زاد المصروف ونقص رصيد البنك.</small>",
+                purchase_asset: "من حـ / الأثاث والمفروشات (مدين) <br> إلى حـ / الموردين - الذمم الدائنة (دائن) <br><small>السبب: زاد أصل الأثاث وزاد الالتزام تجاه المورد.</small>"
+            };
+
+            if (entries[type]) {
+                out.style.display = 'block';
+                out.innerHTML = entries[type];
+            } else {
+                out.style.display = 'none';
+            }
+        }
+    </script>
+</body>
+</html>
