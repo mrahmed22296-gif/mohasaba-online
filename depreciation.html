@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>إهلاك الأصول الثابتة وحاسبته | محاسبة أون لاين</title>
+    <meta name="description" content="احسب إهلاك الأصول الثابتة بطريقة القسط الثابت أو المتناقص مع جدول سنوي وقيد الإهلاك.">
+    <meta name="theme-color" content="#1e3a8a">
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%231d4ed8'/%3E%3Ctext x='32' y='44' font-size='34' text-anchor='middle' fill='white' font-family='sans-serif' font-weight='700'%3E%24%3C/text%3E%3C/svg%3E">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <script>try{var t=localStorage.getItem('theme');if(!t&&window.matchMedia&&matchMedia('(prefers-color-scheme: dark)').matches)t='dark';if(t)document.documentElement.setAttribute('data-theme',t)}catch(e){}</script>
+</head>
+<body>
+    <a class="skip-link" href="#main">تخطي إلى المحتوى</a>
+
+    <header class="topbar">
+        <div class="topbar-inner">
+            <a class="brand" href="index.html">محاسبة أون لاين</a>
+            <nav class="menu" id="mainMenu" aria-label="التنقل الرئيسي"><a href="index.html">الشرح الشامل</a><a href="coa.html">شجرة الحسابات</a><a href="entries.html">قيود اليومية</a><a href="depreciation.html" class="active" aria-current="page">حاسبة الإهلاك</a><a href="glossary.html">المصطلحات</a><a href="books.html">الكتب</a><a href="quiz.html">الاختبار</a></nav>
+        </div>
+    </header>
+
+<section class="hero">
+        <h1>إهلاك الأصول الثابتة وحاسبته</h1>
+        <p>افهم كيف نوزع تكلفة الأصول طويلة الأجل على سنوات عمرها الإنتاجي، وكيف نحسب القسط السنوي ومجمع الإهلاك والقيمة الدفترية.</p>
+    </section>
+
+<main class="wrap" id="main">
+
+        <article class="lesson-card">
+            <span class="lesson-badge">المفهوم والمنطق</span>
+            <h2>لماذا نحسب إهلاك الأصول الثابتة؟</h2>
+            <p>عندما تشتري شركة سيارة أو آلة أو جهازاً بـ <strong>60,000</strong> لتستخدمه لمدة <strong>5 سنوات</strong>، فإن هذا الأصل يخدم الشركة في كل سنة من السنوات الخمس. وفق <strong>مبدأ مقابلة الإيرادات بالمصروفات</strong>، لا يكون من المنطقي تحميل كامل الـ 60,000 كمصروف على السنة الأولى فقط؛ بل نوزع هذه التكلفة على عمر الأصل الإنتاجي.</p>
+
+            <h3>مفاهيم أساسية قبل الحساب</h3>
+            <ul>
+                <li><strong>تكلفة الأصل (Cost):</strong> المبلغ المدفوع لشراء الأصل وتجهيزه ليصبح جاهزاً للعمل.</li>
+                <li><strong>القيمة التخريدية / الخردة (Salvage Value):</strong> القيمة التقديرية المتوقع بيع الأصل بها في نهاية عمره الإنتاجي.</li>
+                <li><strong>العمر الإنتاجي (Useful Life):</strong> المدة المقدرة لاستفادة الشركة من الأصل (بالسنوات أو الوحدات).</li>
+                <li><strong>مجمع الإهلاك (Accumulated Depreciation):</strong> إجمالي ما تم إهلاكه من الأصل منذ شرائه وحتى تاريخ معين (يظهر في الميزانية مطروحاً من الأصل).</li>
+                <li><strong>القيمة الدفترية (Book Value):</strong> <code>تكلفة الأصل - مجمع الإهلاك</code> (تمثل صافي قيمة الأصل في الدفاتر).</li>
+            </ul>
+
+            <div class="formula">
+                قسط الإهلاك السنوي (القسط الثابت) = (تكلفة الأصل - القيمة التخريدية) ÷ العمر الإنتاجي بالسنوات
+            </div>
+
+            <div class="example-box">
+                <span class="example-title">مثال محلول وقيد الإهلاك السنوي:</span>
+                <p>اشترت شركة معدة بتكلفة <strong>55,000</strong>، قيمتها التخريدية <strong>5,000</strong>، وعمرها الإنتاجي <strong>5 سنوات</strong>.</p>
+                <p><strong>الحساب:</strong> (55,000 - 5,000) ÷ 5 = 50,000 ÷ 5 = <strong>10,000 سنوياً</strong>.</p>
+                <div class="table-wrap">
+                    <table>
+                        <thead><tr><th>مدين</th><th>دائن</th><th>اسم الحساب</th><th>البيان</th></tr></thead>
+                        <tbody>
+                            <tr><td class="dr-val">10,000</td><td>-</td><td>من حـ / مصروف الإهلاك السنوي</td><td rowspan="2">إثبات قسط الإهلاك السنوي للمعدة</td></tr>
+                            <tr><td>-</td><td class="cr-val">10,000</td><td>إلى حـ / مجمع إهلاك الأصول الثابتة</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </article>
+
+        <article class="lesson-card">
+            <span class="lesson-badge">أداة تفاعلية</span>
+            <h2>حاسبة الإهلاك وجدول السنوات</h2>
+            <div class="tool-panel">
+                <label for="depMethod">طريقة الإهلاك:</label>
+                <select id="depMethod">
+                    <option value="sl">القسط الثابت</option>
+                    <option value="ddb">القسط المتناقص (الرصيد المتناقص المزدوج)</option>
+                </select>
+
+                <label for="assetCost">تكلفة شراء الأصل:</label>
+                <input type="number" id="assetCost" inputmode="decimal" placeholder="مثال: 55000" value="55000" min="0" step="any">
+
+                <label for="salvageValue">القيمة التخريدية (الخردة):</label>
+                <input type="number" id="salvageValue" inputmode="decimal" placeholder="مثال: 5000" value="5000" min="0" step="any">
+
+                <label for="usefulLife">العمر الإنتاجي (بالسنوات):</label>
+                <input type="number" id="usefulLife" inputmode="numeric" placeholder="مثال: 5" value="5" min="1" max="100">
+
+                <button type="button" onclick="calculateSchedule()">احسب الإهلاك وجدول السنوات</button>
+                <div id="depOutput" class="output-box" role="status" aria-live="polite"></div>
+            </div>
+            <div class="note-box" style="margin-top:1.2rem">
+                <strong>الفرق بين الطريقتين:</strong> القسط الثابت يوزع التكلفة بالتساوي، أما المتناقص فيحمّل السنوات الأولى مبلغاً أكبر (نسبة = 2 ÷ العمر × القيمة الدفترية) ثم يتناقص، ولا ينزل بالقيمة الدفترية تحت القيمة التخريدية.
+            </div>
+        </article>
+
+    </main>
+
+    <footer>
+        <p><strong>محاسبة أون لاين</strong> — منصة تعليمية عربية متكاملة لتبسيط المحاسبة المالية</p>
+        <p style="margin-top:.4rem"><a href="index.html">الشرح الشامل</a><a href="coa.html">شجرة الحسابات</a><a href="entries.html">قيود اليومية</a><a href="depreciation.html">حاسبة الإهلاك</a><a href="glossary.html">المصطلحات</a><a href="books.html">الكتب</a><a href="quiz.html">الاختبار</a></p>
+        <p style="font-size: 0.85rem; margin-top: 0.5rem;">جميع الحقوق محفوظة &copy; 2026</p>
+    </footer>
+
+    <script src="app.js" defer></script>
+    <script>
+
+        const fmt = n => Number(n).toLocaleString('en-US', { maximumFractionDigits: 2 });
+
+        function calculateSchedule() {
+            const method = document.getElementById('depMethod').value;
+            const cost = parseFloat(document.getElementById('assetCost').value);
+            const salvageRaw = document.getElementById('salvageValue').value;
+            const salvage = salvageRaw === '' ? 0 : parseFloat(salvageRaw);
+            const life = parseInt(document.getElementById('usefulLife').value, 10);
+            const out = document.getElementById('depOutput');
+            out.style.display = 'block';
+
+            if (isNaN(cost) || isNaN(salvage) || isNaN(life) || cost <= 0 || salvage < 0 || cost < salvage || life <= 0 || life > 100) {
+                out.className = 'output-box error';
+                out.textContent = 'الرجاء إدخال أرقام صحيحة: التكلفة أكبر من الصفر، والقيمة التخريدية أقل من التكلفة أو تساويها، والعمر الإنتاجي بين 1 و100 سنة.';
+                return;
+            }
+            out.className = 'output-box';
+
+            const base = cost - salvage;
+            let rows = '', accum = 0, bv = cost, first = 0;
+
+            for (let year = 1; year <= life; year++) {
+                let dep;
+                if (method === 'sl') {
+                    dep = base / life;
+                } else if (year === life) {
+                    dep = bv - salvage;
+                } else {
+                    dep = Math.min(bv * (2 / life), bv - salvage);
+                }
+                dep = Math.max(0, dep);
+                if (year === 1) first = dep;
+                accum += dep;
+                bv = cost - accum;
+                rows += `<tr><td>السنة ${year}</td><td class="dr-val num">${fmt(dep)}</td><td class="num">${fmt(accum)}</td><td class="num"><strong>${fmt(Math.max(salvage, bv))}</strong></td></tr>`;
+            }
+
+            const summary = method === 'sl'
+                ? `<strong>قسط الإهلاك السنوي:</strong> ${fmt(base / life)} | <strong>القسط الشهري:</strong> ${fmt(base / life / 12)}`
+                : `<strong>النسبة السنوية:</strong> ${fmt(200 / life)}% من القيمة الدفترية | <strong>قسط السنة الأولى:</strong> ${fmt(first)}`;
+
+            out.innerHTML = `
+                <p>${summary}</p>
+                <div class="table-wrap">
+                    <table>
+                        <thead><tr><th>السنة</th><th>قسط الإهلاك</th><th>مجمع الإهلاك</th><th>القيمة الدفترية</th></tr></thead>
+                        <tbody>${rows}</tbody>
+                    </table>
+                </div>
+                <p style="margin-top:.8rem"><strong>قيد السنة الأولى:</strong> من حـ / مصروف الإهلاك السنوي <span class="dr">${fmt(first)}</span> إلى حـ / مجمع إهلاك الأصول الثابتة <span class="cr">${fmt(first)}</span></p>`;
+        }
+
+    </script>
+</body>
+</html>

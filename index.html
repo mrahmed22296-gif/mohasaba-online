@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>الدليل الشامل لتعلم المحاسبة خطوة بخطوة | محاسبة أون لاين</title>
+    <meta name="description" content="دليل عربي شامل للمحاسبة المالية: المعادلة المحاسبية، القيد المزدوج، شجرة الحسابات، القوائم المالية وأدوات تفاعلية.">
+    <meta name="theme-color" content="#1e3a8a">
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%231d4ed8'/%3E%3Ctext x='32' y='44' font-size='34' text-anchor='middle' fill='white' font-family='sans-serif' font-weight='700'%3E%24%3C/text%3E%3C/svg%3E">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <script>try{var t=localStorage.getItem('theme');if(!t&&window.matchMedia&&matchMedia('(prefers-color-scheme: dark)').matches)t='dark';if(t)document.documentElement.setAttribute('data-theme',t)}catch(e){}</script>
+</head>
+<body>
+    <a class="skip-link" href="#main">تخطي إلى المحتوى</a>
+
+    <header class="topbar">
+        <div class="topbar-inner">
+            <a class="brand" href="index.html">محاسبة أون لاين</a>
+            <nav class="menu" id="mainMenu" aria-label="التنقل الرئيسي"><a href="index.html" class="active" aria-current="page">الشرح الشامل</a><a href="coa.html">شجرة الحسابات</a><a href="entries.html">قيود اليومية</a><a href="depreciation.html">حاسبة الإهلاك</a><a href="glossary.html">المصطلحات</a><a href="books.html">الكتب</a><a href="quiz.html">الاختبار</a></nav>
+        </div>
+    </header>
+
+    <section class="hero">
+        <h1>الدليل التعليمي الشامل للمحاسبة المالية</h1>
+        <p>شرح مفصل ومنهجي يأخذك من الصفر حتى القدرة على تسجيل القيود المحاسبية وفهم القوائم المالية وإعدادها بأمثلة رقمية واضحة.</p>
+        <div class="toc" style="margin-top:1.5rem">
+            <a href="#lesson1">1. مفهوم المحاسبة وأهدافها</a>
+            <a href="#lesson2">2. عناصر الحسابات الخمسة</a>
+            <a href="#lesson3">3. المعادلة المحاسبية</a>
+            <a href="#lesson4">4. القيد المزدوج والمدين والدائن</a>
+            <a href="#lesson5">5. مثال عملي متكامل</a>
+            <a href="#lesson6">6. القوائم المالية الختامية</a>
+            <a href="#tools">7. أدوات التطبيق العملي</a>
+        </div>
+        <div class="home-cards">
+            <a href="entries.html">قيود اليومية<small>أمثلة محلولة ومُولّد قيود</small></a>
+            <a href="depreciation.html">حاسبة الإهلاك<small>قسط ثابت ومتناقص</small></a>
+            <a href="quiz.html">اختبر نفسك<small>15 سؤالاً بشرح فوري</small></a>
+        </div>
+    </section>
+
+
+    <main class="wrap" id="main">
+
+        <article id="lesson1" class="lesson-card">
+            <span class="lesson-badge">الدرس الأول</span>
+            <h2>ما هي المحاسبة المالية ولماذا نحتاجها؟</h2>
+            <p><strong>المحاسبة المالية</strong> هي نظام متكامل يقوم على <strong>تحديد، وقياس، وتسجيل، وتلخيص</strong> جميع الأحداث الاقتصادية (العمليات المالية) التي تمر بها المنشأة، ثم توصيل هذه المعلومات في شكل تقارير مالية واضحة لمساعدة أصحاب القرار.</p>
+
+            <h3>الفرق بين مسك الدفاتر والمحاسبة</h3>
+            <ul>
+                <li><strong>مسك الدفاتر (Bookkeeping):</strong> هو الجزء التنفيذي اليومي المتمثل في تسجيل الفواتير والمقبوضات والمدفوعات في السجلات بدقة.</li>
+                <li><strong>المحاسبة (Accounting):</strong> أشمل من ذلك؛ فهي تتضمن تصميم النظام المالي، مراجعة القيود، إجراء التسويات الجردية، إعداد القوائم المالية، وتحليل النتائج لمعرفة أسباب الربح أو الخسارة.</li>
+            </ul>
+
+            <h3>من المستفيد من المعلومات المحاسبية؟</h3>
+            <ul>
+                <li><strong>المستخدمون الداخليون:</strong> إدارة الشركة وملاكها؛ لمعرفة أي المنتجات أكثر ربحية، وهل السيولة النقدية تكفي لسداد الرواتب والتوسع.</li>
+                <li><strong>المستخدمون الخارجيون:</strong> البنوك (لتقييم قدرة الشركة على سداد القروض)، الهيئات الضريبية والزكوية، والمستثمرون المحتملون.</li>
+            </ul>
+        </article>
+
+        <article id="lesson2" class="lesson-card">
+            <span class="lesson-badge">الدرس الثاني</span>
+            <h2>العناصر الخمسة الأساسية في المحاسبة</h2>
+            <p>مهما كبرت الشركة أو تعقدت عملياتها، فإن أي حساب في نظامها المحاسبي يندرج تحت واحد من <strong>خمسة تصنيفات رئيسية</strong> لا سادس لها:</p>
+
+            <h3>1. الأصول (Assets)</h3>
+            <p>هي جميع الموارد الاقتصادية التي <strong>تمتلكها المنشأة</strong> وتسيطر عليها، ومن المتوقع أن تحقق لها منافع مستقبلية. وتنقسم إلى:</p>
+            <ul>
+                <li><strong>أصول متداولة (قصيرة الأجل):</strong> تتحول إلى نقدية أو تُستهلك خلال سنة واحدة، مثل: <em>النقدية في الصندوق، الرصيد في البنك، البضاعة (المخزون)، والعملاء (الذمم المدينة)</em>.</li>
+                <li><strong>أصول غير متداولة (ثابتة):</strong> تُقتنى بغرض الاستخدام في النشاط لأكثر من سنة وليس بغرض إعادة البيع، مثل: <em>الأراضي، المباني، السيارات، الأجهزة، والأثاث</em>.</li>
+            </ul>
+
+            <h3>2. الالتزامات أو الخصوم (Liabilities)</h3>
+            <p>هي الديون والتعهدات المالية المستحقة <strong>على المنشأة لصالح الغير</strong>، مثل: <em>الموردين (عند الشراء بالآجل)، القروض البنكية، الرواتب المستحقة للموظفين، والضرائب المستحقة</em>.</p>
+
+            <h3>3. حقوق الملكية (Owner's Equity)</h3>
+            <p>هي صافي حق أصحاب المشروع في أصول المنشأة بعد سداد جميع الالتزامات. وتتكون من: <em>رأس المال المدفوع + الأرباح المحتجزة - المسحوبات الشخصية للمالك</em>.</p>
+
+            <h3>4. الإيرادات (Revenues)</h3>
+            <p>هي المبالغ التي تحققها المنشأة نتيجة بيع سلعها أو تقديم خدماتها خلال الفترة، مثل: <em>إيرادات المبيعات، وإيرادات الخدمات، وإيرادات الإيجار</em>. الإيراد يزيد حقوق الملكية (عبر الأرباح).</p>
+
+            <h3>5. المصروفات (Expenses)</h3>
+            <p>هي التكاليف التي تتحملها المنشأة لتحقيق الإيرادات خلال الفترة، مثل: <em>الرواتب، والإيجار، والكهرباء، والإهلاك، وتكلفة البضاعة المباعة</em>. المصروف يُنقص حقوق الملكية (عبر خفض الأرباح).</p>
+
+            <div class="note-box"><strong>تنبيه:</strong> شراء أصل (كسيارة) ليس مصروفاً؛ بل هو تحويل من النقدية إلى أصل ثابت. أما <em>إهلاك</em> السيارة عبر السنوات فهو المصروف.</div>
+        </article>
+
+        <article id="lesson3" class="lesson-card">
+            <span class="lesson-badge">الدرس الثالث</span>
+            <h2>المعادلة المحاسبية بالتفصيل</h2>
+            <p>هي الأساس الذي يقوم عليه النظام المحاسبي كله، وتنص على أن ما تملكه المنشأة يساوي دائماً ما عليها للغير مضافاً إليه حق أصحابها:</p>
+
+            <div class="equation-visual">
+                <div class="eq-box assets">الأصول<small>ما تملكه المنشأة</small></div>
+                <div class="eq-operator">=</div>
+                <div class="eq-box liab">الالتزامات<small>ما عليها للغير</small></div>
+                <div class="eq-operator">+</div>
+                <div class="eq-box">حقوق الملكية<small>حق أصحاب المشروع</small></div>
+            </div>
+
+            <div class="formula">الأصول = الالتزامات + حقوق الملكية</div>
+
+            <h3>كيف تبقى المعادلة متوازنة دائماً؟</h3>
+            <p>كل عملية مالية تؤثر على جانبين على الأقل، فتبقى المعادلة متوازنة بعد كل عملية:</p>
+            <div class="table-wrap">
+                <table>
+                    <thead><tr><th>العملية</th><th>الأصول</th><th>الالتزامات</th><th>حقوق الملكية</th></tr></thead>
+                    <tbody>
+                        <tr><td>إيداع رأس مال 100,000 في البنك</td><td class="dr-val">+100,000</td><td>-</td><td class="dr-val">+100,000</td></tr>
+                        <tr><td>شراء جهاز بـ 20,000 بالآجل من مورد</td><td class="dr-val">+20,000</td><td class="dr-val">+20,000</td><td>-</td></tr>
+                        <tr><td>سداد 8,000 للمورد من البنك</td><td class="cr-val">-8,000</td><td class="cr-val">-8,000</td><td>-</td></tr>
+                        <tr><td>تقديم خدمة وتحصيل 15,000 في البنك</td><td class="dr-val">+15,000</td><td>-</td><td class="dr-val">+15,000</td></tr>
+                        <tr><td>دفع إيجار 3,000 من البنك</td><td class="cr-val">-3,000</td><td>-</td><td class="cr-val">-3,000</td></tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="example-box">
+                <span class="example-title">مثال سريع:</span>
+                <p>إذا كانت أصول الشركة 150,000 وحقوق الملكية 110,000، فإن الالتزامات = 150,000 − 110,000 = <strong>40,000</strong>.</p>
+                <p>جرّب بنفسك في أداة المعادلة في آخر الصفحة.</p>
+            </div>
+        </article>
+
+        <article id="lesson4" class="lesson-card">
+            <span class="lesson-badge">الدرس الرابع</span>
+            <h2>القيد المزدوج والمدين والدائن</h2>
+            <p>يقوم <strong>القيد المزدوج</strong> على أن لكل عملية طرفين: طرف <strong>مدين</strong> وطرف <strong>دائن</strong> بنفس المبلغ. فمجموع المدين في أي قيد يساوي دائماً مجموع الدائن.</p>
+            <div class="note-box"><strong>مهم:</strong> «مدين» و«دائن» في المحاسبة ليستا «له» و«عليه» بالمعنى العام، بل هما جانب الحساب الأيمن والأيسر. لا تربطهما بزيادة أو نقص، بل بطبيعة كل حساب.</div>
+
+            <h3>قاعدة الزيادة والنقص لكل نوع حساب</h3>
+            <div class="table-wrap">
+                <table>
+                    <thead><tr><th>نوع الحساب</th><th>طبيعته</th><th>عند الزيادة</th><th>عند النقص</th></tr></thead>
+                    <tbody>
+                        <tr><td>الأصول</td><td>مدين</td><td><span class="dr">مدين</span></td><td><span class="cr">دائن</span></td></tr>
+                        <tr><td>المصروفات</td><td>مدين</td><td><span class="dr">مدين</span></td><td><span class="cr">دائن</span></td></tr>
+                        <tr><td>الالتزامات</td><td>دائن</td><td><span class="cr">دائن</span></td><td><span class="dr">مدين</span></td></tr>
+                        <tr><td>حقوق الملكية</td><td>دائن</td><td><span class="cr">دائن</span></td><td><span class="dr">مدين</span></td></tr>
+                        <tr><td>الإيرادات</td><td>دائن</td><td><span class="cr">دائن</span></td><td><span class="dr">مدين</span></td></tr>
+                    </tbody>
+                </table>
+            </div>
+            <p>حيلة للحفظ: <strong>الأصول والمصروفات</strong> تزيد بالمدين، و<strong>الالتزامات وحقوق الملكية والإيرادات</strong> تزيد بالدائن. استثناءات مثل <em>المسحوبات الشخصية</em> و<em>مجمع الإهلاك</em> تأخذ عكس طبيعة مجموعتها.</p>
+
+            <div class="example-box">
+                <span class="example-title">مثال: دفع إيجار 4,000 نقداً</span>
+                <p>مصروف الإيجار زاد ← مدين | الصندوق (أصل) نقص ← دائن.</p>
+                <div class="table-wrap">
+                    <table>
+                        <thead><tr><th>مدين</th><th>دائن</th><th>الحساب</th></tr></thead>
+                        <tbody>
+                            <tr><td class="dr-val num">4,000</td><td>-</td><td>من حـ / مصروف الإيجار</td></tr>
+                            <tr><td>-</td><td class="cr-val num">4,000</td><td>إلى حـ / الصندوق</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <p>للمزيد من الحالات العملية والمُولّد التلقائي، انتقل إلى صفحة <a href="entries.html" style="color:var(--link);font-weight:700">قيود اليومية</a>.</p>
+        </article>
+
+        <article id="lesson5" class="lesson-card">
+            <span class="lesson-badge">الدرس الخامس</span>
+            <h2>مثال عملي متكامل: شركة النور للخدمات</h2>
+            <p>سنسجل مجموعة عمليات لشركة خدمات خلال شهر، ثم نستخرج ميزان المراجعة. كل الأرقام مترابطة مع الدرس السادس.</p>
+
+            <h3>عمليات الشهر</h3>
+            <div class="table-wrap">
+                <table>
+                    <thead><tr><th>#</th><th>العملية</th><th>مدين</th><th>دائن</th></tr></thead>
+                    <tbody>
+                        <tr><td>1</td><td>إيداع رأس المال في البنك</td><td>البنك 100,000</td><td>رأس المال 100,000</td></tr>
+                        <tr><td>2</td><td>شراء أجهزة بـ 20,000: دفع 8,000 من البنك والباقي آجل</td><td>الأجهزة 20,000</td><td>البنك 8,000 + الموردون 12,000</td></tr>
+                        <tr><td>3</td><td>إيرادات خدمات محصلة في البنك</td><td>البنك 45,000</td><td>إيرادات الخدمات 45,000</td></tr>
+                        <tr><td>4</td><td>إيرادات خدمات لعميل بالآجل</td><td>العملاء 10,000</td><td>إيرادات الخدمات 10,000</td></tr>
+                        <tr><td>5</td><td>دفع إيجار من البنك</td><td>مصروف الإيجار 6,000</td><td>البنك 6,000</td></tr>
+                        <tr><td>6</td><td>دفع رواتب من البنك</td><td>مصروف الرواتب 14,000</td><td>البنك 14,000</td></tr>
+                        <tr><td>7</td><td>دفع كهرباء واتصالات من البنك</td><td>مصروف الكهرباء 2,000</td><td>البنك 2,000</td></tr>
+                        <tr><td>8</td><td>مسحوبات شخصية للمالك من البنك</td><td>المسحوبات 5,000</td><td>البنك 5,000</td></tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <h3>ميزان المراجعة</h3>
+            <div class="table-wrap">
+                <table>
+                    <thead><tr><th>الحساب</th><th>مدين</th><th>دائن</th></tr></thead>
+                    <tbody>
+                        <tr><td>البنك (100,000 − 8,000 + 45,000 − 6,000 − 14,000 − 2,000 − 5,000)</td><td class="num dr-val">110,000</td><td>-</td></tr>
+                        <tr><td>العملاء</td><td class="num dr-val">10,000</td><td>-</td></tr>
+                        <tr><td>الأجهزة</td><td class="num dr-val">20,000</td><td>-</td></tr>
+                        <tr><td>المسحوبات</td><td class="num dr-val">5,000</td><td>-</td></tr>
+                        <tr><td>مصروف الإيجار</td><td class="num dr-val">6,000</td><td>-</td></tr>
+                        <tr><td>مصروف الرواتب</td><td class="num dr-val">14,000</td><td>-</td></tr>
+                        <tr><td>مصروف الكهرباء</td><td class="num dr-val">2,000</td><td>-</td></tr>
+                        <tr><td>الموردون</td><td>-</td><td class="num cr-val">12,000</td></tr>
+                        <tr><td>رأس المال</td><td>-</td><td class="num cr-val">100,000</td></tr>
+                        <tr><td>إيرادات الخدمات</td><td>-</td><td class="num cr-val">55,000</td></tr>
+                    </tbody>
+                    <tfoot><tr><td>الإجمالي</td><td class="num">167,000</td><td class="num">167,000</td></tr></tfoot>
+                </table>
+            </div>
+            <div class="note-box">تساوي المجموعين (167,000 = 167,000) يدل على أن القيود متوازنة، لكنه لا يكشف كل الأخطاء؛ فمثلاً تسجيل قيد في حساب خاطئ بنفس المبلغ لا يخل بالتوازن.</div>
+        </article>
+
+        <article id="lesson6" class="lesson-card">
+            <span class="lesson-badge">الدرس السادس</span>
+            <h2>القوائم المالية الختامية</h2>
+            <p>بعد ميزان المراجعة نُعد ثلاث قوائم رئيسية. نكمل بيانات شركة النور:</p>
+
+            <h3>1. قائمة الدخل (عن الشهر)</h3>
+            <div class="table-wrap">
+                <table>
+                    <tbody>
+                        <tr><td>إيرادات الخدمات</td><td class="num">55,000</td></tr>
+                        <tr><td>− مصروف الإيجار</td><td class="num">(6,000)</td></tr>
+                        <tr><td>− مصروف الرواتب</td><td class="num">(14,000)</td></tr>
+                        <tr><td>− مصروف الكهرباء</td><td class="num">(2,000)</td></tr>
+                    </tbody>
+                    <tfoot><tr><td>صافي الربح</td><td class="num">33,000</td></tr></tfoot>
+                </table>
+            </div>
+
+            <h3>2. قائمة المركز المالي (الميزانية) في نهاية الشهر</h3>
+            <div class="table-wrap">
+                <table>
+                    <thead><tr><th>الأصول</th><th>المبلغ</th><th>الالتزامات وحقوق الملكية</th><th>المبلغ</th></tr></thead>
+                    <tbody>
+                        <tr><td>البنك</td><td class="num">110,000</td><td>الموردون</td><td class="num">12,000</td></tr>
+                        <tr><td>العملاء</td><td class="num">10,000</td><td>رأس المال</td><td class="num">100,000</td></tr>
+                        <tr><td>الأجهزة</td><td class="num">20,000</td><td>صافي الربح</td><td class="num">33,000</td></tr>
+                        <tr><td></td><td></td><td>المسحوبات</td><td class="num">(5,000)</td></tr>
+                    </tbody>
+                    <tfoot><tr><td>إجمالي الأصول</td><td class="num">140,000</td><td>إجمالي الالتزامات وحقوق الملكية</td><td class="num">140,000</td></tr></tfoot>
+                </table>
+            </div>
+            <p>حقوق الملكية = 100,000 + 33,000 − 5,000 = <strong>128,000</strong>، والالتزامات 12,000، فالمجموع 140,000 ويساوي الأصول ✔.</p>
+
+            <h3>3. قائمة التدفقات النقدية (مبسطة)</h3>
+            <div class="table-wrap">
+                <table>
+                    <tbody>
+                        <tr><td>التشغيلية: تحصيل 45,000 − إيجار 6,000 − رواتب 14,000 − كهرباء 2,000</td><td class="num">23,000</td></tr>
+                        <tr><td>الاستثمارية: شراء أجهزة (المدفوع نقداً فقط)</td><td class="num">(8,000)</td></tr>
+                        <tr><td>التمويلية: رأس المال 100,000 − مسحوبات 5,000</td><td class="num">95,000</td></tr>
+                    </tbody>
+                    <tfoot><tr><td>صافي التغير في النقدية (= رصيد البنك)</td><td class="num">110,000</td></tr></tfoot>
+                </table>
+            </div>
+            <div class="note-box">لاحظ: الربح 33,000 لكن النقد التشغيلي 23,000، لأن 10,000 من الإيرادات لم تُحصّل بعد (العملاء). هذا هو الفرق بين <strong>الربحية</strong> و<strong>السيولة</strong>.</div>
+        </article>
+
+        <article id="tools" class="lesson-card">
+            <span class="lesson-badge">أدوات التطبيق العملي</span>
+            <h2>جرّب بنفسك</h2>
+            <div class="grid-2">
+                <div class="tool-card">
+                    <h3 style="margin-top:0">حاسبة المعادلة المحاسبية</h3>
+                    <p style="font-size:.92rem">أدخل أي قيمتين واترك الثالثة فارغة لتُحسب تلقائياً، أو أدخل الثلاث للتحقق من التوازن.</p>
+                    <label for="eqAssets">الأصول:</label>
+                    <input type="number" id="eqAssets" inputmode="decimal" placeholder="مثال: 150000">
+                    <label for="eqLiab">الالتزامات:</label>
+                    <input type="number" id="eqLiab" inputmode="decimal" placeholder="اتركه فارغاً ليُحسب">
+                    <label for="eqEquity">حقوق الملكية:</label>
+                    <input type="number" id="eqEquity" inputmode="decimal" placeholder="مثال: 110000">
+                    <div class="btn-row">
+                        <button type="button" onclick="solveEquation()">احسب</button>
+                        <button type="button" class="btn-secondary" onclick="resetEquation()">مسح</button>
+                    </div>
+                    <div id="eqOut" class="output-box" role="status" aria-live="polite"></div>
+                </div>
+
+                <div class="tool-card">
+                    <h3 style="margin-top:0">مساعد المدين والدائن</h3>
+                    <p style="font-size:.92rem">اختر نوع الحساب وما حدث له لتعرف في أي جانب يُسجل.</p>
+                    <label for="acctType">نوع الحساب:</label>
+                    <select id="acctType">
+                        <option value="asset">أصل (صندوق، بنك، عملاء، سيارات…)</option>
+                        <option value="expense">مصروف (رواتب، إيجار…)</option>
+                        <option value="liability">التزام (موردون، قروض…)</option>
+                        <option value="equity">حقوق ملكية (رأس المال، أرباح محتجزة)</option>
+                        <option value="revenue">إيراد (مبيعات، خدمات)</option>
+                    </select>
+                    <label for="acctMove">ماذا حدث للحساب؟</label>
+                    <select id="acctMove">
+                        <option value="up">زاد</option>
+                        <option value="down">نقص</option>
+                    </select>
+                    <button type="button" onclick="drCrHelper()">أين يُسجل؟</button>
+                    <div id="drcrOut" class="output-box" role="status" aria-live="polite"></div>
+                </div>
+            </div>
+        </article>
+    </main>
+
+
+    <footer>
+        <p><strong>محاسبة أون لاين</strong> — منصة تعليمية عربية متكاملة لتبسيط المحاسبة المالية</p>
+        <p style="margin-top:.4rem"><a href="index.html">الشرح الشامل</a><a href="coa.html">شجرة الحسابات</a><a href="entries.html">قيود اليومية</a><a href="depreciation.html">حاسبة الإهلاك</a><a href="glossary.html">المصطلحات</a><a href="books.html">الكتب</a><a href="quiz.html">الاختبار</a></p>
+        <p style="font-size: 0.85rem; margin-top: 0.5rem;">جميع الحقوق محفوظة &copy; 2026</p>
+    </footer>
+
+    <script src="app.js" defer></script>
+    <script>
+
+        function fmt(n) { return Number(n).toLocaleString('en-US', { maximumFractionDigits: 2 }); }
+        function show(el, html, isErr) {
+            el.className = 'output-box' + (isErr ? ' error' : '');
+            el.style.display = 'block';
+            el.innerHTML = html;
+        }
+
+        function solveEquation() {
+            const a = document.getElementById('eqAssets').value;
+            const l = document.getElementById('eqLiab').value;
+            const e = document.getElementById('eqEquity').value;
+            const out = document.getElementById('eqOut');
+            const filled = [a, l, e].filter(v => v.trim() !== '').length;
+
+            if (filled < 2) { show(out, 'أدخل قيمتين على الأقل.', true); return; }
+            const A = parseFloat(a), L = parseFloat(l), E = parseFloat(e);
+            if ([A, L, E].some(v => !isNaN(v) && v < 0)) { show(out, 'القيم يجب ألا تكون سالبة.', true); return; }
+
+            if (filled === 3) {
+                const diff = Math.round((A - (L + E)) * 100) / 100;
+                if (diff === 0) show(out, '<span class="badge-ok">المعادلة متوازنة</span><p class="out-line">' + fmt(A) + ' = ' + fmt(L) + ' + ' + fmt(E) + '</p>');
+                else show(out, '<span class="badge-bad">غير متوازنة</span><p class="out-line">الفرق = ' + fmt(Math.abs(diff)) + (diff > 0 ? ' (الأصول أكبر)' : ' (الالتزامات + حقوق الملكية أكبر)') + '</p>', true);
+                return;
+            }
+            if (a.trim() === '') {
+                show(out, '<strong>الأصول</strong> = ' + fmt(L) + ' + ' + fmt(E) + ' = <strong>' + fmt(L + E) + '</strong>');
+            } else if (l.trim() === '') {
+                if (E > A) { show(out, 'حقوق الملكية أكبر من الأصول، فالالتزامات تصبح سالبة. راجع الأرقام.', true); return; }
+                show(out, '<strong>الالتزامات</strong> = ' + fmt(A) + ' − ' + fmt(E) + ' = <strong>' + fmt(A - E) + '</strong>');
+            } else {
+                if (L > A) { show(out, 'الالتزامات أكبر من الأصول، فحقوق الملكية تصبح سالبة (عجز). راجع الأرقام.', true); return; }
+                show(out, '<strong>حقوق الملكية</strong> = ' + fmt(A) + ' − ' + fmt(L) + ' = <strong>' + fmt(A - L) + '</strong>');
+            }
+        }
+
+        function resetEquation() {
+            ['eqAssets', 'eqLiab', 'eqEquity'].forEach(id => document.getElementById(id).value = '');
+            document.getElementById('eqOut').style.display = 'none';
+        }
+
+        function drCrHelper() {
+            const type = document.getElementById('acctType').value;
+            const move = document.getElementById('acctMove').value;
+            const debitNature = (type === 'asset' || type === 'expense');
+            const isDebit = debitNature ? move === 'up' : move === 'down';
+            const names = { asset: 'الأصل', expense: 'المصروف', liability: 'الالتزام', equity: 'حقوق الملكية', revenue: 'الإيراد' };
+            const out = document.getElementById('drcrOut');
+            show(out, '<p class="out-line">' + names[type] + (move === 'up' ? ' زاد' : ' نقص') + ' ← يُسجل في الجانب <span class="' + (isDebit ? 'dr' : 'cr') + '">' + (isDebit ? 'المدين' : 'الدائن') + '</span></p>' +
+                '<p class="out-line" style="color:var(--muted);font-size:.9rem">طبيعة هذا الحساب: ' + (debitNature ? 'مدين' : 'دائن') + '.</p>');
+        }
+
+    </script>
+</body>
+</html>
