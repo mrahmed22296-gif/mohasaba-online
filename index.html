@@ -3,263 +3,233 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="محاسبة أون لاين - دليلك المبسط لفهم أساسيات المحاسبة، المعادلة المحاسبية، المدين والدائن، وأدوات محاسبية تفاعلية.">
-    <title>محاسبة أون لاين - شرح المحاسبة ببساطة</title>
-    <style>
-        :root {
-            --primary: #1e3a8a;
-            --secondary: #3b82f6;
-            --accent: #10b981;
-            --bg: #f8fafc;
-            --text: #1e293b;
-            --card-bg: #ffffff;
-        }
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
-        body {
-            background-color: var(--bg);
-            color: var(--text);
-            line-height: 1.7;
-        }
-        header {
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            color: white;
-            padding: 3rem 1rem;
-            text-align: center;
-        }
-        header h1 { font-size: 2.5rem; margin-bottom: 0.5rem; }
-        header p { font-size: 1.2rem; opacity: 0.9; }
-        nav {
-            background: #fff;
-            padding: 1rem;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
-            position: sticky;
-            top: 0;
-            z-index: 100;
-            text-align: center;
-        }
-        nav a {
-            color: var(--primary);
-            text-decoration: none;
-            margin: 0 12px;
-            font-weight: bold;
-            font-size: 0.95rem;
-        }
-        nav a:hover { color: var(--secondary); }
-        .container {
-            max-width: 900px;
-            margin: 2rem auto;
-            padding: 0 1.5rem;
-        }
-        .card {
-            background: var(--card-bg);
-            border-radius: 10px;
-            padding: 2rem;
-            margin-bottom: 2rem;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
-            border-right: 5px solid var(--secondary);
-        }
-        .card h2 { color: var(--primary); margin-bottom: 1rem; }
-        .formula-box {
-            background: #eff6ff;
-            border: 1px dashed var(--secondary);
-            padding: 1rem;
-            border-radius: 8px;
-            text-align: center;
-            font-weight: bold;
-            font-size: 1.1rem;
-            color: var(--primary);
-            margin: 1rem 0;
-        }
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 1rem;
-        }
-        th, td {
-            border: 1px solid #e2e8f0;
-            padding: 0.8rem;
-            text-align: right;
-        }
-        th { background-color: #f1f5f9; color: var(--primary); }
-        
-        /* تنسيق الأدوات التفاعلية */
-        .tool-box {
-            background: #f1f5f9;
-            padding: 1.5rem;
-            border-radius: 8px;
-            margin-top: 1rem;
-        }
-        input[type="number"], select {
-            width: 100%;
-            padding: 0.7rem;
-            margin: 0.5rem 0 1rem;
-            border: 1px solid #cbd5e1;
-            border-radius: 6px;
-            font-size: 1rem;
-        }
-        button {
-            background-color: var(--primary);
-            color: white;
-            border: none;
-            padding: 0.7rem 1.5rem;
-            border-radius: 6px;
-            cursor: pointer;
-            font-size: 1rem;
-            font-weight: bold;
-        }
-        button:hover { background-color: var(--secondary); }
-        .result {
-            margin-top: 1rem;
-            padding: 1rem;
-            background: #fff;
-            border-radius: 6px;
-            border-right: 4px solid var(--accent);
-            font-weight: bold;
-            display: none;
-        }
-        footer {
-            text-align: center;
-            padding: 2rem;
-            background: var(--primary);
-            color: white;
-            margin-top: 3rem;
-        }
-    </style>
+    <title>محاسبة أون لاين | منصة تعلم المحاسبة المالية ببساطة</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <header>
-        <h1>محاسبة أون لاين</h1>
-        <p>دليلك المبسط لفهم أساسيات المحاسبة من الصفر</p>
+    <nav class="navbar">
+        <a href="index.html" class="logo">محاسبة أون لاين <span>PRO</span></a>
+        <div class="nav-links">
+            <a href="index.html" class="active">الرئيسية</a>
+            <a href="coa.html">شجرة الحسابات</a>
+            <a href="entries.html">قيود اليومية</a>
+            <a href="depreciation.html">حاسبة الإهلاك</a>
+            <a href="glossary.html">قاموس المصطلحات</a>
+        </div>
+    </nav>
+
+    <header class="hero">
+        <h1>افهم لغة المال والأعمال بدون تعقيد</h1>
+        <p>منصة عربية متكاملة تشرح أساسيات المحاسبة المالية، القيود اليومية، والقوائم المالية بأسلوب عملي تفاعلي يناسب رواد الأعمال والطلاب.</p>
+        <div class="hero-badges">
+            <span class="badge">✓ شرح مبسط بالأمثلة</span>
+            <span class="badge">✓ محاكي قيود تفاعلي</span>
+            <span class="badge">✓ حاسبات مالية جاهزة</span>
+        </div>
     </header>
 
-<nav>
-    <a href="index.html">الرئيسية</a>
-    <a href="coa.html">شجرة الحسابات</a>
-    <a href="entries.html">قيود اليومية</a>
-    <a href="depreciation.html">حاسبة الإهلاك</a>
-    <a href="glossary.html">قاموس المصطلحات</a>
-</nav>
+    <main class="container">
+        
+        <!-- القسم الأول: الدورة المحاسبية -->
+        <h2 class="section-title">كيف تعمل المحاسبة في أي شركة؟ (الدورة المحاسبية)</h2>
+        <p class="section-subtitle">تمر كل عملية مالية بـ 4 خطوات رئيسية منذ لحظة حدوثها وحتى صدور التقرير النهائي:</p>
 
-    <div class="container">
-        <section id="intro" class="card">
-            <h2>1. ما هي المحاسبة ببساطة؟</h2>
-            <p>المحاسبة هي "لغة المال والأعمال". وظيفتها الأساسية هي تسجيل كل مبلغ يدخل أو يخرج من المشروع، وتنظيم هذه العمليات، ثم تلخيصها في تقارير تساعد صاحب العمل على معرفة: <strong>هل مشروعي يربح أم يخسر؟</strong></p>
-        </section>
-
-        <section id="equation" class="card">
-            <h2>2. المعادلة المحاسبية الأساسية</h2>
-            <p>يقوم علم المحاسبة بالكامل على معادلة واحدة بسيطة يجب أن تظل متوازنة دائماً:</p>
-            <div class="formula-box">
-                الأصول (ما تملكه) = الالتزامات (ما عليك للغير) + حقوق الملكية (رأس مالك)
+        <div class="grid-3">
+            <div class="card">
+                <div class="card-icon">1</div>
+                <h3>التسجيل (قيود اليومية)</h3>
+                <p>توثيق كل فاتورة شراء أو بيع في <strong>دفتر اليومية</strong> باستخدام قاعدة القيد المزدوج (مدين ودائن) مع إرفاق المستند المؤيد.</p>
             </div>
-            <p><strong>مثال:</strong> إذا اشتريت سيارة للمشروع بقيمة 50,000، دفعت 30,000 من مالك الخاص واقترضت 20,000 من البنك؛ فإن الأصول (50,000) تساوي الالتزامات (20,000) + حقوق الملكية (30,000).</p>
-        </section>
-
-        <section id="debit-credit" class="card">
-            <h2>3. قاعدة المدين والدائن</h2>
-            <p>كل عملية مالية لها طرفان: طرف يأخذ (مدين) وطرف يعطي (دائن). لتسهيلها، احفظ طبيعة الحسابات:</p>
-            <table>
-                <thead>
-                    <tr>
-                        <th>نوع الحساب</th>
-                        <th>طبيعته</th>
-                        <th>إذا زاد يصبح</th>
-                        <th>إذا نقص يصبح</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>الأصول والمصروفات</td>
-                        <td>مدين</td>
-                        <td>مدين</td>
-                        <td>دائن</td>
-                    </tr>
-                    <tr>
-                        <td>الالتزامات وحقوق الملكية والإيرادات</td>
-                        <td>دائن</td>
-                        <td>دائن</td>
-                        <td>مدين</td>
-                    </tr>
-                </tbody>
-            </table>
-        </section>
-
-        <!-- أداة حاسبة الضريبة -->
-        <section id="calculator" class="card">
-            <h2>4. حاسبة ضريبة القيمة المضافة</h2>
-            <p>أدخل المبلغ الأساسي ونسبة الضريبة لحساب الإجمالي فوراً:</p>
-            <div class="tool-box">
-                <label>المبلغ قبل الضريبة:</label>
-                <input type="number" id="amount" placeholder="مثال: 1000">
-                
-                <label>نسبة الضريبة (%):</label>
-                <input type="number" id="taxRate" value="15">
-                
-                <button onclick="calculateTax()">احسب الضريبة</button>
-                <div id="taxResult" class="result"></div>
+            <div class="card">
+                <div class="card-icon">2</div>
+                <h3>الترحيل والتبويب</h3>
+                <p>تجميع العمليات المتشابهة في حساب واحد داخل <strong>دفتر الأستاذ</strong> لمعرفة رصيد الصندوق، البنك، العملاء، والموردين بدقة.</p>
             </div>
-        </section>
-
-        <!-- اختبار تفاعلي -->
-        <section id="quiz" class="card">
-            <h2>5. اختبر فهمك السريع</h2>
-            <div class="tool-box">
-                <p><strong>سؤال:</strong> اشترت الشركة جهاز حاسوب نقداً. ما هو الطرف <strong>المدين</strong> في هذه العملية؟</p>
-                <select id="quizAnswer">
-                    <option value="">-- اختر الإجابة الصحيحة --</option>
-                    <option value="cash">الصندوق (النقدية)</option>
-                    <option value="equipment">الأجهزة والمعدات</option>
-                    <option value="capital">رأس المال</option>
-                </select>
-                <button onclick="checkQuiz()">تحقق من الإجابة</button>
-                <div id="quizResult" class="result"></div>
+            <div class="card">
+                <div class="card-icon">3</div>
+                <h3>إعداد القوائم المالية</h3>
+                <p>تلخيص الأرصدة في تقارير ختامية أهمها <strong>قائمة الدخل</strong> (لمعرفة الربح أو الخسارة) و<strong>الميزانية العمومية</strong> (لمعرفة المركز المالي).</p>
             </div>
-        </section>
-    </div>
+        </div>
+
+        <!-- القسم الثاني: المعادلة المحاسبية البصرية -->
+        <div class="card" style="margin-bottom: 3rem;">
+            <h2 class="section-title">سر التوازن في المحاسبة: المعادلة المحاسبية</h2>
+            <p>أي مشروع تجاري يمتلك أصولاً (موارد)، وهذه الأصول إما أن يكون صاحب المشروع قد موّلها من ماله الخاص (حقوق ملكية) أو اقترضها من الغير (التزامات):</p>
+            
+            <div class="equation-visual">
+                <div class="eq-box assets">
+                    <h4>الأصول (Assets)</h4>
+                    <p style="font-size: 0.9rem; color: var(--text-muted);">النقدية، البضاعة، السيارات، العملاء</p>
+                </div>
+                <div class="eq-operator">=</div>
+                <div class="eq-box liab">
+                    <h4>الالتزامات (Liabilities)</h4>
+                    <p style="font-size: 0.9rem; color: var(--text-muted);">الموردون، القروض، الرواتب المستحقة</p>
+                </div>
+                <div class="eq-operator">+</div>
+                <div class="eq-box equity">
+                    <h4>حقوق الملكية (Equity)</h4>
+                    <p style="font-size: 0.9rem; color: var(--text-muted);">رأس المال + صافي الأرباح</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- القسم الثالث: جدول قاعدة المدين والدائن الاحترافي -->
+        <div class="card" style="margin-bottom: 3rem;">
+            <h2 class="section-title">القاعدة الذهبية للمدين والدائن</h2>
+            <p>لا تحفظ القيود عن ظهر قلب؛ فقط حدد نوع الحساب وهل زاد أم نقص، وستعرف فوراً هل هو مدين أم دائن:</p>
+            <div class="table-wrapper">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>تصنيف الحساب</th>
+                            <th>طبيعة الحساب</th>
+                            <th>عند الزيادة (+)</th>
+                            <th>عند النقص (-)</th>
+                            <th>أمثلة شائعة</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>الأصول</strong></td>
+                            <td><span class="tag-debit">مدين</span></td>
+                            <td><span class="tag-debit">مدين</span></td>
+                            <td><span class="tag-credit">دائن</span></td>
+                            <td>الصندوق، البنك، المخزون، المعدات</td>
+                        </tr>
+                        <tr>
+                            <td><strong>المصروفات</strong></td>
+                            <td><span class="tag-debit">مدين</span></td>
+                            <td><span class="tag-debit">مدين</span></td>
+                            <td><span class="tag-credit">دائن</span></td>
+                            <td>الرواتب، الإيجار، الكهرباء، التسويق</td>
+                        </tr>
+                        <tr>
+                            <td><strong>الالتزامات</strong></td>
+                            <td><span class="tag-credit">دائن</span></td>
+                            <td><span class="tag-credit">دائن</span></td>
+                            <td><span class="tag-debit">مدين</span></td>
+                            <td>الموردون، القروض البنكية، الضرائب المستحقة</td>
+                        </tr>
+                        <tr>
+                            <td><strong>حقوق الملكية</strong></td>
+                            <td><span class="tag-credit">دائن</span></td>
+                            <td><span class="tag-credit">دائن</span></td>
+                            <td><span class="tag-debit">مدين</span></td>
+                            <td>رأس المال، الأرباح المبقاة</td>
+                        </tr>
+                        <tr>
+                            <td><strong>الإيرادات</strong></td>
+                            <td><span class="tag-credit">دائن</span></td>
+                            <td><span class="tag-credit">دائن</span></td>
+                            <td><span class="tag-debit">مدين</span></td>
+                            <td>إيرادات المبيعات، إيرادات الخدمات</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- القسم الرابع: الأدوات التفاعلية -->
+        <h2 class="section-title">أدوات محاسبية تفاعلية</h2>
+        <p class="section-subtitle">جرّب الأدوات التالية لفهم الأرقام المالية عملياً:</p>
+
+        <div class="grid-2">
+            <!-- محاكي أثر العمليات المالية -->
+            <div class="card">
+                <h3>محاكي القيد المزدوج وتأثيره</h3>
+                <p style="font-size: 0.95rem; color: var(--text-muted); margin-bottom: 1rem;">اختر عملية تجارية وشاهد القيد المحاسبي وتأثيره على المعادلة:</p>
+                <div class="form-group">
+                    <label>العملية المالية:</label>
+                    <select id="simSelect" onchange="runSimulation()">
+                        <option value="">-- اختر عملية لمحاكاتها --</option>
+                        <option value="1">1. إيداع 100,000 في البنك كرأس مال</option>
+                        <option value="2">2. شراء بضاعة بـ 20,000 بشيك بنكي</option>
+                        <option value="3">3. بيع بضاعة بـ 35,000 نقداً</option>
+                        <option value="4">4. سداد إيجار المكتب 5,000 نقداً</option>
+                    </select>
+                </div>
+                <div id="simResult" class="result-panel"></div>
+            </div>
+
+            <!-- حاسبة نقطة التعادل -->
+            <div class="card">
+                <h3>حاسبة نقطة التعادل (Break-Even)</h3>
+                <p style="font-size: 0.95rem; color: var(--text-muted); margin-bottom: 1rem;">كم وحدة يجب أن تبيع لتغطي جميع تكاليفك دون ربح أو خسارة؟</p>
+                <div class="form-group">
+                    <label>التكاليف الثابتة الشهرية (إيجار، رواتب...):</label>
+                    <input type="number" id="fixedCost" placeholder="مثال: 10000">
+                </div>
+                <div class="form-group">
+                    <label>سعر بيع الوحدة الواحدة:</label>
+                    <input type="number" id="unitPrice" placeholder="مثال: 100">
+                </div>
+                <div class="form-group">
+                    <label>التكلفة المتغيرة للوحدة الواحدة:</label>
+                    <input type="number" id="varCost" placeholder="مثال: 60">
+                </div>
+                <button class="btn" onclick="calcBreakEven()">احسب نقطة التعادل</button>
+                <div id="beResult" class="result-panel"></div>
+            </div>
+        </div>
+
+    </main>
 
     <footer>
-        <p>جميع الحقوق محفوظة &copy; 2026 - موقع محاسبة أون لاين</p>
+        <p><strong>محاسبة أون لاين</strong> — منصة تعليمية مفتوحة لتبسيط علوم المحاسبة والإدارة المالية</p>
+        <p style="font-size: 0.85rem; margin-top: 0.5rem;">جميع الحقوق محفوظة &copy; 2026</p>
     </footer>
 
     <script>
-        function calculateTax() {
-            const amount = parseFloat(document.getElementById('amount').value);
-            const rate = parseFloat(document.getElementById('taxRate').value);
-            const resultDiv = document.getElementById('taxResult');
+        function runSimulation() {
+            const val = document.getElementById('simSelect').value;
+            const res = document.getElementById('simResult');
+            const data = {
+                "1": `<strong>القيد المحاسبي:</strong><br>
+                      <span class="tag-debit">مدين</span> 100,000 حـ / البنك<br>
+                      <span class="tag-credit">دائن</span> 100,000 حـ / رأس المال<br><br>
+                      <strong>الأثر المالي:</strong> زيادة الأصول بـ 100,000 وزيادة حقوق الملكية بـ 100,000 (المعادلة متوازنة).`,
+                "2": `<strong>القيد المحاسبي:</strong><br>
+                      <span class="tag-debit">مدين</span> 20,000 حـ / المخزون (البضاعة)<br>
+                      <span class="tag-credit">دائن</span> 20,000 حـ / البنك<br><br>
+                      <strong>الأثر المالي:</strong> زيادة أصل (المخزون) ونقص أصل آخر (البنك) بنفس القيمة.`,
+                "3": `<strong>القيد المحاسبي:</strong><br>
+                      <span class="tag-debit">مدين</span> 35,000 حـ / الصندوق<br>
+                      <span class="tag-credit">دائن</span> 35,000 حـ / إيرادات المبيعات<br><br>
+                      <strong>الأثر المالي:</strong> زيادة النقدية وزيادة الإيرادات (مما يرفع صافي الربح).`,
+                "4": `<strong>القيد المحاسبي:</strong><br>
+                      <span class="tag-debit">مدين</span> 5,000 حـ / مصروف الإيجار<br>
+                      <span class="tag-credit">دائن</span> 5,000 حـ / الصندوق<br><br>
+                      <strong>الأثر المالي:</strong> زيادة المصروفات ونقص النقدية.`
+            };
 
-            if (isNaN(amount) || amount <= 0) {
-                resultDiv.style.display = 'block';
-                resultDiv.innerHTML = 'الرجاء إدخال مبلغ صحيح أكبر من الصفر.';
+            if (data[val]) {
+                res.style.display = 'block';
+                res.innerHTML = data[val];
+            } else {
+                res.style.display = 'none';
+            }
+        }
+
+        function calcBreakEven() {
+            const fixed = parseFloat(document.getElementById('fixedCost').value);
+            const price = parseFloat(document.getElementById('unitPrice').value);
+            const variable = parseFloat(document.getElementById('varCost').value);
+            const res = document.getElementById('beResult');
+
+            if (isNaN(fixed) || isNaN(price) || isNaN(variable) || price <= variable) {
+                res.style.display = 'block';
+                res.innerHTML = 'يرجى إدخال أرقام صحيحة، والتأكد من أن سعر البيع أكبر من التكلفة المتغيرة.';
                 return;
             }
 
-            const tax = amount * (rate / 100);
-            const total = amount + tax;
+            const units = Math.ceil(fixed / (price - variable));
+            const revenue = units * price;
 
-            resultDiv.style.display = 'block';
-            resultDiv.innerHTML = `قيمة الضريبة: ${tax.toFixed(2)} | الإجمالي شامل الضريبة: ${total.toFixed(2)}`;
-        }
-
-        function checkQuiz() {
-            const answer = document.getElementById('quizAnswer').value;
-            const resultDiv = document.getElementById('quizResult');
-            resultDiv.style.display = 'block';
-
-            if (answer === 'equipment') {
-                resultDiv.style.borderColor = '#10b981';
-                resultDiv.innerHTML = 'إجابة صحيحة! الأجهزة (أصل) زادت فتصبح مدينة، بينما النقدية (أصل) نقصت فتصبح دائنة.';
-            } else if (answer === '') {
-                resultDiv.innerHTML = 'الرجاء اختيار إجابة أولاً.';
-            } else {
-                resultDiv.style.borderColor = '#ef4444';
-                resultDiv.innerHTML = 'حاول مرة أخرى! تذكر أن الأصل الذي يزيد يكون هو الطرف المدين.';
-            }
+            res.style.display = 'block';
+            res.innerHTML = `تحتاج إلى بيع <strong>${units} وحدة</strong> للوصول لنقطة التعادل (إجمالي مبيعات: <strong>${revenue.toLocaleString()}</strong>). أي مبيعات بعد هذا الرقم تمثل ربحاً صافياً لك.`;
         }
     </script>
 </body>
