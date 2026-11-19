@@ -3,11 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="محاسبة أون لاين - دليلك المبسط لفهم أساسيات المحاسبة، المعادلة المحاسبية، المدين والدائن، وأدوات محاسبية تفاعلية.">
     <title>محاسبة أون لاين - شرح المحاسبة ببساطة</title>
     <style>
         :root {
             --primary: #1e3a8a;
             --secondary: #3b82f6;
+            --accent: #10b981;
             --bg: #f8fafc;
             --text: #1e293b;
             --card-bg: #ffffff;
@@ -29,14 +31,8 @@
             padding: 3rem 1rem;
             text-align: center;
         }
-        header h1 {
-            font-size: 2.5rem;
-            margin-bottom: 0.5rem;
-        }
-        header p {
-            font-size: 1.2rem;
-            opacity: 0.9;
-        }
+        header h1 { font-size: 2.5rem; margin-bottom: 0.5rem; }
+        header p { font-size: 1.2rem; opacity: 0.9; }
         nav {
             background: #fff;
             padding: 1rem;
@@ -49,12 +45,11 @@
         nav a {
             color: var(--primary);
             text-decoration: none;
-            margin: 0 15px;
+            margin: 0 12px;
             font-weight: bold;
+            font-size: 0.95rem;
         }
-        nav a:hover {
-            color: var(--secondary);
-        }
+        nav a:hover { color: var(--secondary); }
         .container {
             max-width: 900px;
             margin: 2rem auto;
@@ -68,10 +63,7 @@
             box-shadow: 0 4px 6px rgba(0,0,0,0.05);
             border-right: 5px solid var(--secondary);
         }
-        .card h2 {
-            color: var(--primary);
-            margin-bottom: 1rem;
-        }
+        .card h2 { color: var(--primary); margin-bottom: 1rem; }
         .formula-box {
             background: #eff6ff;
             border: 1px dashed var(--secondary);
@@ -93,9 +85,42 @@
             padding: 0.8rem;
             text-align: right;
         }
-        th {
-            background-color: #f1f5f9;
-            color: var(--primary);
+        th { background-color: #f1f5f9; color: var(--primary); }
+        
+        /* تنسيق الأدوات التفاعلية */
+        .tool-box {
+            background: #f1f5f9;
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin-top: 1rem;
+        }
+        input[type="number"], select {
+            width: 100%;
+            padding: 0.7rem;
+            margin: 0.5rem 0 1rem;
+            border: 1px solid #cbd5e1;
+            border-radius: 6px;
+            font-size: 1rem;
+        }
+        button {
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            padding: 0.7rem 1.5rem;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: bold;
+        }
+        button:hover { background-color: var(--secondary); }
+        .result {
+            margin-top: 1rem;
+            padding: 1rem;
+            background: #fff;
+            border-radius: 6px;
+            border-right: 4px solid var(--accent);
+            font-weight: bold;
+            display: none;
         }
         footer {
             text-align: center;
@@ -117,13 +142,14 @@
         <a href="#intro">ما هي المحاسبة؟</a>
         <a href="#equation">المعادلة المحاسبية</a>
         <a href="#debit-credit">المدين والدائن</a>
-        <a href="#statements">القوائم المالية</a>
+        <a href="#calculator">حاسبة الضريبة</a>
+        <a href="#quiz">اختبر فهمك</a>
     </nav>
 
     <div class="container">
         <section id="intro" class="card">
             <h2>1. ما هي المحاسبة ببساطة؟</h2>
-            <p>المحاسبة هي "لغة المال والأعمال". وظيفتها الأساسية هي تسجيل كل ريال يدخل أو يخرج من المشروع، وتنظيم هذه العمليات، ثم تلخيصها في تقارير تساعد صاحب العمل على معرفة: <strong>هل مشروعي يربح أم يخسر؟</strong></p>
+            <p>المحاسبة هي "لغة المال والأعمال". وظيفتها الأساسية هي تسجيل كل مبلغ يدخل أو يخرج من المشروع، وتنظيم هذه العمليات، ثم تلخيصها في تقارير تساعد صاحب العمل على معرفة: <strong>هل مشروعي يربح أم يخسر؟</strong></p>
         </section>
 
         <section id="equation" class="card">
@@ -164,12 +190,36 @@
             </table>
         </section>
 
-        <section id="statements" class="card">
-            <h2>4. أهم القوائم المالية</h2>
-            <ul>
-                <li><strong>قائمة الدخل:</strong> توضح نتيجة نشاط الشركة خلال فترة معينة (الإيرادات ناقص المصروفات = صافي الربح أو الخسارة).</li>
-                <li><strong>الميزانية العمومية:</strong> صورة فوتوغرافية لوضع الشركة المالي في لحظة محددة (توضح الأصول والالتزامات وحقوق الملكية).</li>
-            </ul>
+        <!-- أداة حاسبة الضريبة -->
+        <section id="calculator" class="card">
+            <h2>4. حاسبة ضريبة القيمة المضافة</h2>
+            <p>أدخل المبلغ الأساسي ونسبة الضريبة لحساب الإجمالي فوراً:</p>
+            <div class="tool-box">
+                <label>المبلغ قبل الضريبة:</label>
+                <input type="number" id="amount" placeholder="مثال: 1000">
+                
+                <label>نسبة الضريبة (%):</label>
+                <input type="number" id="taxRate" value="15">
+                
+                <button onclick="calculateTax()">احسب الضريبة</button>
+                <div id="taxResult" class="result"></div>
+            </div>
+        </section>
+
+        <!-- اختبار تفاعلي -->
+        <section id="quiz" class="card">
+            <h2>5. اختبر فهمك السريع</h2>
+            <div class="tool-box">
+                <p><strong>سؤال:</strong> اشترت الشركة جهاز حاسوب نقداً. ما هو الطرف <strong>المدين</strong> في هذه العملية؟</p>
+                <select id="quizAnswer">
+                    <option value="">-- اختر الإجابة الصحيحة --</option>
+                    <option value="cash">الصندوق (النقدية)</option>
+                    <option value="equipment">الأجهزة والمعدات</option>
+                    <option value="capital">رأس المال</option>
+                </select>
+                <button onclick="checkQuiz()">تحقق من الإجابة</button>
+                <div id="quizResult" class="result"></div>
+            </div>
         </section>
     </div>
 
@@ -177,5 +227,40 @@
         <p>جميع الحقوق محفوظة &copy; 2026 - موقع محاسبة أون لاين</p>
     </footer>
 
+    <script>
+        function calculateTax() {
+            const amount = parseFloat(document.getElementById('amount').value);
+            const rate = parseFloat(document.getElementById('taxRate').value);
+            const resultDiv = document.getElementById('taxResult');
+
+            if (isNaN(amount) || amount <= 0) {
+                resultDiv.style.display = 'block';
+                resultDiv.innerHTML = 'الرجاء إدخال مبلغ صحيح أكبر من الصفر.';
+                return;
+            }
+
+            const tax = amount * (rate / 100);
+            const total = amount + tax;
+
+            resultDiv.style.display = 'block';
+            resultDiv.innerHTML = `قيمة الضريبة: ${tax.toFixed(2)} | الإجمالي شامل الضريبة: ${total.toFixed(2)}`;
+        }
+
+        function checkQuiz() {
+            const answer = document.getElementById('quizAnswer').value;
+            const resultDiv = document.getElementById('quizResult');
+            resultDiv.style.display = 'block';
+
+            if (answer === 'equipment') {
+                resultDiv.style.borderColor = '#10b981';
+                resultDiv.innerHTML = 'إجابة صحيحة! الأجهزة (أصل) زادت فتصبح مدينة، بينما النقدية (أصل) نقصت فتصبح دائنة.';
+            } else if (answer === '') {
+                resultDiv.innerHTML = 'الرجاء اختيار إجابة أولاً.';
+            } else {
+                resultDiv.style.borderColor = '#ef4444';
+                resultDiv.innerHTML = 'حاول مرة أخرى! تذكر أن الأصل الذي يزيد يكون هو الطرف المدين.';
+            }
+        }
+    </script>
 </body>
 </html>
