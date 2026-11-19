@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>قاموس المصطلحات المحاسبية المشروحة | محاسبة أون لاين</title>
+    <title>قاموس المصطلحات المحاسبية الشامل | محاسبة أون لاين</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&display=swap" rel="stylesheet">
@@ -31,22 +31,26 @@
 
         .hero { background: linear-gradient(135deg, var(--brand-dark), var(--brand)); color: #fff; padding: 3.5rem 1.5rem; text-align: center; }
         .hero h1 { font-size: clamp(1.8rem, 4vw, 2.6rem); font-weight: 800; margin-bottom: 0.8rem; }
-        .hero p { max-width: 750px; margin: 0 auto; color: #dbeafe; font-size: 1.08rem; }
+        .hero p { max-width: 760px; margin: 0 auto; color: #dbeafe; font-size: 1.08rem; }
 
-        .wrap { max-width: 1040px; margin: 2.5rem auto; padding: 0 1.25rem; }
-        .lesson-card { background: var(--surface); border: 1px solid var(--line); border-radius: 16px; padding: 2.2rem; margin-bottom: 2.2rem; box-shadow: 0 4px 15px rgba(15, 23, 42, 0.03); }
+        .wrap { max-width: 1080px; margin: 2.5rem auto; padding: 0 1.25rem; }
+        .lesson-card { background: var(--surface); border: 1px solid var(--line); border-radius: 16px; padding: 2rem; margin-bottom: 2rem; box-shadow: 0 4px 15px rgba(15, 23, 42, 0.03); }
         .lesson-badge { display: inline-block; background: #eff6ff; color: var(--brand); font-weight: 800; font-size: 0.85rem; padding: 4px 14px; border-radius: 50px; margin-bottom: 0.8rem; }
-        .lesson-card h2 { font-size: 1.55rem; color: var(--brand-dark); font-weight: 800; margin-bottom: 1rem; border-bottom: 2px solid #f1f5f9; padding-bottom: 0.75rem; }
+        .lesson-card h2 { font-size: 1.5rem; color: var(--brand-dark); font-weight: 800; margin-bottom: 0.8rem; }
 
-        .search-input { width: 100%; padding: 0.85rem 1rem; border: 1px solid #cbd5e1; border-radius: 10px; font-family: inherit; font-size: 1rem; margin-bottom: 1.2rem; }
+        .search-input { width: 100%; padding: 0.85rem 1rem; border: 1px solid #cbd5e1; border-radius: 10px; font-family: inherit; font-size: 1rem; margin-bottom: 1rem; }
+        .filters { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; }
+        .f-btn { background: #f8fafc; color: var(--ink); border: 1px solid #cbd5e1; padding: 0.45rem 0.95rem; border-radius: 999px; font-family: inherit; font-weight: 700; cursor: pointer; font-size: 0.88rem; transition: 0.2s; }
+        .f-btn.active, .f-btn:hover { background: var(--brand); color: #fff; border-color: var(--brand); }
+        .count-badge { margin-right: auto; font-size: 0.9rem; font-weight: 700; color: var(--brand-dark); background: #eff6ff; padding: 0.35rem 0.8rem; border-radius: 8px; }
 
         .table-wrap { overflow-x: auto; border: 1px solid var(--line); border-radius: 12px; }
         table { width: 100%; border-collapse: collapse; background: #fff; }
-        th, td { padding: 0.9rem 1rem; text-align: right; border-bottom: 1px solid var(--line); font-size: 0.95rem; vertical-align: top; }
+        th, td { padding: 0.85rem 1rem; text-align: right; border-bottom: 1px solid var(--line); font-size: 0.94rem; vertical-align: top; }
         th { background: var(--brand-dark); color: #fff; font-weight: 700; }
         tr:nth-child(even) td { background: #f8fafc; }
         .en-term { font-family: sans-serif; font-weight: 700; color: var(--brand); direction: ltr; display: inline-block; }
-        .loc-tag { display: inline-block; background: #e0f2fe; color: #0369a1; padding: 2px 8px; border-radius: 6px; font-size: 0.82rem; font-weight: 700; }
+        .loc-tag { display: inline-block; background: #e0f2fe; color: #0369a1; padding: 2px 8px; border-radius: 6px; font-size: 0.8rem; font-weight: 700; white-space: nowrap; }
 
         footer { background: var(--brand-dark); color: #cbd5e1; text-align: center; padding: 2.5rem 1rem; margin-top: 3rem; }
     </style>
@@ -68,47 +72,120 @@
     </header>
 
     <section class="hero">
-        <h1>قاموس المصطلحات المحاسبية والمالية</h1>
-        <p>شرح تفصيلي لأهم المصطلحات المحاسبية بالعربية والإنجليزية مع توضيح موقعها في القوائم المالية وأمثلة تطبيقية.</p>
+        <h1>قاموس المصطلحات المحاسبية والمالية الشامل</h1>
+        <p>أكثر من 40 مصطلحاً محاسبياً ومالياً وإدارياً وضريبياً بالعربية والإنجليزية مع شرح واضح ومثال عملي لكل مصطلح.</p>
     </section>
 
     <main class="wrap">
         <article class="lesson-card">
-            <span class="lesson-badge">مرجع سريع ومفصل</span>
-            <h2>دليل المصطلحات المحاسبية الأساسية</h2>
-            <input type="text" id="termSearch" class="search-input" onkeyup="filterTerms()" placeholder="ابحث عن مصطلح بالعربي أو الإنجليزي (مثال: العملاء، الاستحقاق، السيولة، Receivable)...">
+            <span class="lesson-badge">موسوعة مصطلحات</span>
+            <h2>ابحث وفلتر في المصطلحات المحاسبية</h2>
+            <input type="text" id="termSearch" class="search-input" onkeyup="filterGlossary()" placeholder="ابحث بأي كلمة عربية أو إنجليزية (مثال: استهلاك، سيولة، تعادل، مخصص، FIFO، Audit)...">
+            <div class="filters">
+                <button type="button" class="f-btn active" onclick="pickGroup('all', this)">الكل</button>
+                <button type="button" class="f-btn" onclick="pickGroup('financial', this)">المحاسبة والقوائم</button>
+                <button type="button" class="f-btn" onclick="pickGroup('cost', this)">التكاليف والإدارة</button>
+                <button type="button" class="f-btn" onclick="pickGroup('audit', this)">الرقابة والضرائب</button>
+                <span id="visibleCount" class="count-badge">عدد المصطلحات الظاهرة: 42</span>
+            </div>
+        </article>
 
-            <div class="table-wrap">
-                <table id="termsTable">
+        <div class="lesson-card" style="padding: 0; overflow: hidden;">
+            <div class="table-wrap" style="margin: 0; border: 0; border-radius: 0;">
+                <table id="glossaryTable">
                     <thead>
                         <tr>
+                            <th>#</th>
                             <th>المصطلح بالعربي</th>
                             <th>المصطلح بالإنجليزي</th>
-                            <th>الموقع</th>
+                            <th>التصنيف</th>
                             <th>الشرح التفصيلي ومثال عملي</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td><strong>أساس الاستحقاق</strong></td>
-                            <td><span class="en-term">Accrual Basis</span></td>
-                            <td><span class="loc-tag">مبدأ محاسبي</span></td>
-                            <td>تسجيل الإيرادات عند تحققها والمصروفات عند حدوثها بغض النظر عن موعد استلام أو دفع النقد. مثال: بيع خدمة اليوم وتحصيل قيمتها الشهر القادم يُسجل إيراداً اليوم.</td>
-                        </tr>
-                        <tr>
-                            <td><strong>الذمم المدينة (العملاء)</strong></td>
-                            <td><span class="en-term">Accounts Receivable</span></td>
-                            <td><span class="loc-tag">الميزانية (أصل)</span></td>
-                            <td>المبالغ المستحقة للشركة لدى العملاء نتيجة بيع سلع أو خدمات بالآجل (على الحساب). مثال: بعت بضاعة بـ 5,000 ولم يدفع العميل بعد، فلهذا الحساب رصيد 5,000.</td>
-                        </tr>
-                        <tr>
-                            <td><strong>الذمم الدائنة (الموردون)</strong></td>
-                            <td><span class="en-term">Accounts Payable</span></td>
-                            <td><span class="loc-tag">الميزانية (التزام)</span></td>
-                            <td>المبالغ المستحقة على الشركة للموردين نتيجة شراء بضاعة أو خدمات بالآجل. مثال: اشتريت مخزوناً بـ 8,000 وسيتم سداده خلال 30 يوماً.</td>
-                        </tr>
-                        <tr>
-                            <td><strong>تكلفة البضاعة المباعة</strong></td>
-                            <td><span class="en-term">Cost of Goods Sold (COGS)</span></td>
-                            <td><span class="loc-tag">قائمة الدخل</span></td>
-                            <td>تكلفة شراء أو إنتاج السلع التي تم بيعها فعلاً خلال الفترة. مثال: إذا اشتريت 10 وحدات بـ 100 للوحدة وبعت 6 وحدات
+                        <!-- المحاسبة والقوائم المالية -->
+                        <tr data-group="financial"><td>1</td><td><strong>الأصول (الموجودات)</strong></td><td><span class="en-term">Assets</span></td><td><span class="loc-tag">المحاسبة والقوائم</span></td><td>الموارد التي تملكها الشركة وتدر نفعاً مستقبلياً مثل النقدية، المخزون، السيارات، والمباني.</td></tr>
+                        <tr data-group="financial"><td>2</td><td><strong>الأصول المتداولة</strong></td><td><span class="en-term">Current Assets</span></td><td><span class="loc-tag">المحاسبة والقوائم</span></td><td>الأصول التي يُتوقع تحويلها لنقد أو استهلاكها خلال سنة أو دورة تشغيلية واحدة مثل الصندوق والبنك والعملاء والمخزون.</td></tr>
+                        <tr data-group="financial"><td>3</td><td><strong>الأصول غير المتداولة (الثابتة)</strong></td><td><span class="en-term">Non-Current / Fixed Assets</span></td><td><span class="loc-tag">المحاسبة والقوائم</span></td><td>أصول طويلة الأجل تُقتنى للاستخدام في النشاط لأكثر من سنة كالأراضي والمباني والآلات والسيارات.</td></tr>
+                        <tr data-group="financial"><td>4</td><td><strong>الالتزامات (الخصوم)</strong></td><td><span class="en-term">Liabilities</span></td><td><span class="loc-tag">المحاسبة والقوائم</span></td><td>الديون والالتزامات المالية المستحقة على الشركة للغير نتيجة أحداث سابقة مثل الموردين والقروض.</td></tr>
+                        <tr data-group="financial"><td>5</td><td><strong>الالتزامات المتداولة</strong></td><td><span class="en-term">Current Liabilities</span></td><td><span class="loc-tag">المحاسبة والقوائم</span></td><td>التزامات قصيرة الأجل يُتوقع سدادها خلال سنة واحدة مثل حسابات الموردين والرواتب المستحقة والضرائب المستحقة.</td></tr>
+                        <tr data-group="financial"><td>6</td><td><strong>الالتزامات طويلة الأجل</strong></td><td><span class="en-term">Non-Current Liabilities</span></td><td><span class="loc-tag">المحاسبة والقوائم</span></td><td>التزامات يستحق سدادها بعد أكثر من سنة مثل القروض البنكية طويلة الأجل أو السندات.</td></tr>
+                        <tr data-group="financial"><td>7</td><td><strong>حقوق الملكية</strong></td><td><span class="en-term">Owner's / Shareholders' Equity</span></td><td><span class="loc-tag">المحاسبة والقوائم</span></td><td>صافي حق أصحاب المشروع في أصول المنشأة بعد خصم جميع الالتزامات (رأس المال + الأرباح المحتجزة - المسحوبات).</td></tr>
+                        <tr data-group="financial"><td>8</td><td><strong>رأس المال</strong></td><td><span class="en-term">Capital</span></td><td><span class="loc-tag">المحاسبة والقوائم</span></td><td>الأموال أو الأصول التي يضعها الملاك أو الشركاء في المنشأة لبدء النشاط أو دعمه.</td></tr>
+                        <tr data-group="financial"><td>9</td><td><strong>الأرباح المحتجزة (المبقاة)</strong></td><td><span class="en-term">Retained Earnings</span></td><td><span class="loc-tag">المحاسبة والقوائم</span></td><td>صافي الأرباح المتراكمة للشركة منذ تأسيسها والتي لم تُوزع على الملاك وبقيت لدعم نمو المنشأة.</td></tr>
+                        <tr data-group="financial"><td>10</td><td><strong>الإيرادات</strong></td><td><span class="en-term">Revenues</span></td><td><span class="loc-tag">المحاسبة والقوائم</span></td><td>الدخل الناتج عن النشاط الرئيسي للشركة من بيع السلع أو تقديم الخدمات خلال فترة زمنية.</td></tr>
+                        <tr data-group="financial"><td>11</td><td><strong>المصروفات</strong></td><td><span class="en-term">Expenses</span></td><td><span class="loc-tag">المحاسبة والقوائم</span></td><td>التكاليف المستنفدة خلال الفترة مقابل تحقيق الإيرادات مثل الرواتب والإيجار والكهرباء والإهلاك.</td></tr>
+                        <tr data-group="financial"><td>12</td><td><strong>قائمة الدخل</strong></td><td><span class="en-term">Income Statement</span></td><td><span class="loc-tag">المحاسبة والقوائم</span></td><td>تقرير مالي يوضح الإيرادات والمصروفات وصافي الربح أو الخسارة خلال فترة محددة (شهر، ربع سنة، سنة).</td></tr>
+                        <tr data-group="financial"><td>13</td><td><strong>قائمة المركز المالي (الميزانية)</strong></td><td><span class="en-term">Balance Sheet</span></td><td><span class="loc-tag">المحاسبة والقوائم</span></td><td>تقرير يبيّن أرصدة الأصول والالتزامات وحقوق الملكية في تاريخ محدد، ويجب أن تتساوى فيه الأصول مع الالتزامات + حقوق الملكية.</td></tr>
+                        <tr data-group="financial"><td>14</td><td><strong>قائمة التدفقات النقدية</strong></td><td><span class="en-term">Cash Flow Statement</span></td><td><span class="loc-tag">المحاسبة والقوائم</span></td><td>تقرير يوضح حركة النقد الداخلة والخارجة مقسمة إلى أنشطة تشغيلية واستثمارية وتمويلية.</td></tr>
+                        <tr data-group="financial"><td>15</td><td><strong>أساس الاستحقاق</strong></td><td><span class="en-term">Accrual Basis</span></td><td><span class="loc-tag">المحاسبة والقوائم</span></td><td>إثبات الإيرادات عند تحققها والمصروفات عند حدوثها بغض النظر عن توقيت تحصيل أو دفع النقد.</td></tr>
+                        <tr data-group="financial"><td>16</td><td><strong>الأساس النقدي</strong></td><td><span class="en-term">Cash Basis</span></td><td><span class="loc-tag">المحاسبة والقوائم</span></td><td>تسجيل الإيراد عند استلام النقد فعلياً وتسجيل المصروف عند دفع النقد فعلياً.</td></tr>
+                        <tr data-group="financial"><td>17</td><td><strong>الذمم المدينة (العملاء)</strong></td><td><span class="en-term">Accounts Receivable</span></td><td><span class="loc-tag">المحاسبة والقوائم</span></td><td>أموال مستحقة للشركة لدى العملاء مقابل مبيعات آجلة ولم تُحصّل بعد.</td></tr>
+                        <tr data-group="financial"><td>18</td><td><strong>الذمم الدائنة (الموردون)</strong></td><td><span class="en-term">Accounts Payable</span></td><td><span class="loc-tag">المحاسبة والقوائم</span></td><td>أموال مستحقة على الشركة للموردين مقابل مشتريات آجلة ولم تُسدد بعد.</td></tr>
+                        <tr data-group="financial"><td>19</td><td><strong>المصروفات المدفوعة مقدماً</strong></td><td><span class="en-term">Prepaid Expenses</span></td><td><span class="loc-tag">المحاسبة والقوائم</span></td><td>مبالغ دُفعت مقدماً مقابل خدمة تمتد لعدة فترات (مثل إيجار سنوي مدفوع مقدماً) وتُعد أصلاً ثم تُحمّل تدريجياً كمصروف.</td></tr>
+                        <tr data-group="financial"><td>20</td><td><strong>الإيرادات المقدمة (غير المكتسبة)</strong></td><td><span class="en-term">Unearned Revenue</span></td><td><span class="loc-tag">المحاسبة والقوائم</span></td><td>مبالغ استلمتها الشركة مقدماً من عملاء مقابل سلع أو خدمات ستُقدم لاحقاً، وتُعد التزاماً حتى أداء الخدمة.</td></tr>
+                        <tr data-group="financial"><td>21</td><td><strong>مجمع الإهلاك</strong></td><td><span class="en-term">Accumulated Depreciation</span></td><td><span class="loc-tag">المحاسبة والقوائم</span></td><td>إجمالي أقساط الإهلاك المتراكمة للأصل الثابت منذ تاريخ شرائه وحتى تاريخ الميزانية.</td></tr>
+                        <tr data-group="financial"><td>22</td><td><strong>القيمة الدفترية</strong></td><td><span class="en-term">Book Value</span></td><td><span class="loc-tag">المحاسبة والقوائم</span></td><td>تكلفة الأصل مطروحاً منها مجمع الإهلاك (تمثل قيمة الأصل المسجلة في السجلات المحاسبية).</td></tr>
+                        <tr data-group="financial"><td>23</td><td><strong>القيمة العادلة</strong></td><td><span class="en-term">Fair Value</span></td><td><span class="loc-tag">المحاسبة والقوائم</span></td><td>السعر الذي يُستلم لبيع أصل أو يُدفع لنقل التزام في معاملة منظمة بين أطراف مطلعة في تاريخ القياس.</td></tr>
+                        <tr data-group="financial"><td>24</td><td><strong>المخصصات</strong></td><td><span class="en-term">Provisions</span></td><td><span class="loc-tag">المحاسبة والقوائم</span></td><td>التزامات ذات توقيت أو مبلغ غير مؤكد تُقدّر لمواجهة خسائر محتملة متوقعة مثل مخصص ديون مشكوك في تحصيلها.</td></tr>
+                        <tr data-group="financial"><td>25</td><td><strong>الاحتياطيات</strong></td><td><span class="en-term">Reserves</span></td><td><span class="loc-tag">المحاسبة والقوائم</span></td><td>مبالغ تُجنّب من الأرباح الصافية (نظامية أو اختيارية) لتعزيز المركز المالي للشركة.</td></tr>
+
+                        <!-- التكاليف والإدارة المالية -->
+                        <tr data-group="cost"><td>26</td><td><strong>التكاليف الثابتة</strong></td><td><span class="en-term">Fixed Costs</span></td><td><span class="loc-tag">التكاليف والإدارة</span></td><td>تكاليف لا تتغير في مجموعها مع تغير حجم الإنتاج أو المبيعات ضمن المدى الملائم مثل إيجار المصنع أو المكتب.</td></tr>
+                        <tr data-group="cost"><td>27</td><td><strong>التكاليف المتغيرة</strong></td><td><span class="en-term">Variable Costs</span></td><td><span class="loc-tag">التكاليف والإدارة</span></td><td>تكاليف تتغير في مجموعها طردياً مع حجم الإنتاج أو المبيعات مثل المواد الخام المباشرة وعمولات البيع.</td></tr>
+                        <tr data-group="cost"><td>28</td><td><strong>التكاليف المباشرة</strong></td><td><span class="en-term">Direct Costs</span></td><td><span class="loc-tag">التكاليف والإدارة</span></td><td>تكاليف يمكن تتبعها وتخصيصها مباشرة على منتج أو خدمة أو مشروع معين بسهولة واقتصادية.</td></tr>
+                        <tr data-group="cost"><td>29</td><td><strong>التكاليف غير المباشرة</strong></td><td><span class="en-term">Indirect Costs</span></td><td><span class="loc-tag">التكاليف والإدارة</span></td><td>تكاليف مشتركة بين أكثر من منتج أو قسم ويصعب نسبتها مباشرة لوحدة واحدة دون أساس توزيع مثل كهرباء المصنع العامة.</td></tr>
+                        <tr data-group="cost"><td>30</td><td><strong>تكلفة البضاعة المباعة</strong></td><td><span class="en-term">Cost of Goods Sold (COGS)</span></td><td><span class="loc-tag">التكاليف والإدارة</span></td><td>تكلفة شراء أو تصنيع الوحدات التي تم بيعها فعلياً خلال الفترة المحاسبية.</td></tr>
+                        <tr data-group="cost"><td>31</td><td><strong>مجمل الربح</strong></td><td><span class="en-term">Gross Profit</span></td><td><span class="loc-tag">التكاليف والإدارة</span></td><td>الفرق بين صافي الإيرادات وتكلفة البضاعة المباعة قبل خصم المصاريف التشغيلية والإدارية والتمويلية.</td></tr>
+                        <tr data-group="cost"><td>32</td><td><strong>هامش المساهمة</strong></td><td><span class="en-term">Contribution Margin</span></td><td><span class="loc-tag">التكاليف والإدارة</span></td><td>إيرادات المبيعات مطروحاً منها التكاليف المتغيرة؛ يبيّن ما يساهم به البيع في تغطية التكاليف الثابتة ثم تحقيق الربح.</td></tr>
+                        <tr data-group="cost"><td>33</td><td><strong>نقطة التعادل</strong></td><td><span class="en-term">Break-Even Point</span></td><td><span class="loc-tag">التكاليف والإدارة</span></td><td>حجم المبيعات الذي تتساوى عنده الإيرادات الكلية مع التكاليف الكلية (الثابتة + المتغيرة) بحيث يكون الربح والخسارة صفراً.</td></tr>
+                        <tr data-group="cost"><td>34</td><td><strong>رأس المال العامل</strong></td><td><span class="en-term">Working Capital</span></td><td><span class="loc-tag">التكاليف والإدارة</span></td><td>الأصول المتداولة مطروحاً منها الالتزامات المتداولة؛ مؤشر مهم للسيولة التشغيلية قصيرة الأجل.</td></tr>
+                        <tr data-group="cost"><td>35</td><td><strong>الموازنة التقديرية</strong></td><td><span class="en-term">Budget</span></td><td><span class="loc-tag">التكاليف والإدارة</span></td><td>خطة مالية مستقبلية مُقدّرة بالأرقام لفترة قادمة تساعد على التخطيط والرقابة ومقارنة الفعلي بالمخطط.</td></tr>
+                        <tr data-group="cost"><td>36</td><td><strong>الوارد أولاً صادر أولاً</strong></td><td><span class="en-term">FIFO (First-In, First-Out)</span></td><td><span class="loc-tag">التكاليف والإدارة</span></td><td>طريقة لتسعير المخزون تفترض أن الوحدات التي أُضيفت للمخزون أولاً هي التي تُباع أو تُصرف أولاً.</td></tr>
+
+                        <!-- الرقابة والضرائب -->
+                        <tr data-group="audit"><td>37</td><td><strong>ميزان المراجعة</strong></td><td><span class="en-term">Trial Balance</span></td><td><span class="loc-tag">الرقابة والضرائب</span></td><td>كشف بأرصدة جميع الحسابات المدينة والدائنة للتحقق من توازن القيود قبل إعداد القوائم المالية.</td></tr>
+                        <tr data-group="audit"><td>38</td><td><strong>قيود التسوية</strong></td><td><span class="en-term">Adjusting Entries</span></td><td><span class="loc-tag">الرقابة والضرائب</span></td><td>قيود تُسجل في نهاية الفترة المحاسبية لتحديث الحسابات وفق أساس الاستحقاق (كالإهلاك والمصروفات المستحقة أو المقدمة).</td></tr>
+                        <tr data-group="audit"><td>39</td><td><strong>القيود الختامية</strong></td><td><span class="en-term">Closing Entries</span></td><td><span class="loc-tag">الرقابة والضرائب</span></td><td>قيود تُقفل بها الحسابات المؤقتة (الإيرادات والمصروفات والمسحوبات) في نهاية السنة لتحويل صافي النتيجة إلى حقوق الملكية.</td></tr>
+                        <tr data-group="audit"><td>40</td><td><strong>المراجعة / التدقيق المالي</strong></td><td><span class="en-term">Auditing</span></td><td><span class="loc-tag">الرقابة والضرائب</span></td><td>فحص مستقل وموضوعي للسجلات والقوائم المالية لإبداء رأي فني حول مدى عدالتها ومطابقتها للمعايير المحاسبية.</td></tr>
+                        <tr data-group="audit"><td>41</td><td><strong>ضريبة القيمة المضافة</strong></td><td><span class="en-term">Value Added Tax (VAT)</span></td><td><span class="loc-tag">الرقابة والضرائب</span></td><td>ضريبة غير مباشرة تُفرض على القيمة المضافة في كل مرحلة من مراحل إنتاج وتوزيع السلع والخدمات وتتحملها غالباً المستهلك النهائي.</td></tr>
+                        <tr data-group="audit"><td>42</td><td><strong>مركز التكلفة</strong></td><td><span class="en-term">Cost Center</span></td><td><span class="loc-tag">الرقابة والضرائب</span></td><td>قسم أو نشاط أو فرع داخل المنشأة تُجمع وتُراقب تكاليفه بشكل مستقل لقياس الأداء وضبط النفقات.</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p><strong>محاسبة أون لاين</strong> — منصة تعليمية عربية متكاملة لتبسيط المحاسبة المالية</p>
+        <p style="font-size: 0.85rem; margin-top: 0.5rem;">جميع الحقوق محفوظة &copy; 2026</p>
+    </footer>
+
+    <script>
+        let selectedGroup = 'all';
+
+        function pickGroup(group, btn) {
+            selectedGroup = group;
+            document.querySelectorAll('.f-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            filterGlossary();
+        }
+
+        function filterGlossary() {
+            const q = document.getElementById('termSearch').value.trim().toLowerCase();
+            const rows = document.querySelectorAll('#glossaryTable tbody tr');
+            let count = 0;
+
+            rows.forEach(row => {
+                const matchGroup = selectedGroup === 'all' || row.dataset.group === selectedGroup;
+                const matchText = !q || row.textContent.toLowerCase().includes(q);
+                const show = matchGroup && matchText;
+                row.style.display = show ? '' : 'none';
+                if (show) count++;
+            });
+
+            document.getElementById('visibleCount').textContent = `عدد المصطلحات الظاهرة: ${count}`;
+        }
+    </script>
+</body>
+</html>
