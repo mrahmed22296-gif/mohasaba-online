@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>محاسبة أون لاين | الدليل الشامل لتعلم المحاسبة خطوة بخطوة</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #f1f5f9;
+            --surface: #ffffff;
+            --ink: #0f172a;
+            --muted: #475569;
+            --brand: #1d4ed8;
+            --brand-dark: #1e3a8a;
+            --accent: #0284c7;
+            --ok: #15803d;
+            --ok-bg: #dcfce7;
+            --warn: #b91c1c;
+            --warn-bg: #fee2e2;
+            --line: #e2e8f0;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            font-family: 'Cairo', sans-serif;
+            background: var(--bg);
+            color: var(--ink);
+            line-height: 1.9;
+        }
+
+        /* القائمة العلوية */
+        .topbar {
+            background: var(--surface);
+            border-bottom: 1px solid var(--line);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.03);
+        }
+
+        .topbar-inner {
+            max-width: 1140px;
+            margin: 0 auto;
+            padding: 0.9rem 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .brand {
+            font-weight: 800;
+            font-size: 1.35rem;
+            color: var(--brand-dark);
+            text-decoration: none;
+        }
+
+        .menu {
+            display: flex;
+            gap: 0.4rem;
+            flex-wrap: wrap;
+        }
+
+        .menu a {
+            text-decoration: none;
+            color: var(--muted);
+            font-weight: 700;
+            font-size: 0.92rem;
+            padding: 0.45rem 0.85rem;
+            border-radius: 8px;
+            transition: 0.2s;
+        }
+
+        .menu a:hover, .menu a.active {
+            background: #eff6ff;
+            color: var(--brand);
+        }
+
+        /* الواجهة */
+        .hero {
+            background: linear-gradient(135deg, var(--brand-dark), var(--brand));
+            color: #fff;
+            padding: 4rem 1.5rem;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: clamp(1.9rem, 4vw, 2.8rem);
+            font-weight: 800;
+            margin-bottom: 1rem;
+        }
+
+        .hero p {
+            max-width: 760px;
+            margin: 0 auto 1.5rem;
+            color: #dbeafe;
+            font-size: 1.1rem;
+        }
+
+        /* فهرس الدروس السريع */
+        .toc {
+            background: rgba(255,255,255,0.12);
+            border: 1px solid rgba(255,255,255,0.2);
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 1rem;
+            border-radius: 12px;
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .toc a {
+            color: #fff;
+            text-decoration: none;
+            background: rgba(15, 23, 42, 0.35);
+            padding: 0.4rem 0.9rem;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+
+        .toc a:hover { background: rgba(15, 23, 42, 0.65); }
+
+        /* المحتوى الرئيسي */
+        .wrap {
+            max-width: 1040px;
+            margin: 2.5rem auto;
+            padding: 0 1.25rem;
+        }
+
+        .lesson-card {
+            background: var(--surface);
+            border: 1px solid var(--line);
+            border-radius: 16px;
+            padding: 2.2rem;
+            margin-bottom: 2.5rem;
+            box-shadow: 0 4px 15px rgba(15, 23, 42, 0.03);
+        }
+
+        .lesson-badge {
+            display: inline-block;
+            background: #eff6ff;
+            color: var(--brand);
+            font-weight: 800;
+            font-size: 0.85rem;
+            padding: 4px 14px;
+            border-radius: 50px;
+            margin-bottom: 0.8rem;
+        }
+
+        .lesson-card h2 {
+            font-size: 1.65rem;
+            color: var(--brand-dark);
+            font-weight: 800;
+            margin-bottom: 1rem;
+            border-bottom: 2px solid #f1f5f9;
+            padding-bottom: 0.75rem;
+        }
+
+        .lesson-card h3 {
+            font-size: 1.25rem;
+            color: var(--ink);
+            margin: 1.5rem 0 0.6rem;
+            font-weight: 700;
+        }
+
+        .lesson-card p {
+            color: #334155;
+            margin-bottom: 1rem;
+            font-size: 1.03rem;
+        }
+
+        .lesson-card ul, .lesson-card ol {
+            margin: 0.8rem 1.5rem 1.2rem 0;
+            color: #334155;
+        }
+
+        .lesson-card li {
+            margin-bottom: 0.6rem;
+        }
+
+        /* صناديق الأمثلة والملاحظات */
+        .example-box {
+            background: #f8fafc;
+            border-right: 4px solid var(--accent);
+            border-top: 1px solid var(--line);
+            border-bottom: 1px solid var(--line);
+            border-left: 1px solid var(--line);
+            padding: 1.4rem;
+            border-radius: 10px;
+            margin: 1.4rem 0;
+        }
+
+        .example-title {
+            font-weight: 800;
+            color: var(--accent);
+            margin-bottom: 0.5rem;
+            display: block;
+            font-size: 1.05rem;
+        }
+
+        .note-box {
+            background: #fffbeb;
+            border-right: 4px solid #d97706;
+            padding: 1.2rem;
+            border-radius: 10px;
+            margin: 1.2rem 0;
+            color: #78350f;
+            font-size: 0.98rem;
+        }
+
+        .formula {
+            background: #eff6ff;
+            border: 1px dashed var(--brand);
+            padding: 1.2rem;
+            border-radius: 12px;
+            text-align: center;
+            font-weight: 800;
+            font-size: 1.15rem;
+            color: var(--brand-dark);
+            margin: 1.4rem 0;
+        }
+
+        /* الجداول */
+        .table-wrap {
+            overflow-x: auto;
+            margin: 1.2rem 0;
+            border: 1px solid var(--line);
+            border-radius: 12px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: #fff;
+        }
+
+        th, td {
+            padding: 0.9rem 1rem;
+            text-align: right;
+            border-bottom: 1px solid var(--line);
+            font-size: 0.96rem;
+        }
+
+        th {
+            background: var(--brand-dark);
+            color: #fff;
+            font-weight: 700;
+        }
+
+        tr:nth-child(even) td { background: #f8fafc; }
+
+        .dr { background: var(--ok-bg); color: var(--ok); padding: 2px 10px; border-radius: 6px; font-weight: 700; }
+        .cr { background: var(--warn-bg); color: var(--warn); padding: 2px 10px; border-radius: 6px; font-weight: 700; }
+
+        /* الأدوات التفاعلية */
+        .grid-2 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .tool-card {
+            background: #f8fafc;
+            border: 1px solid var(--line);
+            padding: 1.5rem;
+            border-radius: 14px;
+        }
+
+        label { display: block; font-weight: 700; margin: 0.8rem 0 0.3rem; }
+        input, select {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid #cbd5e1;
+            border-radius: 8px;
+            font-family: inherit;
+            font-size: 0.98rem;
+        }
+
+        button {
+            margin-top: 1rem;
+            width: 100%;
+            padding: 0.85rem;
+            background: var(--brand);
+            color: #fff;
+            border: none;
+            border-radius: 8px;
+            font-family: inherit;
+            font-weight: 700;
+            font-size: 1rem;
+            cursor: pointer;
+        }
+
+        button:hover { background: var(--brand-dark); }
+
+        .output-box {
+            margin-top: 1rem;
+            padding: 1rem;
+            background: #fff;
+            border-right: 4px solid var(--ok);
+            border-radius: 8px;
+            display: none;
+        }
+
+        footer {
+            background: var(--brand-dark);
+            color: #cbd5e1;
+            text-align: center;
+            padding: 2.5rem 1rem;
+            margin-top: 3rem;
+        }
+    </style>
+</head>
+<body>
+
+    <header class="topbar">
+        <div class="topbar-inner">
+            <a class="brand" href="index.html">محاسبة أون لاين</a>
+            <nav class="menu">
+                <a href="index.html">الشرح الشامل</a>
+                <a href="coa.html">شجرة الحسابات</a>
+                <a href="entries.html">قيود اليومية</a>
+                <a href="depreciation.html">حاسبة الإهلاك</a>
+                <a href="glossary.html">المصطلحات</a>
+                <a class="active" href="books.html">الكتب</a>
+                <a href="quiz.html">الاختبار</a>
+            </nav>
+        </div>
+    </header>
+
+    <section class="hero">
+        <h1>الدليل التعليمي الشامل للمحاسبة المالية</h1>
+        <p>شرح مفصل ومنهجي يأخذك من الصفر حتى القدرة على تسجيل القيود المحاسبية وفهم القوائم المالية وإعدادها بأمثلة رقمية واضحة.</p>
+        <div class="toc">
+            <a href="#lesson1">1. مفهوم المحاسبة وأهدافها</a>
+            <a href="#lesson2">2. عناصر الحسابات الخمسة</a>
+            <a href="#lesson3">3. المعادلة المحاسبية بالتفصيل</a>
+            <a href="#lesson4">4. القيد المزدوج والمدين والدائن</a>
+            <a href="#lesson5">5. مثال عملي متكامل</a>
+            <a href="#lesson6">6. القوائم المالية الختامية</a>
+            <a href="#tools">7. أدوات التطبيق العملي</a>
+        </div>
+    </section>
+
+    <main class="wrap">
+
+        <!-- الدرس الأول -->
+        <article id="lesson1" class="lesson-card">
+            <span class="lesson-badge">الدرس الأول</span>
+            <h2>ما هي المحاسبة المالية ولماذا نحتاجها؟</h2>
+            <p><strong>المحاسبة المالية</strong> هي نظام متكامل يقوم على <strong>تحديد، وقياس، وتسجيل، وتلخيص</strong> جميع الأحداث الاقتصادية (العمليات المالية) التي تمر بها المنشأة، ثم توصيل هذه المعلومات في شكل تقارير مالية واضحة لمساعدة أصحاب القرار.</p>
+            
+            <h3>الفرق بين مسك الدفاتر والمحاسبة</h3>
+            <ul>
+                <li><strong>مسك الدفاتر (Bookkeeping):</strong> هو الجزء التنفيذي اليومي المتمثل في تسجيل الفواتير والمقبوضات والمدفوعات في السجلات بدقة.</li>
+                <li><strong>المحاسبة (Accounting):</strong> أشمل من ذلك؛ فهي تتضمن تصميم النظام المالي، مراجعة القيود، إجراء التسويات الجردية، إعداد القوائم المالية، وتحليل النتائج لمعرفة أسباب الربح أو الخسارة.</li>
+            </ul>
+
+            <h3>من المستفيد من المعلومات المحاسبية؟</h3>
+            <ul>
+                <li><strong>المستخدمون الداخليون:</strong> إدارة الشركة وملاكها؛ لمعرفة أي المنتجات أكثر ربحية، وهل السيولة النقدية تكفي لسداد الرواتب والتوسع.</li>
+                <li><strong>المستخدمون الخارجيون:</strong> البنوك (لتقييم قدرة الشركة على سداد القروض)، الهيئات الضريبية والزكوية، والمستثمرون المحتملون.</li>
+            </ul>
+        </article>
+
+        <!-- الدرس الثاني -->
+        <article id="lesson2" class="lesson-card">
+            <span class="lesson-badge">الدرس الثاني</span>
+            <h2>العناصر الخمسة الأساسية في المحاسبة</h2>
+            <p>مهما كبرت الشركة أو تعقدت عملياتها، فإن أي حساب في نظامها المحاسبي يندرج تحت واحد من <strong>خمسة تصنيفات رئيسية</strong> لا سادس لها:</p>
+
+            <h3>1. الأصول (Assets)</h3>
+            <p>هي جميع الموارد الاقتصادية التي <strong>تمتلكها المنشأة</strong> وتسيطر عليها، ومن المتوقع أن تحقق لها منافع مستقبلية. وتنقسم إلى:</p>
+            <ul>
+                <li><strong>أصول متداولة (قصيرة الأجل):</strong> تتحول إلى نقدية أو تُستهلك خلال سنة واحدة، مثل: <em>النقدية في الصندوق، الرصيد في البنك، البضاعة (المخزون)، والعملاء (الذمم المدينة)</em>.</li>
+                <li><strong>أصول غير متداولة (ثابتة):</strong> تُقتنى بغرض الاستخدام في النشاط لأكثر من سنة وليس بغرض إعادة البيع، مثل: <em>الأراضي، المباني، السيارات، الأجهزة، والأثاث</em>.</li>
+            </ul>
+
+            <h3>2. الالتزامات أو الخصوم (Liabilities)</h3>
+            <p>هي الديون والتعهدات المالية المستحقة <strong>على المنشأة لصالح الغير</strong>، مثل: <em>الموردين (عند الشراء بالآجل)، القروض البنكية، الرواتب المستحقة للموظفين، والضرائب المستحقة</em>.</p>
+
+            <h3>3. حقوق الملكية (Owner's Equity)</h3>
+            <p>هي صافي حق أصحاب المشروع في أصول المنشأة بعد سداد جميع الالتزامات. وتتكون من: <em>رأس المال المدفوع + الأرباح المحتجزة - المسحوبات الشخصية للمالك</em>.</p>
+
+            <h3>4. الإيرادات (Revenues)</h3>
+            <p>هي المبالغ التي تحققها المنشأة نتيجة

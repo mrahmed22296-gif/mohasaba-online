@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>قيود اليومية المحاسبية وأمثلة محلولة | محاسبة أون لاين</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #f1f5f9;
+            --surface: #ffffff;
+            --ink: #0f172a;
+            --muted: #475569;
+            --brand: #1d4ed8;
+            --brand-dark: #1e3a8a;
+            --accent: #0284c7;
+            --ok: #15803d;
+            --ok-bg: #dcfce7;
+            --warn: #b91c1c;
+            --warn-bg: #fee2e2;
+            --line: #e2e8f0;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: 'Cairo', sans-serif; background: var(--bg); color: var(--ink); line-height: 1.9; }
+
+        .topbar { background: var(--surface); border-bottom: 1px solid var(--line); position: sticky; top: 0; z-index: 100; box-shadow: 0 2px 8px rgba(0,0,0,0.03); }
+        .topbar-inner { max-width: 1140px; margin: 0 auto; padding: 0.9rem 1.5rem; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem; }
+        .brand { font-weight: 800; font-size: 1.35rem; color: var(--brand-dark); text-decoration: none; }
+        .menu { display: flex; gap: 0.4rem; flex-wrap: wrap; }
+        .menu a { text-decoration: none; color: var(--muted); font-weight: 700; font-size: 0.92rem; padding: 0.45rem 0.85rem; border-radius: 8px; transition: 0.2s; }
+        .menu a:hover, .menu a.active { background: #eff6ff; color: var(--brand); }
+
+        .hero { background: linear-gradient(135deg, var(--brand-dark), var(--brand)); color: #fff; padding: 3.5rem 1.5rem; text-align: center; }
+        .hero h1 { font-size: clamp(1.8rem, 4vw, 2.6rem); font-weight: 800; margin-bottom: 0.8rem; }
+        .hero p { max-width: 750px; margin: 0 auto; color: #dbeafe; font-size: 1.08rem; }
+
+        .wrap { max-width: 1040px; margin: 2.5rem auto; padding: 0 1.25rem; }
+        .lesson-card { background: var(--surface); border: 1px solid var(--line); border-radius: 16px; padding: 2.2rem; margin-bottom: 2.2rem; box-shadow: 0 4px 15px rgba(15, 23, 42, 0.03); }
+        .lesson-badge { display: inline-block; background: #eff6ff; color: var(--brand); font-weight: 800; font-size: 0.85rem; padding: 4px 14px; border-radius: 50px; margin-bottom: 0.8rem; }
+        .lesson-card h2 { font-size: 1.55rem; color: var(--brand-dark); font-weight: 800; margin-bottom: 1rem; border-bottom: 2px solid #f1f5f9; padding-bottom: 0.75rem; }
+        .lesson-card h3 { font-size: 1.2rem; color: var(--ink); margin: 1.4rem 0 0.6rem; font-weight: 700; }
+        .lesson-card p { color: #334155; margin-bottom: 1rem; font-size: 1.02rem; }
+        .lesson-card ul { margin: 0.8rem 1.5rem 1.2rem 0; color: #334155; }
+        .lesson-card li { margin-bottom: 0.5rem; }
+
+        .case-box { background: #f8fafc; border: 1px solid var(--line); border-right: 4px solid var(--brand); border-radius: 12px; padding: 1.5rem; margin-bottom: 1.5rem; }
+        .case-title { font-weight: 800; color: var(--brand-dark); font-size: 1.1rem; margin-bottom: 0.5rem; display: block; }
+        .analysis-text { font-size: 0.95rem; color: var(--muted); margin-bottom: 0.8rem; background: #fff; padding: 0.8rem; border-radius: 8px; border: 1px dashed #cbd5e1; }
+
+        .table-wrap { overflow-x: auto; margin: 0.8rem 0; border: 1px solid var(--line); border-radius: 10px; }
+        table { width: 100%; border-collapse: collapse; background: #fff; }
+        th, td { padding: 0.75rem 1rem; text-align: right; border-bottom: 1px solid var(--line); font-size: 0.95rem; }
+        th { background: var(--brand-dark); color: #fff; font-weight: 700; }
+        .dr-val { color: var(--ok); font-weight: 800; }
+        .cr-val { color: var(--warn); font-weight: 800; }
+
+        .tool-panel { background: #eff6ff; border: 1px solid #bfdbfe; padding: 1.6rem; border-radius: 14px; }
+        label { display: block; font-weight: 700; margin: 0.8rem 0 0.3rem; }
+        select, input { width: 100%; padding: 0.8rem; border: 1px solid #93c5fd; border-radius: 8px; font-family: inherit; font-size: 1rem; background: #fff; }
+        button { margin-top: 1rem; width: 100%; padding: 0.85rem; background: var(--brand); color: #fff; border: none; border-radius: 8px; font-family: inherit; font-weight: 700; font-size: 1rem; cursor: pointer; }
+        button:hover { background: var(--brand-dark); }
+        .output-box { margin-top: 1.2rem; padding: 1.2rem; background: #fff; border-right: 4px solid var(--ok); border-radius: 8px; display: none; }
+
+        footer { background: var(--brand-dark); color: #cbd5e1; text-align: center; padding: 2.5rem 1rem; margin-top: 3rem; }
+    </style>
+</head>
+<body>
+
+    <header class="topbar">
+        <div class="topbar-inner">
+            <a class="brand" href="index.html">محاسبة أون لاين</a>
+            <nav class="menu">
+                <a href="index.html">الشرح الشامل</a>
+                <a href="coa.html">شجرة الحسابات</a>
+                <a href="entries.html">قيود اليومية</a>
+                <a href="depreciation.html">حاسبة الإهلاك</a>
+                <a href="glossary.html">المصطلحات</a>
+                <a class="active" href="books.html">الكتب</a>
+                <a href="quiz.html">الاختبار</a>
+            </nav>
+        </div>
+    </header>
+
+    <section class="hero">
+        <h1>قيود اليومية المحاسبية</h1>
+        <p>أتقن كتابة القيود البسيطة والمركبة، وقيود ضريبة القيمة المضافة، مع أمثلة تطبيقية محلولة ومُولّد قيود فوري.</p>
+    </section>
+
+    <main class="wrap">
+
+        <!-- أنواع القيود -->
+        <article class="lesson-card">
+            <span class="lesson-badge">الأساس النظري</span>
+            <h2>أنواع القيود المحاسبية ومكونات القيد</h2>
+            <p>يتكون أي قيد محاسبي في دفتر اليومية من 5 عناصر أساسية: <strong>التاريخ، رقم القيد، الطرف المدين (من حـ/)، الطرف الدائن (إلى حـ/)، والبيان (شرح مختصر للعملية ورقم الفاتورة)</strong>.</p>
+            <ul>
+                <li><strong>القيد البسيط (Simple Entry):</strong> هو القيد الذي يتكون من حساب واحد فقط في الجانب المدين، وحساب واحد فقط في الجانب الدائن (مثل سداد إيجار نقداً).</li>
+                <li><strong>القيد المركب (Compound Entry):</strong> هو القيد الذي يتضمن أكثر من حساب في الجانب المدين أو الجانب الدائن أو كليهما (مثل شراء سيارة ودفع نصف قيمتها نقداً والباقي بالآجل، أو قيود المبيعات التي تشمل ضريبة القيمة المضافة).</li>
+            </ul>
+        </article>
+
+        <!-- أمثلة عملية محلولة -->
+        <article class="lesson-card">
+            <span class="lesson-badge">أمثلة محلولة</span>
+            <h2>أشهر 5 حالات عملية لقيود اليومية في الشركات</h2>
+
+            <!-- حالة 1 -->
+            <div class="case-box">
+                <span class="case-title">الحالة 1: قيد تأسيس الشركة وإيداع رأس المال</span>
+                <p>في 1 يناير، بدأ "خالد" نشاطه التجاري بإيداع مبلغ 200,000 في الحساب البنكي للشركة كرأس مال.</p>
+                <div class="analysis-text"><strong>التحليل:</strong> البنك (أصل) زاد ← مدين | رأس المال (حقوق ملكية) زاد ← دائن.</div>
+                <div class="table-wrap">
+                    <table>
+                        <thead><tr><th>مدين</th><th>دائن</th><th>اسم الحساب</th><th>البيان</th></tr></thead>
+                        <tbody>
+                            <tr><td class="dr-val">200,000</td><td>-</td><td>من حـ / البنك</td><td rowspan="2">إيداع رأس مال تأسيس الشركة</td></tr>
+                            <tr><td>-</td><td class="cr-val">200,000</td><td>إلى حـ / رأس المال</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- حالة 2 -->
+            <div class="case-box">
+                <span class="case-title">الحالة 2: قيد مركب (شراء أصل ثابت جزء نقداً والباقي بالآجل)</span>
+                <p>اشترت الشركة سيارة نقل بمبلغ 80,000؛ سددت 30,000 بشيك بنكي، والباقي (50,000) على الحساب لصالح معرض السيارات.</p>
+                <div class="analysis-text"><strong>التحليل:</strong> السيارات (أصل) زادت بـ 80,000 ← مدين | البنك (أصل) نقص بـ 30,000 ← دائن | الموردون (التزام) زاد بـ 50,000 ← دائن.</div>
+                <div class="table-wrap">
+                    <table>
+                        <thead><tr><th>مدين</th><th>دائن</th><th>اسم الحساب</th><th>البيان</th></tr></thead>
+                        <tbody>
+                            <tr><td class="dr-val">80,000</td><td>-</td><td>من حـ / السيارات</td><td rowspan="3">شراء سيارة وسداد جزء بشيك والباقي آجل</td></tr>
+                            <tr><td>-</td><td class="cr-val">30,000</td><td>إلى حـ / البنك</td></tr>
+                            <tr><td>-</td><td class="cr-val">50,000</td><td>إلى حـ / الموردين (معرض السيارات)</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- حالة 3 -->
+            <div class="case-box">
+                <span class="case-title">الحالة 3: قيد مبيعات مع ضريبة القيمة المضافة (15%)</span>
+                <p>باعت الشركة بضاعة لعميل بمبلغ 10,000 بالإضافة إلى ضريبة قيمة مضافة 15% (1,500) واستلمت الإجمالي (11,500) نقداً.</p>
+                <div class="analysis-text"><strong>التحليل:</strong> الصندوق (أصل) زاد بكامل المبلغ المستلم 11,500 ← مدين | المبيعات (إيراد) زادت بقيمة البضاعة الصافية 10,000 ← دائن | ضريبة القيمة المضافة (التزام علينا لهيئة الضرائب) زادت بـ 1,500 ← دائن.</div>
+                <div class="table-wrap">
+                    <table>
+                        <thead><tr><th>مدين</th><th>دائن</th><th>اسم الحساب</th><th>البيان</th></tr></thead>
+                        <tbody>
+                            <tr><td class="dr-val">11,500</td><td>-</td><td>من حـ / الصندوق</td><td rowspan="3">مبيعات نقدية شاملة ضريبة القيمة المضافة 15%</td></tr>
+                            <tr><td>-</td><td class="cr-val">10,000</td><td>إلى حـ / إيرادات المبيعات</td></tr>
+                            <tr><td>-</td><td class="cr-val">1,500</td><td>إلى حـ / ضريبة القيمة المضافة المستحقة</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- حالة 4 -->
+            <div class="case-box">
+                <span class="case-title">الحالة 4: قيد صرف الرواتب الشهرية</span>
+                <p>صرفت الشركة رواتب الموظفين البالغة 25,000 عن طريق التحويل البنكي.</p>
+                <div class="analysis-text"><strong>التحليل:</strong> مصروف الرواتب (مصروف) زاد ← مدين | البنك (أصل) نقص ← دائن.</div>
+                <div class="table-wrap">
+                    <table>
+                        <thead><tr><th>مدين</th><th>دائن</th><th>اسم الحساب</th><th>البيان</th></tr></thead>
+                        <tbody>
+                            <tr><td class="dr-val">25,000</td><td>-</td><td>من حـ / مصروف الرواتب والأجور</td><td rowspan="2">سداد رواتب الموظفين عبر البنك</td></tr>
+                            <tr><td>-</td><td class="cr-val">25,000</td><td>إلى حـ / البنك</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </article>
+
+        <!-- مولد القيود التفاعلي -->
+        <article class="lesson-card">
+            <span class="lesson-badge">أداة تفاعلية</span>
+            <h2>مُولّد القيود المحاسبية بالأرقام</h2>
+            <div class="tool-panel">
+                <label for="entryType">اختر نوع العملية المالية:</label>
+                <select id="entryType">
+                    <option value="sale_cash">بيع بضاعة نقداً (شامل الضريبة 15%)</option>
+                    <option value="sale_credit">بيع بضاعة بالآجل للعملاء (شامل الضريبة 15%)</option>
+                    <option value="buy_cash">شراء بضاعة للمخزون نقداً (بدون ضريبة)</option>
+                    <option value="collect_customer">تحصيل مستحقات من عميل بشيك بنكي</option>
+                    <option value="pay_supplier">سداد مستحقات لمورد من البنك</option>
+                    <option value="pay_rent">دفع إيجار مقر الشركة نقداً</option>
+                </select>
+
+                <label for="entryAmount">أدخل المبلغ الأساسي للعملية:</label>
+                <input type="number" id="entryAmount" placeholder="مثال: 10000" value="10000">
+
+                <button type="button" onclick="buildEntry()">أنشئ القيد المحاسبي</button>
+                <div id="entryResult" class="output-box"></div>
+            </div>
+        </article>
+
+    </main>
+
+    <footer>
+        <p><strong>محاسبة أون لاين</strong> — منصة تعليمية عربية متكاملة لتبسيط المحاسبة المالية</p>
+        <p style="font-size: 0.85rem; margin-top: 0.5rem;">جميع الحقوق محفوظة &copy; 2026</p>
+    </footer>
+
+    <script>
+        function buildEntry() {
+            const type = document.getElementById('entryType').value;
+            const amount = parseFloat(document.getElementById('entryAmount').value);
+            const out = document.getElementById('entryResult');
+            out.style.display = 'block';
+
+            if (isNaN(amount) || amount <= 0) {
+                out.innerHTML = 'الرجاء إدخال مبلغ صحيح أكبر من الصفر.';
+                return;
+            }
+
+            const tax = amount * 0.15;
+            const total = amount + tax;
+            let html = '';
+
+            if (type === 'sale_cash') {
+                html = `<div class="table-wrap"><table>
+                    <thead><tr><th>مدين</th><th>دائن</th><th>الحساب</th></tr></thead>
+                    <tbody>
+                        <tr><td class="dr-val">${total.toLocaleString()}</td><td>-</td><td>من حـ / الصندوق</td></tr>
+                        <tr><td>-</td><td class="cr-val">${amount.toLocaleString()}</td><td>إلى حـ / إيرادات المبيعات</td></tr>
+                        <tr><td>-</td><td class="cr-val">${tax.toLocaleString()}</td><td>إلى حـ / ضريبة القيمة المضافة (15%)</td></tr>
+                    </tbody></table></div>`;
+            } else if (type === 'sale_credit') {
+                html = `<div class="table-wrap"><table>
+                    <thead><tr><th>مدين</th><th>دائن</th><th>الحساب</th></tr></thead>
+                    <tbody>
+                        <tr><td class="dr-val">${total.toLocaleString()}</td><td>-</td><td>من حـ / العملاء (الذمم المدينة)</td></tr>
+                        <tr><td>-</td><td class="cr-val">${amount.toLocaleString()}</td><td>إلى حـ / إيرادات المبيعات</td></tr>
+                        <tr><td>-</td><td class="cr-val">${tax.toLocaleString()}</td><td>إلى حـ / ضريبة القيمة المضافة (15%)</td></tr>
+                    </tbody></table></div>`;
+            } else if (type === 'buy_cash') {
+                html = `<div class="table-wrap"><table>
+                    <thead><tr><th>مدين</th><th>دائن</th><th>الحساب</th></tr></thead>
+                    <tbody>
+                        <tr><td class="dr-val">${amount.toLocaleString()}</td><td>-</td><td>من حـ / مخزون البضاعة</td></tr>
+                        <tr><td>-</td><td class="cr-val">${amount.toLocaleString()}</td><td>إلى حـ / الصندوق</td></tr>
+                    </tbody></table></div>`;
+            } else if (type === 'collect_customer') {
+                html = `<div class="table-wrap"><table>
+                    <thead><tr><th>مدين</th><th>دائن</th><th>الحساب</th></tr></thead>
+                    <tbody>
+                        <tr><td class="dr-val">${amount.toLocaleString()}</td><td>-</td><td>من حـ / البنك</td></tr>
+                        <tr><td>-</td><td class="cr-val">${amount.toLocaleString()}</td><td>إلى حـ / العملاء (الذمم المدينة)</td></tr>
+                    </tbody></table></div>`;
+            } else if (type === 'pay_supplier') {
+                html = `<div class="table-wrap"><table>
+                    <thead><tr><th>مدين</th><th>دائن</th><th>الحساب</th></tr></thead>
+                    <tbody>
+                        <tr><td class="dr-val">${amount.toLocaleString()}</td><td>-</td><td>من حـ / الموردين (الذمم الدائنة)</td></tr>
+                        <tr><td>-</td><td class="cr-val">${amount.toLocaleString()}</td><td>إلى حـ / البنك</td></tr>
+                    </tbody></table></div>`;
+            } else if (type === 'pay_rent') {
+                html = `<div class="table-wrap"><table>
+                    <thead><tr><th>مدين</th><th>دائن</th><th>الحساب</th></tr></thead>
+                    <tbody>
+                        <tr><td class="dr-val">${amount.toLocaleString()}</td><td>-</td><td>من حـ / مصروف الإيجار</td></tr>
+                        <tr><td>-</td><td class="cr-val">${amount.toLocaleString()}</td><td>إلى حـ / الصندوق</td></tr>
+                    </tbody></table></div>`;
+            }
+
+            out.innerHTML = html;
+        }
+    </script>
+</body>
+</html>

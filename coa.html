@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>شجرة الحسابات بالتفصيل | محاسبة أون لاين</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #f1f5f9;
+            --surface: #ffffff;
+            --ink: #0f172a;
+            --muted: #475569;
+            --brand: #1d4ed8;
+            --brand-dark: #1e3a8a;
+            --accent: #0284c7;
+            --ok: #15803d;
+            --ok-bg: #dcfce7;
+            --warn: #b91c1c;
+            --warn-bg: #fee2e2;
+            --line: #e2e8f0;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: 'Cairo', sans-serif; background: var(--bg); color: var(--ink); line-height: 1.9; }
+
+        .topbar { background: var(--surface); border-bottom: 1px solid var(--line); position: sticky; top: 0; z-index: 100; box-shadow: 0 2px 8px rgba(0,0,0,0.03); }
+        .topbar-inner { max-width: 1140px; margin: 0 auto; padding: 0.9rem 1.5rem; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem; }
+        .brand { font-weight: 800; font-size: 1.35rem; color: var(--brand-dark); text-decoration: none; }
+        .menu { display: flex; gap: 0.4rem; flex-wrap: wrap; }
+        .menu a { text-decoration: none; color: var(--muted); font-weight: 700; font-size: 0.92rem; padding: 0.45rem 0.85rem; border-radius: 8px; transition: 0.2s; }
+        .menu a:hover, .menu a.active { background: #eff6ff; color: var(--brand); }
+
+        .hero { background: linear-gradient(135deg, var(--brand-dark), var(--brand)); color: #fff; padding: 3.5rem 1.5rem; text-align: center; }
+        .hero h1 { font-size: clamp(1.8rem, 4vw, 2.6rem); font-weight: 800; margin-bottom: 0.8rem; }
+        .hero p { max-width: 750px; margin: 0 auto; color: #dbeafe; font-size: 1.08rem; }
+
+        .wrap { max-width: 1040px; margin: 2.5rem auto; padding: 0 1.25rem; }
+        .lesson-card { background: var(--surface); border: 1px solid var(--line); border-radius: 16px; padding: 2.2rem; margin-bottom: 2.2rem; box-shadow: 0 4px 15px rgba(15, 23, 42, 0.03); }
+        .lesson-badge { display: inline-block; background: #eff6ff; color: var(--brand); font-weight: 800; font-size: 0.85rem; padding: 4px 14px; border-radius: 50px; margin-bottom: 0.8rem; }
+        .lesson-card h2 { font-size: 1.55rem; color: var(--brand-dark); font-weight: 800; margin-bottom: 1rem; border-bottom: 2px solid #f1f5f9; padding-bottom: 0.75rem; }
+        .lesson-card h3 { font-size: 1.2rem; color: var(--ink); margin: 1.4rem 0 0.6rem; font-weight: 700; }
+        .lesson-card p { color: #334155; margin-bottom: 1rem; font-size: 1.02rem; }
+        .lesson-card ul { margin: 0.8rem 1.5rem 1.2rem 0; color: #334155; }
+        .lesson-card li { margin-bottom: 0.5rem; }
+
+        .example-box { background: #f8fafc; border-right: 4px solid var(--accent); border: 1px solid var(--line); border-right-width: 4px; padding: 1.4rem; border-radius: 10px; margin: 1.4rem 0; }
+        .example-title { font-weight: 800; color: var(--accent); margin-bottom: 0.5rem; display: block; font-size: 1.05rem; }
+
+        .level-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 1rem; margin: 1.5rem 0; }
+        .level-box { background: #f8fafc; border: 1px solid var(--line); border-top: 4px solid var(--brand); border-radius: 12px; padding: 1.2rem; }
+        .level-box strong { display: block; color: var(--brand-dark); font-size: 1.05rem; margin-bottom: 0.4rem; }
+
+        .table-wrap { overflow-x: auto; margin: 1.2rem 0; border: 1px solid var(--line); border-radius: 12px; }
+        table { width: 100%; border-collapse: collapse; background: #fff; }
+        th, td { padding: 0.85rem 1rem; text-align: right; border-bottom: 1px solid var(--line); font-size: 0.95rem; }
+        th { background: var(--brand-dark); color: #fff; font-weight: 700; }
+        tr.main-row td { background: #eff6ff; font-weight: 800; color: var(--brand-dark); }
+        tr.sub-row td { background: #f8fafc; font-weight: 700; }
+        .code-num { font-family: monospace; font-size: 1rem; background: #e2e8f0; padding: 2px 8px; border-radius: 6px; font-weight: 700; }
+
+        .search-bar { width: 100%; padding: 0.8rem 1rem; border: 1px solid #cbd5e1; border-radius: 10px; font-family: inherit; font-size: 1rem; margin-bottom: 1rem; }
+        footer { background: var(--brand-dark); color: #cbd5e1; text-align: center; padding: 2.5rem 1rem; margin-top: 3rem; }
+    </style>
+</head>
+<body>
+
+        <header class="topbar">
+        <div class="topbar-inner">
+            <a class="brand" href="index.html">محاسبة أون لاين</a>
+            <nav class="menu">
+                <a href="index.html">الشرح الشامل</a>
+                <a href="coa.html">شجرة الحسابات</a>
+                <a href="entries.html">قيود اليومية</a>
+                <a href="depreciation.html">حاسبة الإهلاك</a>
+                <a href="glossary.html">المصطلحات</a>
+                <a class="active" href="books.html">الكتب</a>
+                <a href="quiz.html">الاختبار</a>
+            </nav>
+        </div>
+    </header>
+
+    <section class="hero">
+        <h1>شجرة الحسابات (دليل الحسابات المحاسبي)</h1>
+        <p>الدليل الكامل لفهم كيفية بناء وتنظيم وترقيم الحسابات في الأنظمة المحاسبية الحديثة بطريقة احترافية مرنة.</p>
+    </section>
+
+    <main class="wrap">
+
+        <article class="lesson-card">
+            <span class="lesson-badge">المفهوم والهيكل</span>
+            <h2>ما هي شجرة الحسابات ولماذا تُرقّم؟</h2>
+            <p><strong>شجرة الحسابات (Chart of Accounts)</strong> هي الفهرس المنظم لجميع الحسابات التي تستخدمها الشركة لتسجيل عملياتها المالية. تُسمى "شجرة" لأنها تبدأ من جذور رئيسية (الحسابات الخمسة الكبرى) ثم تتفرع إلى حسابات فرعية وحسابات تحليلية تفصيلية.</p>
+            <p>الهدف من الترقيم هو <strong>سرعة البحث، ومنع تكرار الحسابات، وتسهيل استخراج التقارير المالية</strong> (حيث يعرف البرنامج المحاسبي تلقائياً أن كل حساب يبدأ برقم 1 يذهب إلى الميزانية العمومية كأصل، وكل حساب يبدأ برقم 4 أو 5 يذهب إلى قائمة الدخل).</p>
+
+            <h3>مستويات الترقيم القياسية (4 مستويات)</h3>
+            <div class="level-grid">
+                <div class="level-box">
+                    <strong>المستوى الأول (رقم واحد)</strong>
+                    يمثل التصنيف الرئيسي:<br>1 الأصول، 2 الالتزامات، 3 حقوق الملكية، 4 الإيرادات، 5 المصروفات.
+                </div>
+                <div class="level-box">
+                    <strong>المستوى الثاني (رقمان)</strong>
+                    يمثل التصنيف الفرعي:<br>مثل <code>11</code> الأصول المتداولة، و<code>12</code> الأصول الثابتة.
+                </div>
+                <div class="level-box">
+                    <strong>المستوى الثالث (3 أرقام)</strong>
+                    يمثل الحساب الرئيسي العام:<br>مثل <code>111</code> النقدية وما في حكمها، <code>112</code> العملاء.
+                </div>
+                <div class="level-box">
+                    <strong>المستوى الرابع (4 أرقام أو أكثر)</strong>
+                    يمثل الحساب التحليلي الذي تُسجل عليه القيود:<br>مثل <code>1111</code> الصندوق الرئيسي، <code>1112</code> بنك الراجحي.
+                </div>
+            </div>
+
+            <div class="example-box">
+                <span class="example-title">قاعدة ذهبية في البرامج المحاسبية:</span>
+                لا يُسمح بتسجيل قيود يومية على الحسابات الرئيسية (المستوى 1 أو 2 أو 3)؛ بل تُسجل القيود دائماً على <strong>الحسابات الفرعية النهائية (المستوى الأخير)</strong>، وتقوم الحسابات الرئيسية بتجميع أرصدة الفروع تلقائياً.
+            </div>
+        </article>
+
+        <article class="lesson-card">
+            <span class="lesson-badge">نموذج عملي جاهز</span>
+            <h2>نموذج شجرة حسابات متكاملة لشركة تجارية / خدمية</h2>
+            <p>يمكنك البحث باسم الحساب أو رقمه في الجدول التالي لاستعراض الهيكل الكامل:</p>
+            
+            <input type="text" id="coaSearch" class="search-bar" onkeyup="filterCOA()" placeholder="ابحث برقم الحساب أو اسمه (مثال: 1102، البنك، الرواتب، الموردون)...">
+
+            <div class="table-wrap">
+                <table id="coaTable">
+                    <thead>
+                        <tr>
+                            <th>رقم الحساب</th>
+                            <th>اسم الحساب</th>
+                            <th>المستوى</th>
+                            <th>القائمة المالية</th>
+                            <th>طبيعة الحساب</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="main-row"><td><span class="code-num">1</span></td><td>الأصول (Assets)</td><td>رئيسي (1)</td><td>الميزانية العمومية</td><td>مدين</td></tr>
+                        <tr class="sub-row"><td><span class="code-num">11</span></td><td>الأصول المتداولة</td><td>فرعي (2)</td><td>الميزانية العمومية</td><td>مدين</td></tr>
+                        <tr><td><span class="code-num">1101</span></td><td>الصندوق الرئيسي (النقدية)</td><td>تحليلي (4)</td><td>الميزانية العمومية</td><td>مدين</td></tr>
+                        <tr><td><span class="code-num">1102</span></td><td>الحسابات البنكية الجارية</td><td>تحليلي (4)</td><td>الميزانية العمومية</td><td>مدين</td></tr>
+                        <tr><td><span class="code-num">1103</span></td><td>العملاء (الذمم المدينة)</td><td>تحليلي (4)</td><td>الميزانية العمومية</td><td>مدين</td></tr>
+                        <tr><td><span class="code-num">1104</span></td><td>مخزون البضاعة</td><td>تحليلي (4)</td><td>الميزانية العمومية</td><td>مدين</td></tr>
+                        <tr><td><span class="code-num">1105</span></td><td>مصروفات مدفوعة مقدماً</td><td>تحليلي (4)</td><td>الميزانية العمومية</td><td>مدين</td></tr>
+                        <tr class="sub-row"><td><span class="code-num">12</span></td><td>الأصول غير المتداولة (الثابتة)</td><td>فرعي (2)</td><td>الميزانية العمومية</td><td>مدين</td></tr>
+                        <tr><td><span class="code-num">1201</span></td><td>الأراضي والمباني</td><td>تحليلي (4)</td><td>الميزانية العمومية</td><td>مدين</td></tr>
+                        <tr><td><span class="code-num">1202</span></td><td>السيارات ووسائل النقل</td><td>تحليلي (4)</td><td>الميزانية العمومية</td><td>مدين</td></tr>
+                        <tr><td><span class="code-num">1203</span></td><td>الأجهزة والحاسبات</td><td>تحليلي (4)</td><td>الميزانية العمومية</td><td>مدين</td></tr>
+                        <tr><td><span class="code-num">1204</span></td><td>مجمع إهلاك الأصول الثابتة</td><td>تحليلي (4)</td><td>الميزانية العمومية (يُطرح)</td><td>دائن (عكس الأصل)</td></tr>
+
+                        <tr class="main-row"><td><span class="code-num">2</span></td><td>الالتزامات / الخصوم (Liabilities)</td><td>رئيسي (1)</td><td>الميزانية العمومية</td><td>دائن</td></tr>
+                        <tr class="sub-row"><td><span class="code-num">21</span></td><td>الالتزامات المتداولة</td><td>فرعي (2)</td><td>الميزانية العمومية</td><td>دائن</td></tr>
+                        <tr><td><span class="code-num">2101</span></td><td>الموردون (الذمم الدائنة)</td><td>تحليلي (4)</td><td>الميزانية العمومية</td><td>دائن</td></tr>
+                        <tr><td><span class="code-num">2102</span></td><td>ضريبة القيمة المضافة المستحقة</td><td>تحليلي (4)</td><td>الميزانية العمومية</td><td>دائن</td></tr>
+                        <tr><td><span class="code-num">2103</span></td><td>رواتب وأجور مستحقة</td><td>تحليلي (4)</td><td>الميزانية العمومية</td><td>دائن</td></tr>
+                        <tr class="sub-row"><td><span class="code-num">22</span></td><td>الالتزامات طويلة الأجل</td><td>فرعي (2)</td><td>الميزانية العمومية</td><td>دائن</td></tr>
+                        <tr><td><span class="code-num">2201</span></td><td>قروض بنكية طويلة الأجل</td><td>تحليلي (4)</td><td>الميزانية العمومية</td><td>دائن</td></tr>
+
+                        <tr class="main-row"><td><span class="code-num">3</span></td><td>حقوق الملكية (Equity)</td><td>رئيسي (1)</td><td>الميزانية العمومية</td><td>دائن</td></tr>
+                        <tr><td><span class="code-num">3101</span></td><td>رأس المال المدفوع</td><td>تحليلي (4)</td><td>الميزانية العمومية</td><td>دائن</td></tr>
+                        <tr><td><span class="code-num">3102</span></td><td>الأرباح المبقاة (المحتجزة)</td><td>تحليلي (4)</td><td>الميزانية العمومية</td><td>دائن</td></tr>
+                        <tr><td><span class="code-num">3103</span></td><td>جاري الشركاء / المسحوبات الشخصية</td><td>تحليلي (4)</td><td>الميزانية العمومية</td><td>مدين</td></tr>
+
+                        <tr class="main-row"><td><span class="code-num">4</span></td><td>الإيرادات (Revenues)</td><td>رئيسي (1)</td><td>قائمة الدخل</td><td>دائن</td></tr>
+                        <tr><td><span class="code-num">4101</span></td><td>إيرادات المبيعات</td><td>تحليلي (4)</td><td>قائمة الدخل</td><td>دائن</td></tr>
+                        <tr><td><span class="code-num">4102</span></td><td>إيرادات تقديم الخدمات</td><td>تحليلي (4)</td><td>قائمة الدخل</td><td>دائن</td></tr>
+                        <tr><td><span class="code-num">4103</span></td><td>مردودات ومسموحات المبيعات</td><td>تحليلي (4)</td><td>قائمة الدخل (تُطرح)</td><td>مدين</td></tr>
+
+                        <tr class="main-row"><td><span class="code-num">5</span></td><td>المصروفات والتكاليف (Expenses)</td><td>رئيسي (1)</td><td>قائمة الدخل</td><td>مدين</td></tr>
+                        <tr><td><span class="code-num">5101</span></td><td>تكلفة البضاعة المباعة</td><td>تحليلي (4)</td><td>قائمة الدخل</td><td>مدين</td></tr>
+                        <tr><td><span class="code-num">5201</span></td><td>مصروف الرواتب والأجور</td><td>تحليلي (4)</td><td>قائمة الدخل</td><td>مدين</td></tr>
+                        <tr><td><span class="code-num">5202</span></td><td>مصروف الإيجار</td><td>تحليلي (4)</td><td>قائمة الدخل</td><td>مدين</td></tr>
+                        <tr><td><span class="code-num">5203</span></td><td>مصروف الكهرباء والاتصالات</td><td>تحليلي (4)</td><td>قائمة الدخل</td><td>مدين</td></tr>
+                        <tr><td><span class="code-num">5204</span></td><td>مصروف الإهلاك السنوي</td><td>تحليلي (4)</td><td>قائمة الدخل</td><td>مدين</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </article>
+
+    </main>
+
+    <footer>
+        <p><strong>محاسبة أون لاين</strong> — منصة تعليمية عربية متكاملة لتبسيط المحاسبة المالية</p>
+        <p style="font-size: 0.85rem; margin-top: 0.5rem;">جميع الحقوق محفوظة &copy; 2026</p>
+    </footer>
+
+    <script>
+        function filterCOA() {
+            const q = document.getElementById('coaSearch').value.trim().toLowerCase();
+            const rows = document.querySelectorAll('#coaTable tbody tr');
+            rows.forEach(row => {
+                row.style.display = row.textContent.toLowerCase().includes(q) ? '' : 'none';
+            });
+        }
+    </script>
+</body>
+</html>
