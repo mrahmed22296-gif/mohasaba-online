@@ -3,53 +3,112 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>قاموس المصطلحات المحاسبية - محاسبة أون لاين</title>
-    <link rel="stylesheet" href="style.css">
+    <title>قاموس المصطلحات المحاسبية المشروحة | محاسبة أون لاين</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #f1f5f9;
+            --surface: #ffffff;
+            --ink: #0f172a;
+            --muted: #475569;
+            --brand: #1d4ed8;
+            --brand-dark: #1e3a8a;
+            --accent: #0284c7;
+            --line: #e2e8f0;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: 'Cairo', sans-serif; background: var(--bg); color: var(--ink); line-height: 1.9; }
+
+        .topbar { background: var(--surface); border-bottom: 1px solid var(--line); position: sticky; top: 0; z-index: 100; box-shadow: 0 2px 8px rgba(0,0,0,0.03); }
+        .topbar-inner { max-width: 1140px; margin: 0 auto; padding: 0.9rem 1.5rem; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem; }
+        .brand { font-weight: 800; font-size: 1.35rem; color: var(--brand-dark); text-decoration: none; }
+        .menu { display: flex; gap: 0.4rem; flex-wrap: wrap; }
+        .menu a { text-decoration: none; color: var(--muted); font-weight: 700; font-size: 0.92rem; padding: 0.45rem 0.85rem; border-radius: 8px; transition: 0.2s; }
+        .menu a:hover, .menu a.active { background: #eff6ff; color: var(--brand); }
+
+        .hero { background: linear-gradient(135deg, var(--brand-dark), var(--brand)); color: #fff; padding: 3.5rem 1.5rem; text-align: center; }
+        .hero h1 { font-size: clamp(1.8rem, 4vw, 2.6rem); font-weight: 800; margin-bottom: 0.8rem; }
+        .hero p { max-width: 750px; margin: 0 auto; color: #dbeafe; font-size: 1.08rem; }
+
+        .wrap { max-width: 1040px; margin: 2.5rem auto; padding: 0 1.25rem; }
+        .lesson-card { background: var(--surface); border: 1px solid var(--line); border-radius: 16px; padding: 2.2rem; margin-bottom: 2.2rem; box-shadow: 0 4px 15px rgba(15, 23, 42, 0.03); }
+        .lesson-badge { display: inline-block; background: #eff6ff; color: var(--brand); font-weight: 800; font-size: 0.85rem; padding: 4px 14px; border-radius: 50px; margin-bottom: 0.8rem; }
+        .lesson-card h2 { font-size: 1.55rem; color: var(--brand-dark); font-weight: 800; margin-bottom: 1rem; border-bottom: 2px solid #f1f5f9; padding-bottom: 0.75rem; }
+
+        .search-input { width: 100%; padding: 0.85rem 1rem; border: 1px solid #cbd5e1; border-radius: 10px; font-family: inherit; font-size: 1rem; margin-bottom: 1.2rem; }
+
+        .table-wrap { overflow-x: auto; border: 1px solid var(--line); border-radius: 12px; }
+        table { width: 100%; border-collapse: collapse; background: #fff; }
+        th, td { padding: 0.9rem 1rem; text-align: right; border-bottom: 1px solid var(--line); font-size: 0.95rem; vertical-align: top; }
+        th { background: var(--brand-dark); color: #fff; font-weight: 700; }
+        tr:nth-child(even) td { background: #f8fafc; }
+        .en-term { font-family: sans-serif; font-weight: 700; color: var(--brand); direction: ltr; display: inline-block; }
+        .loc-tag { display: inline-block; background: #e0f2fe; color: #0369a1; padding: 2px 8px; border-radius: 6px; font-size: 0.82rem; font-weight: 700; }
+
+        footer { background: var(--brand-dark); color: #cbd5e1; text-align: center; padding: 2.5rem 1rem; margin-top: 3rem; }
+    </style>
 </head>
 <body>
-    <header>
-        <h1>قاموس المصطلحات المحاسبية</h1>
-        <p>أهم المصطلحات المحاسبية باللغتين العربية والإنجليزية مع شرح مبسط</p>
+
+    <header class="topbar">
+        <div class="topbar-inner">
+            <a class="brand" href="index.html">محاسبة أون لاين</a>
+            <nav class="menu">
+                <a href="index.html">الشرح الشامل</a>
+                <a href="coa.html">شجرة الحسابات</a>
+                <a href="entries.html">قيود اليومية</a>
+                <a href="depreciation.html">حاسبة الإهلاك</a>
+                <a class="active" href="glossary.html">المصطلحات</a>
+                <a href="books.html">الكتب</a>
+            </nav>
+        </div>
     </header>
 
-<nav class="navbar">
-    <a href="index.html" class="logo">محاسبة أون لاين <span>PRO</span></a>
-    <div class="nav-links">
-        <a href="index.html">الرئيسية</a>
-        <a href="coa.html">شجرة الحسابات</a>
-        <a href="entries.html">قيود اليومية</a>
-        <a href="depreciation.html">حاسبة الإهلاك</a>
-        <a href="glossary.html">قاموس المصطلحات</a>
-        <a href="books.html">كتب المحاسبة</a>
-    </div>
-</nav>
+    <section class="hero">
+        <h1>قاموس المصطلحات المحاسبية والمالية</h1>
+        <p>شرح تفصيلي لأهم المصطلحات المحاسبية بالعربية والإنجليزية مع توضيح موقعها في القوائم المالية وأمثلة تطبيقية.</p>
+    </section>
 
-    <div class="container">
-        <div class="card">
-            <h2>المصطلحات الأساسية</h2>
-            <table>
-                <thead>
-                    <tr>
-                        <th>المصطلح بالعربي</th>
-                        <th>المصطلح بالإنجليزي</th>
-                        <th>الشرح المبسط</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr><td><strong>الأصول</strong></td><td>Assets</td><td>كل ما تمتلكه الشركة وله قيمة مالية (نقدية، سيارات، بضاعة).</td></tr>
-                    <tr><td><strong>الالتزامات / الخصوم</strong></td><td>Liabilities</td><td>الديون والالتزامات المالية المستحقة على الشركة للغير.</td></tr>
-                    <tr><td><strong>حقوق الملكية</strong></td><td>Equity</td><td>صافي حقوق أصحاب المشروع (رأس المال + الأرباح المحتجزة).</td></tr>
-                    <tr><td><strong>الذمم المدينة (العملاء)</strong></td><td>Accounts Receivable</td><td>أموال مستحقة للشركة عند العملاء مقابل مبيعات آجلة.</td></tr>
-                    <tr><td><strong>الذمم الدائنة (الموردون)</strong></td><td>Accounts Payable</td><td>أموال مستحقة للموردين على الشركة مقابل مشتريات آجلة.</td></tr>
-                    <tr><td><strong>ميزان المراجعة</strong></td><td>Trial Balance</td><td>كشف يجمع أرصدة جميع الحسابات للتأكد من تساوي المدين مع الدائن.</td></tr>
-                    <tr><td><strong>رأس المال العامل</strong></td><td>Working Capital</td><td>الأصول المتداولة مطروحاً منها الالتزامات المتداولة (مقياس السيولة).</td></tr>
-                </tbody>
-            </table>
-        </div>
-    </div>
+    <main class="wrap">
+        <article class="lesson-card">
+            <span class="lesson-badge">مرجع سريع ومفصل</span>
+            <h2>دليل المصطلحات المحاسبية الأساسية</h2>
+            <input type="text" id="termSearch" class="search-input" onkeyup="filterTerms()" placeholder="ابحث عن مصطلح بالعربي أو الإنجليزي (مثال: العملاء، الاستحقاق، السيولة، Receivable)...">
 
-    <footer>
-        <p>جميع الحقوق محفوظة &copy; 2026 - موقع محاسبة أون لاين</p>
-    </footer>
-</body>
-</html>
+            <div class="table-wrap">
+                <table id="termsTable">
+                    <thead>
+                        <tr>
+                            <th>المصطلح بالعربي</th>
+                            <th>المصطلح بالإنجليزي</th>
+                            <th>الموقع</th>
+                            <th>الشرح التفصيلي ومثال عملي</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>أساس الاستحقاق</strong></td>
+                            <td><span class="en-term">Accrual Basis</span></td>
+                            <td><span class="loc-tag">مبدأ محاسبي</span></td>
+                            <td>تسجيل الإيرادات عند تحققها والمصروفات عند حدوثها بغض النظر عن موعد استلام أو دفع النقد. مثال: بيع خدمة اليوم وتحصيل قيمتها الشهر القادم يُسجل إيراداً اليوم.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>الذمم المدينة (العملاء)</strong></td>
+                            <td><span class="en-term">Accounts Receivable</span></td>
+                            <td><span class="loc-tag">الميزانية (أصل)</span></td>
+                            <td>المبالغ المستحقة للشركة لدى العملاء نتيجة بيع سلع أو خدمات بالآجل (على الحساب). مثال: بعت بضاعة بـ 5,000 ولم يدفع العميل بعد، فلهذا الحساب رصيد 5,000.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>الذمم الدائنة (الموردون)</strong></td>
+                            <td><span class="en-term">Accounts Payable</span></td>
+                            <td><span class="loc-tag">الميزانية (التزام)</span></td>
+                            <td>المبالغ المستحقة على الشركة للموردين نتيجة شراء بضاعة أو خدمات بالآجل. مثال: اشتريت مخزوناً بـ 8,000 وسيتم سداده خلال 30 يوماً.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>تكلفة البضاعة المباعة</strong></td>
+                            <td><span class="en-term">Cost of Goods Sold (COGS)</span></td>
+                            <td><span class="loc-tag">قائمة الدخل</span></td>
+                            <td>تكلفة شراء أو إنتاج السلع التي تم بيعها فعلاً خلال الفترة. مثال: إذا اشتريت 10 وحدات بـ 100 للوحدة وبعت 6 وحدات
