@@ -3,75 +3,42 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>حاسبة الإهلاك - محاسبة أون لاين</title>
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
-    <header>
-        <h1>إهلاك الأصول الثابتة</h1>
-        <p>كيف نوزع تكلفة الأصل الثابت على سنوات عمره الإنتاجي؟</p>
-    </header>
-
-<nav class="navbar">
-    <a href="index.html" class="logo">محاسبة أون لاين <span>PRO</span></a>
-    <div class="nav-links">
-        <a href="index.html">الرئيسية</a>
-        <a href="coa.html">شجرة الحسابات</a>
-        <a href="entries.html">قيود اليومية</a>
-        <a href="depreciation.html">حاسبة الإهلاك</a>
-        <a href="glossary.html">قاموس المصطلحات</a>
-        <a href="books.html">كتب المحاسبة</a>
-    </div>
-</nav>
-
-    <div class="container">
-        <div class="card">
-            <h2>ما هو الإهلاك (Depreciation)؟</h2>
-            <p>عندما تشتري سيارة أو آلة للشركة، فإن قيمتها تقل مع الاستخدام ومرور الزمن. الإهلاك هو توزيع تكلفة هذا الأصل كمصروف سنوي بدلاً من تحميل كل التكلفة على سنة الشراء فقط.</p>
-            <p style="margin-top: 10px;"><strong>معادلة القسط الثابت:</strong> (تكلفة الأصل - قيمة الخردة) ÷ العمر الإنتاجي بالسنوات</p>
-        </div>
-
-        <div class="card">
-            <h2>حاسبة إهلاك القسط الثابت</h2>
-            <div class="tool-box">
-                <label>تكلفة شراء الأصل:</label>
-                <input type="number" id="assetCost" placeholder="مثال: 60000">
-
-                <label>قيمة الخردة المتوقعة في نهاية العمر (ضع 0 إن لم توجد):</label>
-                <input type="number" id="salvageValue" value="0">
-
-                <label>العمر الإنتاجي (بالسنوات):</label>
-                <input type="number" id="usefulLife" placeholder="مثال: 5">
-
-                <button onclick="calcDepreciation()">احسب الإهلاك</button>
-                <div id="depResult" class="result" style="display:none;"></div>
-            </div>
-        </div>
-    </div>
-
-    <footer>
-        <p>جميع الحقوق محفوظة &copy; 2026 - موقع محاسبة أون لاين</p>
-    </footer>
-
-    <script>
-        function calcDepreciation() {
-            const cost = parseFloat(document.getElementById('assetCost').value);
-            const salvage = parseFloat(document.getElementById('salvageValue').value) || 0;
-            const life = parseFloat(document.getElementById('usefulLife').value);
-            const res = document.getElementById('depResult');
-
-            if (isNaN(cost) || isNaN(life) || life <= 0 || cost < salvage) {
-                res.style.display = 'block';
-                res.innerHTML = 'يرجى إدخال بيانات صحيحة (التكلفة أكبر من الخردة، والعمر أكبر من صفر).';
-                return;
-            }
-
-            const annual = (cost - salvage) / life;
-            const monthly = annual / 12;
-
-            res.style.display = 'block';
-            res.innerHTML = `قسط الإهلاك السنوي: ${annual.toFixed(2)} <br> قسط الإهلاك الشهري: ${monthly.toFixed(2)}`;
+    <title>إهلاك الأصول الثابتة وحاسبته | محاسبة أون لاين</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #f1f5f9;
+            --surface: #ffffff;
+            --ink: #0f172a;
+            --muted: #475569;
+            --brand: #1d4ed8;
+            --brand-dark: #1e3a8a;
+            --accent: #0284c7;
+            --ok: #15803d;
+            --ok-bg: #dcfce7;
+            --warn: #b91c1c;
+            --warn-bg: #fee2e2;
+            --line: #e2e8f0;
         }
-    </script>
-</body>
-</html>
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: 'Cairo', sans-serif; background: var(--bg); color: var(--ink); line-height: 1.9; }
+
+        .topbar { background: var(--surface); border-bottom: 1px solid var(--line); position: sticky; top: 0; z-index: 100; box-shadow: 0 2px 8px rgba(0,0,0,0.03); }
+        .topbar-inner { max-width: 1140px; margin: 0 auto; padding: 0.9rem 1.5rem; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem; }
+        .brand { font-weight: 800; font-size: 1.35rem; color: var(--brand-dark); text-decoration: none; }
+        .menu { display: flex; gap: 0.4rem; flex-wrap: wrap; }
+        .menu a { text-decoration: none; color: var(--muted); font-weight: 700; font-size: 0.92rem; padding: 0.45rem 0.85rem; border-radius: 8px; transition: 0.2s; }
+        .menu a:hover, .menu a.active { background: #eff6ff; color: var(--brand); }
+
+        .hero { background: linear-gradient(135deg, var(--brand-dark), var(--brand)); color: #fff; padding: 3.5rem 1.5rem; text-align: center; }
+        .hero h1 { font-size: clamp(1.8rem, 4vw, 2.6rem); font-weight: 800; margin-bottom: 0.8rem; }
+        .hero p { max-width: 750px; margin: 0 auto; color: #dbeafe; font-size: 1.08rem; }
+
+        .wrap { max-width: 1040px; margin: 2.5rem auto; padding: 0 1.25rem; }
+        .lesson-card { background: var(--surface); border: 1px solid var(--line); border-radius: 16px; padding: 2.2rem; margin-bottom: 2.2rem; box-shadow: 0 4px 15px rgba(15, 23, 42, 0.03); }
+        .lesson-badge { display: inline-block; background: #eff6ff; color: var(--brand); font-weight: 800; font-size: 0.85rem; padding: 4px 14px; border-radius: 50px; margin-bottom: 0.8rem; }
+        .lesson-card h2 { font-size: 1.55rem; color: var(--brand-dark); font-weight: 800; margin-bottom: 1rem; border-bottom: 2px solid #f1f5f9; padding-bottom: 0.75rem; }
+        .lesson-card h3 { font-size: 1.2rem; color: var(--ink); margin: 1.4rem 0 0.6rem; font-weight: 700
