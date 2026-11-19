@@ -1,1 +1,158 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>كتب شرح المحاسبة | محاسبة أون لاين</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
 
+    <nav class="navbar">
+        <a href="index.html" class="logo">محاسبة أون لاين <span>PRO</span></a>
+        <div class="nav-links">
+            <a href="index.html">الرئيسية</a>
+            <a href="coa.html">شجرة الحسابات</a>
+            <a href="entries.html">قيود اليومية</a>
+            <a href="depreciation.html">حاسبة الإهلاك</a>
+            <a href="glossary.html">قاموس المصطلحات</a>
+            <a href="books.html" class="active">كتب المحاسبة</a>
+        </div>
+    </nav>
+
+    <header class="hero">
+        <h1>مكتبة كتب شرح المحاسبة</h1>
+        <p>ترشيحات ومراجع مختارة لتعميق فهمك في المحاسبة المالية، التكاليف، الأنظمة المحاسبية، والوصول إلى مصادر مفتوحة وموثوقة.</p>
+        <div class="hero-badges">
+            <span class="badge">📚 تصنيفات متعددة</span>
+            <span class="badge">🔍 بحث وفلترة فورية</span>
+            <span class="badge">🎯 مناسب للمبتدئين والمحترفين</span>
+        </div>
+    </header>
+
+    <main class="container">
+        <h2 class="section-title">تصفح الكتب والمراجع</h2>
+        <p class="section-subtitle">ابحث باسم الكتاب أو الموضوع، أو اختر التصنيف المناسب لمستواك وأهدافك:</p>
+
+        <div class="card" style="margin-bottom: 2rem;">
+            <div class="form-group" style="margin-bottom: 1rem;">
+                <label for="bookSearch">بحث سريع في الكتب:</label>
+                <input type="text" id="bookSearch" onkeyup="filterBooks()" placeholder="مثال: القوائم المالية، التكاليف، المبتدئين...">
+            </div>
+
+            <div class="filter-bar">
+                <button type="button" class="filter-btn active" onclick="setCategory('all', this)">الكل</button>
+                <button type="button" class="filter-btn" onclick="setCategory('basics', this)">أساسيات المحاسبة</button>
+                <button type="button" class="filter-btn" onclick="setCategory('financial', this)">المحاسبة المالية</button>
+                <button type="button" class="filter-btn" onclick="setCategory('cost', this)">التكاليف والإدارية</button>
+                <button type="button" class="filter-btn" onclick="setCategory('systems', this)">الأنظمة والتقارير</button>
+            </div>
+        </div>
+
+        <div class="grid-3" id="booksGrid">
+
+            <!-- كتاب 1 -->
+            <article class="card book-item" data-category="basics">
+                <span class="book-category">أساسيات المحاسبة</span>
+                <h3>مبادئ المحاسبة المالية للمبتدئين</h3>
+                <p>شرح تأسيسـي مبسط للدورة المحاسبية، القيد المزدوج، المعادلة المحاسبية، وتسجيل العمليات اليومية بأمثلة تطبيقية واضحة.</p>
+                <div class="book-meta">
+                    <strong>المستوى:</strong> مبتدئ <br>
+                    <strong>الهدف:</strong> بناء قاعدة محاسبية صحيحة من الصفر
+                </div>
+                <a href="https://openstax.org/subjects/business" target="_blank" rel="noopener noreferrer" class="btn-outline">استعراض مراجع مفتوحة</a>
+            </article>
+
+            <!-- كتاب 2 -->
+            <article class="card book-item" data-category="financial">
+                <span class="book-category">المحاسبة المالية</span>
+                <h3>إعداد وتحليل القوائم المالية</h3>
+                <p>دليل عملي لفهم قائمة الدخل، قائمة المركز المالي (الميزانية)، وقائمة التدفقات النقدية وكيفية قراءة المؤشرات المالية.</p>
+                <div class="book-meta">
+                    <strong>المستوى:</strong> متوسط <br>
+                    <strong>الهدف:</strong> قراءة صحة الشركة المالية واتخاذ القرار
+                </div>
+                <a href="https://open.umn.edu/opentextbooks" target="_blank" rel="noopener noreferrer" class="btn-outline">تصفح كتب جامعية مفتوحة</a>
+            </article>
+
+            <!-- كتاب 3 -->
+            <article class="card book-item" data-category="cost">
+                <span class="book-category">التكاليف والإدارية</span>
+                <h3>محاسبة التكاليف ونقطة التعادل</h3>
+                <p>يركز على أنواع التكاليف (ثابتة ومتغيرة، مباشرة وغير مباشرة)، تسعير المنتجات والخدمات، وحساب نقطة التعادل للربحية.</p>
+                <div class="book-meta">
+                    <strong>المستوى:</strong> متوسط <br>
+                    <strong>الهدف:</strong> ضبط التكاليف وتسعير المنتجات بدقة
+                </div>
+                <a href="index.html#beResult" class="btn-outline">جرّب حاسبة التعادل في الموقع</a>
+            </article>
+
+            <!-- كتاب 4 -->
+            <article class="card book-item" data-category="financial">
+                <span class="book-category">المحاسبة المالية</span>
+                <h3>المحاسبة المتوسطة والمعايير الدولية</h3>
+                <p>يتناول المعالجات المحاسبية للأصول الثابتة، الإهلاك، المخصصات، الإيرادات، وأسس الاعتراف والقياس وفق المعايير الحديثة.</p>
+                <div class="book-meta">
+                    <strong>المستوى:</strong> متقدم <br>
+                    <strong>الهدف:</strong> إتقان المعالجات المحاسبية الدقيقة
+                </div>
+                <a href="depreciation.html" class="btn-outline">الانتقال إلى حاسبة الإهلاك</a>
+            </article>
+
+            <!-- كتاب 5 -->
+            <article class="card book-item" data-category="systems">
+                <span class="book-category">الأنظمة والتقارير</span>
+                <h3>دليل شجرة الحسابات والأنظمة المحاسبية</h3>
+                <p>يشرح كيفية تصميم دليل حسابات مرن، ربط مراكز التكلفة، واستخراج التقارير التشغيلية والمالية من الأنظمة المحاسبية.</p>
+                <div class="book-meta">
+                    <strong>المستوى:</strong> متوسط إلى متقدم <br>
+                    <strong>الهدف:</strong> تنظيم الحسابات وبناء تقارير واضحة
+                </div>
+                <a href="coa.html" class="btn-outline">استعراض شجرة الحسابات</a>
+            </article>
+
+            <!-- كتاب 6 -->
+            <article class="card book-item" data-category="basics">
+                <span class="book-category">أساسيات المحاسبة</span>
+                <h3>المحاسبة لغير المحاسبين ورواد الأعمال</h3>
+                <p>موجه لأصحاب المشاريع والمديرين لفهم المصطلحات المحاسبية، متابعة السيولة، وتجنب الأخطاء المالية الشائعة في المشاريع.</p>
+                <div class="book-meta">
+                    <strong>المستوى:</strong> للمبتدئين ورواد الأعمال <br>
+                    <strong>الهدف:</strong> إدارة الشؤون المالية للمشروع بوعي
+                </div>
+                <a href="glossary.html" class="btn-outline">فتح قاموس المصطلحات</a>
+            </article>
+
+        </div>
+    </main>
+
+    <footer>
+        <p><strong>محاسبة أون لاين</strong> — منصة تعليمية مفتوحة لتبسيط علوم المحاسبة والإدارة المالية</p>
+        <p style="font-size: 0.85rem; margin-top: 0.5rem;">جميع الحقوق محفوظة &copy; 2026</p>
+    </footer>
+
+    <script>
+        let currentCategory = 'all';
+
+        function setCategory(category, btnElement) {
+            currentCategory = category;
+            document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
+            btnElement.classList.add('active');
+            filterBooks();
+        }
+
+        function filterBooks() {
+            const query = document.getElementById('bookSearch').value.trim().toLowerCase();
+            const items = document.querySelectorAll('.book-item');
+
+            items.forEach(item => {
+                const matchesCategory = currentCategory === 'all' || item.dataset.category === currentCategory;
+                const textContent = item.textContent.toLowerCase();
+                const matchesSearch = !query || textContent.includes(query);
+
+                item.style.display = (matchesCategory && matchesSearch) ? '' : 'none';
+            });
+        }
+    </script>
+</body>
+</html>
