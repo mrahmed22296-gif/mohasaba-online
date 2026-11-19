@@ -3,52 +3,35 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>شجرة الحسابات - محاسبة أون لاين</title>
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
-    <header>
-        <h1>شجرة الحسابات (دليل الحسابات)</h1>
-        <p>كيف تُرتب وتُرقّم الحسابات في الأنظمة المحاسبية؟</p>
-    </header>
+    <title>شجرة الحسابات بالتفصيل | محاسبة أون لاين</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #f1f5f9;
+            --surface: #ffffff;
+            --ink: #0f172a;
+            --muted: #475569;
+            --brand: #1d4ed8;
+            --brand-dark: #1e3a8a;
+            --accent: #0284c7;
+            --ok: #15803d;
+            --ok-bg: #dcfce7;
+            --warn: #b91c1c;
+            --warn-bg: #fee2e2;
+            --line: #e2e8f0;
+        }
 
-<nav class="navbar">
-    <a href="index.html" class="logo">محاسبة أون لاين <span>PRO</span></a>
-    <div class="nav-links">
-        <a href="index.html">الرئيسية</a>
-        <a href="coa.html">شجرة الحسابات</a>
-        <a href="entries.html">قيود اليومية</a>
-        <a href="depreciation.html">حاسبة الإهلاك</a>
-        <a href="glossary.html">قاموس المصطلحات</a>
-        <a href="books.html">كتب المحاسبة</a>
-    </div>
-</nav>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: 'Cairo', sans-serif; background: var(--bg); color: var(--ink); line-height: 1.9; }
 
-    <div class="container">
-        <div class="card">
-            <h2>التصنيف الرئيسي للحسابات</h2>
-            <p>تعتمد أغلب البرامج المحاسبية على الترقيم الشجري لتسهيل الوصول للحسابات:</p>
-            <table>
-                <thead>
-                    <tr>
-                        <th>الرقم الرئيسي</th>
-                        <th>اسم الحساب</th>
-                        <th>أمثلة فرعية</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr><td><strong>1</strong></td><td>الأصول</td><td>1101 الصندوق، 1102 البنك، 1201 السيارات</td></tr>
-                    <tr><td><strong>2</strong></td><td>الالتزامات</td><td>2101 الموردون، 2102 القروض</td></tr>
-                    <tr><td><strong>3</strong></td><td>حقوق الملكية</td><td>3101 رأس المال، 3102 الأرباح المبقاة</td></tr>
-                    <tr><td><strong>4</strong></td><td>الإيرادات</td><td>4101 إيرادات المبيعات، 4102 إيرادات الخدمات</td></tr>
-                    <tr><td><strong>5</strong></td><td>المصروفات</td><td>5101 مصروف الرواتب، 5102 مصروف الإيجار</td></tr>
-                </tbody>
-            </table>
-        </div>
-    </div>
+        .topbar { background: var(--surface); border-bottom: 1px solid var(--line); position: sticky; top: 0; z-index: 100; box-shadow: 0 2px 8px rgba(0,0,0,0.03); }
+        .topbar-inner { max-width: 1140px; margin: 0 auto; padding: 0.9rem 1.5rem; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem; }
+        .brand { font-weight: 800; font-size: 1.35rem; color: var(--brand-dark); text-decoration: none; }
+        .menu { display: flex; gap: 0.4rem; flex-wrap: wrap; }
+        .menu a { text-decoration: none; color: var(--muted); font-weight: 700; font-size: 0.92rem; padding: 0.45rem 0.85rem; border-radius: 8px; transition: 0.2s; }
+        .menu a:hover, .menu a.active { background: #eff6ff; color: var(--brand); }
 
-    <footer>
-        <p>جميع الحقوق محفوظة &copy; 2026 - موقع محاسبة أون لاين</p>
-    </footer>
-</body>
-</html>
+        .hero { background: linear-gradient(135deg, var(--brand-dark), var(--brand)); color: #fff; padding: 3.5rem 1.5rem; text-align: center; }
+        .hero h1 { font
