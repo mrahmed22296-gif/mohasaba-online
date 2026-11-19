@@ -1,155 +1,172 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>مكتبة كتب شرح المحاسبة | محاسبة أون لاين</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&display=swap" rel="stylesheet">
-    <style>
-        :root {
-            --bg: #f1f5f9;
-            --surface: #ffffff;
-            --ink: #0f172a;
-            --muted: #475569;
-            --brand: #1d4ed8;
-            --brand-dark: #1e3a8a;
-            --accent: #0284c7;
-            --line: #e2e8f0;
-        }
-
-        * { box-sizing: border-box; margin: 0; padding: 0; }
-        body { font-family: 'Cairo', sans-serif; background: var(--bg); color: var(--ink); line-height: 1.9; }
-
-        .topbar { background: var(--surface); border-bottom: 1px solid var(--line); position: sticky; top: 0; z-index: 100; box-shadow: 0 2px 8px rgba(0,0,0,0.03); }
-        .topbar-inner { max-width: 1140px; margin: 0 auto; padding: 0.9rem 1.5rem; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem; }
-        .brand { font-weight: 800; font-size: 1.35rem; color: var(--brand-dark); text-decoration: none; }
-        .menu { display: flex; gap: 0.4rem; flex-wrap: wrap; }
-        .menu a { text-decoration: none; color: var(--muted); font-weight: 700; font-size: 0.92rem; padding: 0.45rem 0.85rem; border-radius: 8px; transition: 0.2s; }
-        .menu a:hover, .menu a.active { background: #eff6ff; color: var(--brand); }
-
-        .hero { background: linear-gradient(135deg, var(--brand-dark), var(--brand)); color: #fff; padding: 3.5rem 1.5rem; text-align: center; }
-        .hero h1 { font-size: clamp(1.8rem, 4vw, 2.6rem); font-weight: 800; margin-bottom: 0.8rem; }
-        .hero p { max-width: 750px; margin: 0 auto; color: #dbeafe; font-size: 1.08rem; }
-
-        .wrap { max-width: 1040px; margin: 2.5rem auto; padding: 0 1.25rem; }
-        .lesson-card { background: var(--surface); border: 1px solid var(--line); border-radius: 16px; padding: 2rem; margin-bottom: 2rem; box-shadow: 0 4px 15px rgba(15, 23, 42, 0.03); }
-        .lesson-badge { display: inline-block; background: #eff6ff; color: var(--brand); font-weight: 800; font-size: 0.85rem; padding: 4px 14px; border-radius: 50px; margin-bottom: 0.8rem; }
-        .lesson-card h2 { font-size: 1.5rem; color: var(--brand-dark); font-weight: 800; margin-bottom: 0.8rem; }
-
-        .search-input { width: 100%; padding: 0.8rem 1rem; border: 1px solid #cbd5e1; border-radius: 10px; font-family: inherit; font-size: 1rem; margin-bottom: 1rem; }
-        .filters { display: flex; gap: 10px; flex-wrap: wrap; }
-        .f-btn { background: #f8fafc; color: var(--ink); border: 1px solid #cbd5e1; padding: 0.5rem 1rem; border-radius: 999px; font-family: inherit; font-weight: 700; cursor: pointer; font-size: 0.9rem; }
-        .f-btn.active, .f-btn:hover { background: var(--brand); color: #fff; border-color: var(--brand); }
-
-        .grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(290px, 1fr)); gap: 1.5rem; }
-        .book-card { background: var(--surface); border: 1px solid var(--line); border-radius: 16px; padding: 1.75rem; display: flex; flex-direction: column; justify-content: space-between; box-shadow: 0 4px 12px rgba(15, 23, 42, 0.03); }
-        .cat-pill { display: inline-block; background: #e0f2fe; color: #0369a1; padding: 3px 10px; border-radius: 999px; font-size: 0.8rem; font-weight: 700; margin-bottom: 0.6rem; }
-        .book-card h3 { font-size: 1.2rem; color: var(--brand-dark); margin-bottom: 0.5rem; }
-        .book-card p { color: #334155; font-size: 0.96rem; margin-bottom: 0.9rem; }
-        .book-topics { font-size: 0.88rem; color: var(--muted); background: #f8fafc; padding: 0.75rem; border-radius: 8px; margin-bottom: 1rem; }
-        .book-link { display: block; text-align: center; text-decoration: none; background: #eff6ff; color: var(--brand); border: 1px solid #bfdbfe; padding: 0.65rem; border-radius: 8px; font-weight: 700; transition: 0.2s; }
-        .book-link:hover { background: var(--brand); color: #fff; }
-
-        footer { background: var(--brand-dark); color: #cbd5e1; text-align: center; padding: 2.5rem 1rem; margin-top: 3rem; }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>مكتبة كتب شرح المحاسبة | محاسبة أون لاين</title>
+  <meta name="description" content="دليل إرشادي لأهم محاور الكتب والمراجع المحاسبية وكيفية اختيار الكتاب المناسب لهدفك">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;900&family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
-    <header class="topbar">
-        <div class="topbar-inner">
-            <a class="brand" href="index.html">محاسبة أون لاين</a>
-            <nav class="menu">
-                <a href="index.html">الشرح الشامل</a>
-                <a href="coa.html">شجرة الحسابات</a>
-                <a href="entries.html">قيود اليومية</a>
-                <a href="depreciation.html">حاسبة الإهلاك</a>
-                <a href="glossary.html">المصطلحات</a>
-                <a class="active" href="books.html">الكتب</a>
-                <a href="quiz.html">الاختبار</a>
-            </nav>
+<nav class="navbar">
+  <div class="container">
+    <a href="index.html" class="logo">
+      <span class="logo-icon">📊</span>
+      <span class="logo-text">محاسبة <span class="logo-highlight">أون لاين</span></span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="index.html">الرئيسية</a></li>
+      <li><a href="coa.html">شجرة الحسابات</a></li>
+      <li><a href="entries.html">قيود اليومية</a></li>
+      <li><a href="depreciation.html">حاسبة الإهلاك</a></li>
+      <li><a href="glossary.html">المصطلحات</a></li>
+      <li><a href="books.html" class="active">الكتب</a></li>
+      <li><a href="quiz.html">الاختبار</a></li>
+    </ul>
+    <div class="nav-actions">
+      <button class="theme-toggle" id="themeToggle" aria-label="تبديل الوضع">
+        <span class="icon-sun">☀️</span>
+        <span class="icon-moon">🌙</span>
+      </button>
+      <button class="mobile-menu-btn" aria-label="القائمة">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</nav>
+
+<header class="page-header">
+  <div class="container">
+    <nav class="breadcrumb">
+      <a href="index.html">الرئيسية</a>
+      <span class="separator">/</span>
+      <span>الكتب</span>
+    </nav>
+    <h1 class="page-title">مكتبة كتب وشروحات المحاسبة</h1>
+    <p class="page-description">
+      دليل إرشادي لأهم محاور الكتب والمراجع المحاسبية وكيفية اختيار الكتاب المناسب لهدفك سواء كنت مبتدئاً أو صاحب مشروع أو محاسباً.
+    </p>
+  </div>
+</header>
+
+<section class="section">
+  <div class="container">
+
+    <div class="content-card">
+      <h2><span class="icon">🎯</span> كيف تختار كتابك؟</h2>
+      <p>تصفح المراجع حسب المجال والهدف</p>
+
+      <div class="filter-tabs" style="margin: 1.5rem 0;">
+        <button class="filter-btn active" data-book-filter="all">الكل</button>
+        <button class="filter-btn" data-book-filter="الأساسيات">الأساسيات</button>
+        <button class="filter-btn" data-book-filter="المحاسبة المالية">المحاسبة المالية</button>
+        <button class="filter-btn" data-book-filter="التكاليف والإدارية">التكاليف والإدارية</button>
+      </div>
+    </div>
+
+    <div class="books-grid" id="booksGrid">
+
+      <article class="book-card" data-category="الأساسيات">
+        <span class="book-tag">الأساسيات</span>
+        <h3>مبادئ المحاسبة المالية للمبتدئين</h3>
+        <p>يركز على بناء الفهم الأساسي للعمل المحاسبي دون تعقيد أكاديمي زائد، ويبدأ من المستندات والقيود وصولاً إلى القوائم الأولية.</p>
+        <div class="book-topics">
+          <strong>أبرز المحاور:</strong>
+          المعادلة المحاسبية، القيد المزدوج، دفتر اليومية والأستاذ، ميزان المراجعة.
         </div>
-    </header>
+        <a href="https://openstax.org/subjects/business" target="_blank" rel="noopener" class="book-link">
+          📚 مراجع جامعية مفتوحة (OpenStax)
+          <span>←</span>
+        </a>
+      </article>
 
-    <section class="hero">
-        <h1>مكتبة كتب وشروحات المحاسبة</h1>
-        <p>دليل إرشادي لأهم محاور الكتب والمراجع المحاسبية وكيفية اختيار الكتاب المناسب لهدفك سواء كنت مبتدئاً أو صاحب مشروع أو محاسباً.</p>
-    </section>
-
-    <main class="wrap">
-        <article class="lesson-card">
-            <span class="lesson-badge">كيف تختار كتابك؟</span>
-            <h2>تصفح المراجع حسب المجال والهدف</h2>
-            <input type="text" id="bookQuery" class="search-input" onkeyup="filterBooks()" placeholder="ابحث عن موضوع (مثال: القوائم، التكاليف، المبتدئين، المعايير)...">
-            <div class="filters">
-                <button type="button" class="f-btn active" onclick="pickCat('all', this)">الكل</button>
-                <button type="button" class="f-btn" onclick="pickCat('basics', this)">الأساسيات</button>
-                <button type="button" class="f-btn" onclick="pickCat('financial', this)">المحاسبة المالية</button>
-                <button type="button" class="f-btn" onclick="pickCat('cost', this)">التكاليف والإدارية</button>
-            </div>
-        </article>
-
-        <div class="grid-3" id="booksList">
-            <article class="book-card" data-cat="basics">
-                <div>
-                    <span class="cat-pill">الأساسيات</span>
-                    <h3>مبادئ المحاسبة المالية للمبتدئين</h3>
-                    <p>يركز على بناء الفهم الأساسي للعمل المحاسبي دون تعقيد أكاديمي زائد، ويبدأ من المستندات والقيود وصولاً إلى القوائم الأولية.</p>
-                    <div class="book-topics">
-                        <strong>أبرز المحاور:</strong> المعادلة المحاسبية، القيد المزدوج، دفتر اليومية والأستاذ، ميزان المراجعة.
-                    </div>
-                </div>
-                <a href="https://openstax.org/subjects/business" target="_blank" rel="noopener noreferrer" class="book-link">مراجع جامعية مفتوحة (OpenStax)</a>
-            </article>
-
-            <article class="book-card" data-cat="financial">
-                <div>
-                    <span class="cat-pill">المحاسبة المالية</span>
-                    <h3>إعداد وتحليل القوائم المالية</h3>
-                    <p>يشرح كيفية تحويل أرصدة الحسابات إلى تقارير واضحة وفهم العلاقة بين الربحية والسيولة والتدفقات النقدية.</p>
-                    <div class="book-topics">
-                        <strong>أبرز المحاور:</strong> قائمة الدخل، قائمة المركز المالي، التدفقات النقدية، نسب السيولة والربحية.
-                    </div>
-                </div>
-                <a href="https://open.umn.edu/opentextbooks" target="_blank" rel="noopener noreferrer" class="book-link">مكتبة الكتب المفتوحة (Open Textbook)</a>
-            </article>
-
-            <article class="book-card" data-cat="cost">
-                <div>
-                    <span class="cat-pill">التكاليف والإدارية</span>
-                    <h3>محاسبة التكاليف واتخاذ القرار</h3>
-                    <p>يساعد على معرفة تكلفة المنتج أو الخدمة بدقة، وتحديد الأسعار، وتحليل الربحية لتقليل الهدر ورفع الكفاءة التشغيلية.</p>
-                    <div class="book-topics">
-                        <strong>أبرز المحاور:</strong> التكاليف الثابتة والمتغيرة، نقطة التعادل، تسعير المنتجات، الموازنات التقديرية.
-                    </div>
-                </div>
-                <a href="index.html" class="book-link">العودة إلى الشرح والأدوات التفاعلية</a>
-            </article>
+      <article class="book-card" data-category="المحاسبة المالية">
+        <span class="book-tag">المحاسبة المالية</span>
+        <h3>إعداد وتحليل القوائم المالية</h3>
+        <p>يشرح كيفية تحويل أرصدة الحسابات إلى تقارير واضحة وفهم العلاقة بين الربحية والسيولة والتدفقات النقدية.</p>
+        <div class="book-topics">
+          <strong>أبرز المحاور:</strong>
+          قائمة الدخل، قائمة المركز المالي، التدفقات النقدية، نسب السيولة والربحية.
         </div>
-    </main>
+        <a href="https://open.umn.edu/opentextbooks" target="_blank" rel="noopener" class="book-link">
+          📖 مكتبة الكتب المفتوحة (Open Textbook)
+          <span>←</span>
+        </a>
+      </article>
 
-    <footer>
-        <p><strong>محاسبة أون لاين</strong> — منصة تعليمية عربية متكاملة لتبسيط المحاسبة المالية</p>
-        <p style="font-size: 0.85rem; margin-top: 0.5rem;">جميع الحقوق محفوظة &copy; 2026</p>
-    </footer>
+      <article class="book-card" data-category="التكاليف والإدارية">
+        <span class="book-tag">التكاليف والإدارية</span>
+        <h3>محاسبة التكاليف واتخاذ القرار</h3>
+        <p>يساعد على معرفة تكلفة المنتج أو الخدمة بدقة، وتحديد الأسعار، وتحليل الربحية لتقليل الهدر ورفع الكفاءة التشغيلية.</p>
+        <div class="book-topics">
+          <strong>أبرز المحاور:</strong>
+          التكاليف الثابتة والمتغيرة، نقطة التعادل، تسعير المنتجات، الموازنات التقديرية.
+        </div>
+        <a href="index.html" class="book-link">
+          🔙 العودة إلى الشرح والأدوات التفاعلية
+          <span>←</span>
+        </a>
+      </article>
 
-    <script>
-        let activeCat = 'all';
+    </div>
 
-        function pickCat(cat, el) {
-            activeCat = cat;
-            document.querySelectorAll('.f-btn').forEach(b => b.classList.remove('active'));
-            el.classList.add('active');
-            filterBooks();
-        }
+  </div>
+</section>
 
-        function filterBooks() {
-            const q = document.getElementById('bookQuery').value.trim().toLowerCase();
-            document.querySelectorAll('#booksList .book-card').forEach(card => {
-                const okCat = activeCat === 'all' || card.dataset.cat === activeCat;
-                const okText = !q || card.textContent.toLowerCase().includes(q);
-                card.style.display = (okCat && okText) ? '' : 'none';
-            });
-        }
-    </script>
+<footer class="footer">
+  <div class="container">
+    <div class="footer-content">
+      <div class="footer-brand">
+        <div class="logo">
+          <span class="logo-icon">📊</span>
+          <span class="logo-text">محاسبة <span class="logo-highlight">أون لاين</span></span>
+        </div>
+        <p>منصة تعليمية عربية متكاملة لتبسيط المحاسبة المالية</p>
+      </div>
+      <div class="footer-links">
+        <h4>روابط سريعة</h4>
+        <ul>
+          <li><a href="coa.html">شجرة الحسابات</a></li>
+          <li><a href="entries.html">قيود اليومية</a></li>
+          <li><a href="glossary.html">المصطلحات</a></li>
+        </ul>
+      </div>
+      <div class="footer-links">
+        <h4>الأدوات</h4>
+        <ul>
+          <li><a href="depreciation.html">حاسبة الإهلاك</a></li>
+          <li><a href="quiz.html">الاختبار</a></li>
+          <li><a href="books.html">الكتب</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>جميع الحقوق محفوظة © 2026 — محاسبة أون لاين</p>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Books filter (inline, small script)
+  document.addEventListener('DOMContentLoaded', () => {
+    const bookBtns = document.querySelectorAll('[data-book-filter]');
+    const bookCards = document.querySelectorAll('.book-card');
+    bookBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        bookBtns.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        const filter = btn.dataset.bookFilter;
+        bookCards.forEach(card => {
+          card.style.display = (filter === 'all' || card.dataset.category === filter) ? '' : 'none';
+        });
+      });
+    });
+  });
+</script>
+<script src="script.js"></script>
+</body>
+</html>
