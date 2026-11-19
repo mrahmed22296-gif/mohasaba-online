@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>محاسبة أون لاين - شرح المحاسبة ببساطة</title>
+    <style>
+        :root {
+            --primary: #1e3a8a;
+            --secondary: #3b82f6;
+            --bg: #f8fafc;
+            --text: #1e293b;
+            --card-bg: #ffffff;
+        }
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        body {
+            background-color: var(--bg);
+            color: var(--text);
+            line-height: 1.7;
+        }
+        header {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 3rem 1rem;
+            text-align: center;
+        }
+        header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+        header p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+        nav {
+            background: #fff;
+            padding: 1rem;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            text-align: center;
+        }
+        nav a {
+            color: var(--primary);
+            text-decoration: none;
+            margin: 0 15px;
+            font-weight: bold;
+        }
+        nav a:hover {
+            color: var(--secondary);
+        }
+        .container {
+            max-width: 900px;
+            margin: 2rem auto;
+            padding: 0 1.5rem;
+        }
+        .card {
+            background: var(--card-bg);
+            border-radius: 10px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            border-right: 5px solid var(--secondary);
+        }
+        .card h2 {
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+        .formula-box {
+            background: #eff6ff;
+            border: 1px dashed var(--secondary);
+            padding: 1rem;
+            border-radius: 8px;
+            text-align: center;
+            font-weight: bold;
+            font-size: 1.1rem;
+            color: var(--primary);
+            margin: 1rem 0;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 1rem;
+        }
+        th, td {
+            border: 1px solid #e2e8f0;
+            padding: 0.8rem;
+            text-align: right;
+        }
+        th {
+            background-color: #f1f5f9;
+            color: var(--primary);
+        }
+        footer {
+            text-align: center;
+            padding: 2rem;
+            background: var(--primary);
+            color: white;
+            margin-top: 3rem;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>محاسبة أون لاين</h1>
+        <p>دليلك المبسط لفهم أساسيات المحاسبة من الصفر</p>
+    </header>
+
+    <nav>
+        <a href="#intro">ما هي المحاسبة؟</a>
+        <a href="#equation">المعادلة المحاسبية</a>
+        <a href="#debit-credit">المدين والدائن</a>
+        <a href="#statements">القوائم المالية</a>
+    </nav>
+
+    <div class="container">
+        <section id="intro" class="card">
+            <h2>1. ما هي المحاسبة ببساطة؟</h2>
+            <p>المحاسبة هي "لغة المال والأعمال". وظيفتها الأساسية هي تسجيل كل ريال يدخل أو يخرج من المشروع، وتنظيم هذه العمليات، ثم تلخيصها في تقارير تساعد صاحب العمل على معرفة: <strong>هل مشروعي يربح أم يخسر؟</strong></p>
+        </section>
+
+        <section id="equation" class="card">
+            <h2>2. المعادلة المحاسبية الأساسية</h2>
+            <p>يقوم علم المحاسبة بالكامل على معادلة واحدة بسيطة يجب أن تظل متوازنة دائماً:</p>
+            <div class="formula-box">
+                الأصول (ما تملكه) = الالتزامات (ما عليك للغير) + حقوق الملكية (رأس مالك)
+            </div>
+            <p><strong>مثال:</strong> إذا اشتريت سيارة للمشروع بقيمة 50,000، دفعت 30,000 من مالك الخاص واقترضت 20,000 من البنك؛ فإن الأصول (50,000) تساوي الالتزامات (20,000) + حقوق الملكية (30,000).</p>
+        </section>
+
+        <section id="debit-credit" class="card">
+            <h2>3. قاعدة المدين والدائن</h2>
+            <p>كل عملية مالية لها طرفان: طرف يأخذ (مدين) وطرف يعطي (دائن). لتسهيلها، احفظ طبيعة الحسابات:</p>
+            <table>
+                <thead>
+                    <tr>
+                        <th>نوع الحساب</th>
+                        <th>طبيعته</th>
+                        <th>إذا زاد يصبح</th>
+                        <th>إذا نقص يصبح</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>الأصول والمصروفات</td>
+                        <td>مدين</td>
+                        <td>مدين</td>
+                        <td>دائن</td>
+                    </tr>
+                    <tr>
+                        <td>الالتزامات وحقوق الملكية والإيرادات</td>
+                        <td>دائن</td>
+                        <td>دائن</td>
+                        <td>مدين</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <section id="statements" class="card">
+            <h2>4. أهم القوائم المالية</h2>
+            <ul>
+                <li><strong>قائمة الدخل:</strong> توضح نتيجة نشاط الشركة خلال فترة معينة (الإيرادات ناقص المصروفات = صافي الربح أو الخسارة).</li>
+                <li><strong>الميزانية العمومية:</strong> صورة فوتوغرافية لوضع الشركة المالي في لحظة محددة (توضح الأصول والالتزامات وحقوق الملكية).</li>
+            </ul>
+        </section>
+    </div>
+
+    <footer>
+        <p>جميع الحقوق محفوظة &copy; 2026 - موقع محاسبة أون لاين</p>
+    </footer>
+
+</body>
+</html>
