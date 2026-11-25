@@ -170,6 +170,7 @@ module.exports = async (req, res) => {
       }
     );
     const data = await r.json();
+    if (!r.ok) { res.status(200).json({ ok: false, error: "generate", detail: "http " + r.status + " " + JSON.stringify(data).slice(0, 300) }); return; }
     const text = (data.candidates && data.candidates[0] && data.candidates[0].content &&
       data.candidates[0].content.parts && data.candidates[0].content.parts[0] &&
       data.candidates[0].content.parts[0].text) || "";
@@ -193,6 +194,6 @@ module.exports = async (req, res) => {
       }
     });
   } catch (e) {
-    res.status(200).json({ ok: false, error: "generate" });
+    res.status(200).json({ ok: false, error: "generate", detail: String(e).slice(0, 200) });
   }
 };
