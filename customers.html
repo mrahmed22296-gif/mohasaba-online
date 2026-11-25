@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>لوحة الزبائن - خاصة بالمالك</title>
+<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
+<style>
+* { margin:0; padding:0; box-sizing:border-box; }
+body { font-family:'Tajawal',sans-serif; background:#f0f9ff; min-height:100vh; color:#0f172a; }
+.ck-header { background:linear-gradient(135deg,#0ea5e9,#1e3a8a); color:#fff; padding:28px 20px; text-align:center; }
+.ck-header h1 { font-size:26px; font-weight:800; }
+.ck-header p { opacity:.9; margin-top:6px; font-size:14px; }
+.ck-wrap { max-width:1000px; margin:0 auto; padding:20px 16px 60px; }
+.ck-cards { display:grid; grid-template-columns:repeat(auto-fit,minmax(150px,1fr)); gap:12px; margin:20px 0; }
+.ck-card { background:#fff; border-radius:14px; padding:18px; text-align:center; box-shadow:0 2px 10px rgba(14,165,233,.08); border:1px solid #e0f2fe; }
+.ck-card .num { font-size:30px; font-weight:800; color:#0ea5e9; }
+.ck-card .lbl { font-size:13px; color:#64748b; margin-top:4px; font-weight:700; }
+.ck-section { background:#fff; border-radius:16px; padding:20px; margin-bottom:20px; box-shadow:0 2px 12px rgba(14,165,233,.08); border:1px solid #e0f2fe; }
+.ck-section h2 { font-size:18px; font-weight:800; color:#1e3a8a; margin-bottom:14px; padding-bottom:10px; border-bottom:2px solid #e0f2fe; }
+table.ck-table { width:100%; border-collapse:collapse; font-size:13px; }
+.ck-table th { background:#f0f9ff; color:#1e3a8a; padding:10px 8px; font-weight:800; text-align:right; white-space:nowrap; }
+.ck-table td { padding:10px 8px; border-top:1px solid #f1f5f9; }
+.ck-table tr:hover td { background:#fafcff; }
+.ck-scroll { overflow-x:auto; }
+.ck-badge { display:inline-block; background:#e0f2fe; color:#0369a1; border-radius:20px; padding:2px 10px; font-size:11px; font-weight:700; margin:1px; }
+.ck-badge.sub { background:#ffedd5; color:#c2410c; }
+.ck-code { font-family:monospace; background:#f8fafc; border:1px solid #e2e8f0; border-radius:8px; padding:6px 12px; display:inline-block; margin:3px; font-size:14px; font-weight:700; color:#0f172a; direction:ltr; }
+.ck-site-block { border:1px solid #e0f2fe; border-radius:12px; padding:14px; margin-bottom:12px; }
+.ck-site-block h3 { font-size:15px; font-weight:800; color:#0ea5e9; margin-bottom:8px; }
+.ck-site-block .url { font-size:12px; color:#64748b; direction:ltr; display:inline-block; }
+.ck-btn { background:#f97316; color:#fff; border:none; border-radius:10px; padding:10px 22px; font-family:'Tajawal'; font-size:14px; font-weight:800; cursor:pointer; }
+.ck-btn:hover { background:#ea580c; }
+.ck-btn.blue { background:#0ea5e9; }
+.ck-btn.blue:hover { background:#0284c7; }
+.ck-center { text-align:center; padding:60px 20px; }
+.ck-lock { font-size:48px; margin-bottom:14px; }
+.ck-msg { font-size:16px; color:#475569; margin-bottom:18px; font-weight:700; }
+.ck-note { background:#fffbeb; border:1px solid #fde68a; border-radius:10px; padding:10px 14px; font-size:13px; color:#92400e; margin-top:10px; font-weight:700; }
+.ck-empty { text-align:center; color:#94a3b8; padding:24px; font-size:14px; }
+.ck-refresh-row { display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px; }
+.ck-time { font-size:12px; color:#94a3b8; }
+</style>
+</head>
+<body>
+<div class="ck-header">
+  <h1>لوحة الزبائن</h1>
+  <p>خاصة بمالك الموقع فقط</p>
+</div>
+<div class="ck-wrap" id="app">
+  <div class="ck-center">
+    <div class="ck-lock">🔒</div>
+    <div class="ck-msg" id="gateMsg">هذه الصفحة خاصة بالمالك. سجل الدخول بحساب المالك للمتابعة.</div>
+    <button class="ck-btn blue" id="signInBtn">تسجيل الدخول عبر Google</button>
+  </div>
+</div>
+
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
+<script>
+var OWNER_EMAIL = 'ahmed.abdelbaset41290@gmail.com';
+var firebaseConfig = {
+  apiKey: "AIzaSyCBtfYpB_j8X1ME-lMqP738Fy06FalSXIM",
+  authDomain: "resume-builder-access.firebaseapp.com",
+  projectId: "resume-builder-access",
+  messagingSenderId: "209097923358",
+  appId: "1:209097923358:web:90e660900f02a621b5c70f"
+};
+firebase.initializeApp(firebaseConfig);
+var auth = firebase.auth();
+var db = firebase.firestore();
+
+var SITES = [
+  { id: 'my-cv-ai',        name: 'منشئ السيرة الذاتية',        url: 'my-cv-ai.vercel.app',        codes: ['RESUME-2026-A1B2','RESUME-2026-C3D4','RESUME-2026-E5F6','RESUME-2026-G7H8','RESUME-2026-I9J0'] },
+  { id: 'mohasaba-online', name: 'محاسبة أون لاين',            url: 'mohasaba-online.vercel.app', codes: ['MOHASABA-2026-A1B2','MOHASABA-2026-C3D4','MOHASABA-2026-E5F6','MOHASABA-2026-G7H8','MOHASABA-2026-I9J0'] },
+  { id: 'qawaim',          name: 'القوائم المالية',            url: 'qawaim.vercel.app',          codes: ['FINREP-2026-A1B2','FINREP-2026-C3D4','FINREP-2026-E5F6','FINREP-2026-G7H8','FINREP-2026-I9J0'] },
+  { id: 'eos-kw',          name: 'حاسبة نهاية الخدمة',         url: 'eos-kw.vercel.app',          codes: ['EOS-2026-A1B2','EOS-2026-C3D4','EOS-2026-E5F6','EOS-2026-G7H8','EOS-2026-I9J0'] }
+];
+var WAMD_CODES = ['WAMD-1001','WAMD-1002','WAMD-1003','WAMD-1004','WAMD-1005'];
+var COUNTERS = [
+  { id: 'my-cv-ai',        name: 'منشئ السيرة الذاتية' },
+  { id: 'mohasaba-online', name: 'محاسبة أون لاين' },
+  { id: 'qawaim',          name: 'القوائم المالية' },
+  { id: 'eos-kw',          name: 'حاسبة نهاية الخدمة' },
+  { id: 'jobs-auto-search',name: 'البحث التلقائي عن الوظائف' }
+];
+
+function esc(s) { return String(s == null ? '' : s).replace(/[&<>"']/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]; }); }
+function fmtDate(ts) {
+  if (!ts || !ts.toDate) return '—';
+  try { return ts.toDate().toLocaleString('ar-KW', { dateStyle:'medium', timeStyle:'short' }); } catch(e) { return '—'; }
+}
+
+auth.onAuthStateChanged(function(u) {
+  if (u && u.email && u.email.toLowerCase() === OWNER_EMAIL) {
+    renderDashboard();
+  } else if (u) {
+    showGate('هذا الحساب (' + esc(u.email) + ') غير مصرح له. هذه الصفحة خاصة بالمالك فقط.', true);
+  } else {
+    showGate('هذه الصفحة خاصة بالمالك. سجل الدخول بحساب المالك للمتابعة.', false);
+  }
+});
+
+function showGate(msg, signedIn) {
+  document.getElementById('app').innerHTML =
+    '<div class="ck-center"><div class="ck-lock">🔒</div>' +
+    '<div class="ck-msg">' + msg + '</div>' +
+    (signedIn
+      ? '<button class="ck-btn" onclick="firebase.auth().signOut()">تسجيل الخروج</button>'
+      : '<button class="ck-btn blue" onclick="signIn()">تسجيل الدخول عبر Google</button>') +
+    '</div>';
+}
+
+function signIn() {
+  var provider = new firebase.auth.GoogleAuthProvider();
+  auth.signInWithPopup(provider).catch(function(err) {
+    if (err && err.code === 'auth/popup-blocked') auth.signInWithRedirect(provider);
+    else if (err && err.code !== 'auth/popup-closed-by-user') alert('تعذر تسجيل الدخول');
+  });
+}
+document.getElementById('signInBtn').addEventListener('click', signIn);
+
+function renderDashboard() {
+  document.getElementById('app').innerHTML =
+    '<div class="ck-refresh-row">' +
+      '<div class="ck-time" id="lastLoad">جاري التحميل...</div>' +
+      '<div><button class="ck-btn blue" onclick="loadAll()">تحديث</button> ' +
+      '<button class="ck-btn" onclick="firebase.auth().signOut()">خروج</button></div>' +
+    '</div>' +
+    '<div class="ck-cards" id="statCards"></div>' +
+    '<div class="ck-section"><h2>الزبائن المسجلون</h2><div class="ck-scroll" id="custArea"></div></div>' +
+    '<div class="ck-section"><h2>زيارات المواقع</h2><div class="ck-scroll" id="visitsArea"></div></div>' +
+    '<div class="ck-section"><h2>أكواد التفعيل</h2><div id="codesArea"></div>' +
+    '<div class="ck-note">أكواد WAMD الخمسة تنفع على المواقع الأربعة اللي فيها اشتراك. موقع البحث التلقائي عن الوظائف مجاني بالكامل وما يحتاج كود.</div></div>';
+  loadAll();
+}
+
+function loadAll() {
+  document.getElementById('lastLoad').textContent = 'جاري التحميل...';
+  var usersP = db.collection('users').get().catch(function(){ return null; });
+  var counterP = Promise.all(COUNTERS.map(function(c){
+    return db.collection('counters').doc(c.id).get().then(function(s){
+      return { name: c.name, count: s.exists && s.data().count != null ? s.data().count : 0 };
+    }).catch(function(){ return { name: c.name, count: 0 }; });
+  }));
+  Promise.all([usersP, counterP]).then(function(res){
+    var snap = res[0], counters = res[1];
+    var users = [];
+    if (snap) snap.forEach(function(d){ var v = d.data(); v._id = d.id; users.push(v); });
+    users.sort(function(a,b){
+      var ta = a.createdAt && a.createdAt.toMillis ? a.createdAt.toMillis() : 0;
+      var tb = b.createdAt && b.createdAt.toMillis ? b.createdAt.toMillis() : 0;
+      return tb - ta;
+    });
+    var totalSubs = users.filter(function(u){ return u.subscriptions && u.subscriptions.length; }).length;
+    var totalVisits = counters.reduce(function(s,c){ return s + c.count; }, 0);
+
+    document.getElementById('statCards').innerHTML =
+      '<div class="ck-card"><div class="num">' + users.length + '</div><div class="lbl">زبون مسجل</div></div>' +
+      '<div class="ck-card"><div class="num">' + totalSubs + '</div><div class="lbl">مشترك</div></div>' +
+      '<div class="ck-card"><div class="num">' + totalVisits + '</div><div class="lbl">إجمالي الزيارات</div></div>';
+
+    var custHtml;
+    if (!users.length) {
+      custHtml = '<div class="ck-empty">لا يوجد زبائن مسجلون بعد. أول ما أحد يسجل دخول بأي موقع يظهر هنا.</div>';
+    } else {
+      custHtml = '<table class="ck-table"><tr><th>الاسم</th><th>الإيميل</th><th>الجوال</th><th>المواقع</th><th>الاشتراكات</th><th>سجل في</th><th>آخر نشاط</th></tr>';
+      users.forEach(function(u){
+        var sites = (u.sites || []).map(function(s){ return '<span class="ck-badge">' + esc(s) + '</span>'; }).join('') || '—';
+        var subs = (u.subscriptions || []).map(function(s){ return '<span class="ck-badge sub">' + esc(s) + '</span>'; }).join('') || '—';
+        custHtml += '<tr><td>' + esc(u.name || '—') + '</td><td style="direction:ltr;text-align:left">' + esc(u.email || '—') + '</td>' +
+          '<td style="direction:ltr">' + esc(u.phone || '—') + '</td><td>' + sites + '</td><td>' + subs + '</td>' +
+          '<td>' + fmtDate(u.createdAt) + '</td><td>' + fmtDate(u.lastSeenAt) + '</td></tr>';
+      });
+      custHtml += '</table>';
+    }
+    document.getElementById('custArea').innerHTML = custHtml;
+
+    var vHtml = '<table class="ck-table"><tr><th>الموقع</th><th>عدد الزيارات</th></tr>';
+    counters.forEach(function(c){ vHtml += '<tr><td>' + esc(c.name) + '</td><td><b>' + c.count + '</b></td></tr>'; });
+    vHtml += '</table>';
+    document.getElementById('visitsArea').innerHTML = vHtml;
+
+    var cHtml = '';
+    SITES.forEach(function(s){
+      cHtml += '<div class="site-block ck-site-block"><h3>' + esc(s.name) + ' <span class="url">' + esc(s.url) + '</span></h3>' +
+        s.codes.map(function(c){ return '<span class="ck-code">' + c + '</span>'; }).join('') + '</div>';
+    });
+    cHtml += '<div class="ck-site-block"><h3>أكواد ومض المشتركة (تنفع على الكل)</h3>' +
+      WAMD_CODES.map(function(c){ return '<span class="ck-code">' + c + '</span>'; }).join('') + '</div>';
+    document.getElementById('codesArea').innerHTML = cHtml;
+
+    document.getElementById('lastLoad').textContent = 'آخر تحديث: ' + new Date().toLocaleString('ar-KW', { dateStyle:'medium', timeStyle:'short' });
+  });
+}
+</script>
+</body>
+</html>
