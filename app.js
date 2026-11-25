@@ -150,3 +150,307 @@
         addWhatsAppWidget();
     });
 })();
+
+
+
+/* ===== تسجيل الدخول والاشتراك (Firebase) — مثل موقع مسار ===== */
+(function () {
+    'use strict';
+    if (window.__mohAuthLoaded) return;
+    window.__mohAuthLoaded = true;
+
+    var SITE_ID = 'mohasaba-online';
+    var FREE_USES = 1;
+    var WA_NUMBER = '96560085043';
+    var QR_URL = 'https://i.ibb.co/1GvzKs8r/Whats-App-Image-2026-08-06-at-4-44-31-PM-1.jpg';
+    var VALID_CODES = [
+        'MOHASABA-2026-A1B2', 'MOHASABA-2026-C3D4', 'MOHASABA-2026-E5F6',
+        'MOHASABA-2026-G7H8', 'MOHASABA-2026-I9J0',
+        'WAMD-1001', 'WAMD-1002', 'WAMD-1003', 'WAMD-1004', 'WAMD-1005'
+    ];
+    var FIREBASE_CONFIG = {
+        apiKey: 'AIzaSyCBtfYpB_j8X1ME-lMqP738Fy06FalSXIM',
+        authDomain: 'resume-builder-access.firebaseapp.com',
+        projectId: 'resume-builder-access',
+        storageBucket: 'resume-builder-access.firebasestorage.app',
+        messagingSenderId: '209097923358',
+        appId: '1:209097923358:web:90e660900f02a621b5c70f'
+    };
+    var COUNTED_ACTIONS = /(solveEquation|drCrHelper|calculateSchedule|buildEntry|resetQuiz)/;
+
+    function store(key, val) {
+        try {
+            if (val === undefined) return localStorage.getItem(key);
+            localStorage.setItem(key, val);
+        } catch (e) { return null; }
+    }
+    function subKey(uid) { return 'moh_subscribed_' + uid; }
+    function countKey(uid) { return 'moh_use_count_' + uid; }
+    function phoneSkipKey(uid) { return 'moh_phone_skip_' + uid; }
+
+    var currentUser = null;
+    var subscribed = false;
+    var useCount = 0;
+
+    /* ---------- التنسيقات ---------- */
+    var css = ''
+        + '.moh-auth-overlay{position:fixed;inset:0;z-index:999990;background:radial-gradient(ellipse 80% 50% at 50% -20%,rgba(14,165,233,.12),transparent),#f0f9ff;display:flex;align-items:center;justify-content:center;padding:16px;font-family:Tajawal,sans-serif;overflow-y:auto}'
+        + '.moh-auth-card{width:100%;max-width:430px;background:#fff;border:1px solid #dbeafe;border-radius:28px;padding:28px;box-shadow:0 24px 60px rgba(12,41,66,.12);text-align:center;box-sizing:border-box}'
+        + '.moh-auth-logo{width:56px;height:56px;margin:0 auto 12px;background:#0c2942;color:#fff;border-radius:16px;display:grid;place-items:center;font-size:24px;font-weight:900}'
+        + '.moh-auth-sub{color:#0369a1;font-size:12px;font-weight:700;margin:0}'
+        + '.moh-auth-title{font-size:24px;font-weight:900;margin:8px 0 12px;color:#0c2942}'
+        + '.moh-auth-desc{font-size:14px;color:#5b7285;line-height:1.9;margin:0 0 24px}'
+        + '.moh-btn{width:100%;min-height:48px;border-radius:14px;border:1px solid #dbeafe;background:#fff;color:#374151;font-weight:700;font-size:14px;display:flex;justify-content:center;align-items:center;gap:12px;cursor:pointer;font-family:inherit;box-sizing:border-box}'
+        + '.moh-btn:disabled{opacity:.6;cursor:default}'
+        + '.moh-btn-dark{background:#0c2942;color:#fff;border:none}'
+        + '.moh-btn-wa{background:#25D366;color:#fff;border:none}'
+        + '.moh-g-dot{width:20px;height:20px;border-radius:50%;background:linear-gradient(135deg,#3b82f6,#ef4444 50%,#facc15)}'
+        + '.moh-auth-note{margin-top:16px;font-size:12px;line-height:1.8;color:#5b7285}'
+        + '.moh-auth-privacy{margin-top:8px;font-size:11px;line-height:1.8;color:#94a3b8}'
+        + '.moh-auth-err{margin-top:12px;font-size:12px;color:#dc2626;font-weight:700}'
+        + '.moh-pay-qrbox{background:#f0f9ff;border-radius:16px;padding:16px;border:1px solid #dbeafe}'
+        + '.moh-pay-qrbox img{width:200px;max-width:100%;margin:12px auto;display:block;border-radius:12px;border:1px solid #dbeafe}'
+        + '.moh-pay-steps{margin-top:16px;text-align:right;background:#ffedd5;border:1px solid #fdba74;border-radius:12px;padding:12px;font-size:11px;line-height:1.9;color:#9a3412}'
+        + '.moh-input{width:100%;text-align:center;border:1px solid #dbeafe;border-radius:12px;padding:12px 16px;font-size:14px;outline:none;font-family:inherit;box-sizing:border-box;margin-top:12px}'
+        + '.moh-link-btn{margin-top:12px;background:none;border:none;font-size:12px;color:#5b7285;text-decoration:underline;cursor:pointer;font-family:inherit}'
+        + '.moh-modal{position:fixed;inset:0;background:rgba(13,18,38,.55);display:flex;align-items:center;justify-content:center;padding:16px;z-index:999991;font-family:Tajawal,sans-serif;overflow-y:auto}'
+        + '.moh-user-chip{position:fixed;bottom:18px;right:18px;z-index:99900;background:#0d1226;color:#e8ecf8;border-radius:999px;padding:8px 14px;display:flex;align-items:center;gap:10px;font-family:Tajawal,sans-serif;font-size:13px;box-shadow:0 8px 24px rgba(13,18,38,.35)}'
+        + '.moh-user-chip button{background:none;border:1px solid rgba(255,255,255,.25);color:#e8ecf8;border-radius:999px;padding:4px 10px;font-size:12px;cursor:pointer;font-family:inherit}'
+        + '.moh-code-msg{margin-top:12px;font-size:12px;font-weight:700}';
+    var styleEl = document.createElement('style');
+    styleEl.textContent = css;
+    document.head.appendChild(styleEl);
+
+    /* ---------- شاشة الدخول ---------- */
+    var gateEl = document.createElement('div');
+    gateEl.className = 'moh-auth-overlay';
+    gateEl.setAttribute('dir', 'rtl');
+    gateEl.innerHTML = ''
+        + '<div class="moh-auth-card">'
+        + '<div class="moh-auth-logo">ح</div>'
+        + '<p class="moh-auth-sub">منصة تعليمية عربية متكاملة لتبسيط المحاسبة المالية</p>'
+        + '<h1 class="moh-auth-title">محاسبة أون لاين</h1>'
+        + '<p class="moh-auth-desc">شجرة الحسابات، قيود اليومية، حاسبة الإهلاك، المصطلحات والاختبارات — كل ما تحتاجه لتعلّم المحاسبة في مكان واحد.</p>'
+        + '<button type="button" class="moh-btn" id="mohLoginBtn"><span class="moh-g-dot"></span>تسجيل الدخول بواسطة Google</button>'
+        + '<p class="moh-auth-note">تسجّل الدخول أولاً، ثم تتوفر لك محاولة مجانية قبل الاشتراك.</p>'
+        + '<p class="moh-auth-privacy">بتسجيل الدخول توافق على حفظ بياناتك الأساسية (الاسم والإيميل ورقم الهاتف إن أدخلته) لدى مالك الموقع لغرض إدارة الاشتراك والتواصل.</p>'
+        + '<p class="moh-auth-err" id="mohLoginErr" style="display:none"></p>'
+        + '</div>';
+    document.body.appendChild(gateEl);
+    document.documentElement.style.overflow = 'hidden';
+
+    function showLoginError(msg) {
+        var el = document.getElementById('mohLoginErr');
+        if (el) { el.textContent = msg; el.style.display = 'block'; }
+    }
+
+    /* ---------- نافذة الهاتف ---------- */
+    function openPhoneModal() {
+        if (document.getElementById('mohPhoneModal')) return;
+        var m = document.createElement('div');
+        m.className = 'moh-modal';
+        m.id = 'mohPhoneModal';
+        m.setAttribute('dir', 'rtl');
+        m.innerHTML = ''
+            + '<div class="moh-auth-card">'
+            + '<h2 style="font-size:18px;font-weight:900;margin:0 0 8px;color:#0c2942">رقم هاتفك (اختياري)</h2>'
+            + '<p class="moh-auth-desc" style="margin-bottom:16px">يُستخدم فقط للتواصل معك بخصوص تفعيل الاشتراك.</p>'
+            + '<input type="tel" id="mohPhoneInput" class="moh-input" style="margin-top:0" placeholder="مثال: 60085043">'
+            + '<button type="button" class="moh-btn moh-btn-dark" id="mohPhoneSave" style="margin-top:12px">حفظ</button>'
+            + '<button type="button" class="moh-link-btn" id="mohPhoneSkip">تخطي الآن</button>'
+            + '</div>';
+        document.body.appendChild(m);
+        document.getElementById('mohPhoneSave').addEventListener('click', function () {
+            var v = (document.getElementById('mohPhoneInput').value || '').trim();
+            if (v && currentUser) {
+                try {
+                    firebase.firestore().collection('users').doc(currentUser.uid)
+                        .set({ phone: v }, { merge: true }).catch(function () {});
+                } catch (e) {}
+            }
+            if (currentUser) store(phoneSkipKey(currentUser.uid), '1');
+            m.remove();
+        });
+        document.getElementById('mohPhoneSkip').addEventListener('click', function () {
+            if (currentUser) store(phoneSkipKey(currentUser.uid), '1');
+            m.remove();
+        });
+    }
+
+    /* ---------- نافذة الاشتراك ---------- */
+    function openPaywall() {
+        if (document.getElementById('mohPayModal')) return;
+        var name = currentUser && currentUser.displayName ? currentUser.displayName : '';
+        var email = currentUser && currentUser.email ? currentUser.email : '';
+        var waText = encodeURIComponent('السلام عليكم،\nأريد تفعيل الاشتراك في محاسبة أون لاين.\nالمبلغ: 1 دينار\nالاسم: ' + name + '\nالإيميل: ' + email + '\n\nمرفق إيصال الدفع عبر ومض.');
+        var m = document.createElement('div');
+        m.className = 'moh-modal';
+        m.id = 'mohPayModal';
+        m.setAttribute('dir', 'rtl');
+        m.innerHTML = ''
+            + '<div class="moh-auth-card" style="max-height:92vh;overflow-y:auto">'
+            + '<div class="moh-auth-logo" style="background:#f97316;font-size:20px">د</div>'
+            + '<p class="moh-auth-sub">اشتراك محاسبة أون لاين</p>'
+            + '<h2 style="font-size:20px;font-weight:900;margin:8px 0;color:#0c2942">انتهت المحاولة المجانية</h2>'
+            + '<p class="moh-auth-desc" style="margin-bottom:16px">اشترك مقابل <strong style="color:#f97316">1 دينار فقط</strong> لاستخدام كل الأدوات بلا حدود.</p>'
+            + '<div class="moh-pay-qrbox">'
+            + '<p style="margin:0;font-size:12px;font-weight:700;color:#0c2942">الدفع عبر ومض (WAMD)</p>'
+            + '<img src="' + QR_URL + '" alt="رمز QR للدفع عبر ومض">'
+            + '<p style="margin:0;font-size:11px;line-height:1.8;color:#5b7285">امسح رمز QR من تطبيق التمويل أون لاين أو أي تطبيق يدعم ومض.</p>'
+            + '</div>'
+            + '<div class="moh-pay-steps"><strong>خطوات التفعيل:</strong><br>1. ادفع 1 دينار عبر ومض.<br>2. خذ صورة للإيصال وأرسلها عبر واتساب.<br>3. ستصلك رسالة بكود التفعيل.</div>'
+            + '<a class="moh-btn moh-btn-wa" style="margin-top:16px;text-decoration:none" target="_blank" rel="noopener" href="https://wa.me/' + WA_NUMBER + '?text=' + waText + '">إرسال إيصال الدفع على واتساب</a>'
+            + '<div style="margin-top:20px;padding-top:20px;border-top:1px solid #dbeafe">'
+            + '<p style="margin:0;font-size:12px;font-weight:700;color:#0c2942">لديك كود تفعيل؟</p>'
+            + '<input type="text" id="mohCodeInput" class="moh-input" placeholder="أدخل كود التفعيل" style="text-transform:uppercase">'
+            + '<button type="button" class="moh-btn moh-btn-dark" id="mohCodeBtn" style="margin-top:8px">تفعيل الاشتراك</button>'
+            + '<p class="moh-code-msg" id="mohCodeMsg" style="display:none"></p>'
+            + '</div>'
+            + '<button type="button" class="moh-link-btn" id="mohPayClose">العودة لاحقاً</button>'
+            + '</div>';
+        document.body.appendChild(m);
+        document.getElementById('mohPayClose').addEventListener('click', function () { m.remove(); });
+        document.getElementById('mohCodeBtn').addEventListener('click', function () {
+            var msg = document.getElementById('mohCodeMsg');
+            var val = (document.getElementById('mohCodeInput').value || '').trim().toUpperCase();
+            msg.style.display = 'block';
+            if (!val) { msg.style.color = '#dc2626'; msg.textContent = 'أدخل كود التفعيل أولاً.'; return; }
+            if (VALID_CODES.indexOf(val) === -1) { msg.style.color = '#dc2626'; msg.textContent = 'الكود غير صحيح. تأكد من الكود وأعد المحاولة.'; return; }
+            store(subKey(currentUser.uid), 'true');
+            subscribed = true;
+            try {
+                firebase.firestore().collection('users').doc(currentUser.uid)
+                    .set({ subscriptions: firebase.firestore.FieldValue.arrayUnion(SITE_ID) }, { merge: true }).catch(function () {});
+            } catch (e) {}
+            msg.style.color = '#15803d';
+            msg.textContent = 'تم تفعيل الاشتراك بنجاح.';
+            setTimeout(function () { m.remove(); }, 1500);
+        });
+    }
+
+    /* ---------- عدّاد الاستخدام المجاني ---------- */
+    function tryConsume() {
+        if (!currentUser || subscribed) return true;
+        var current = Number(store(countKey(currentUser.uid)) || 0);
+        if (current < FREE_USES) {
+            store(countKey(currentUser.uid), String(current + 1));
+            useCount = current + 1;
+            return true;
+        }
+        return false;
+    }
+
+    document.addEventListener('click', function (e) {
+        if (!currentUser || subscribed) return;
+        var el = e.target && e.target.closest ? e.target.closest('[onclick]') : null;
+        if (!el) return;
+        var handler = el.getAttribute('onclick') || '';
+        if (!COUNTED_ACTIONS.test(handler)) return;
+        if (!tryConsume()) {
+            e.preventDefault();
+            e.stopPropagation();
+            openPaywall();
+        }
+    }, true);
+
+    /* ---------- شارة المستخدم ---------- */
+    function addUserChip() {
+        if (document.getElementById('mohUserChip')) return;
+        var chip = document.createElement('div');
+        chip.className = 'moh-user-chip';
+        chip.id = 'mohUserChip';
+        var first = (currentUser.displayName || currentUser.email || 'مستخدم').split(' ')[0];
+        chip.innerHTML = '<span>' + first + '</span><button type="button" id="mohSignOut">خروج</button>';
+        document.body.appendChild(chip);
+        document.getElementById('mohSignOut').addEventListener('click', function () {
+            firebase.auth().signOut().finally(function () { location.reload(); });
+        });
+    }
+
+    /* ---------- حفظ بيانات الزائر ---------- */
+    function saveVisitor(u) {
+        try {
+            var ref = firebase.firestore().collection('users').doc(u.uid);
+            ref.get().then(function (snap) {
+                var base = { email: u.email || '', name: u.displayName || '', sites: firebase.firestore.FieldValue.arrayUnion(SITE_ID) };
+                if (!snap.exists) {
+                    base.phone = '';
+                    base.createdAt = firebase.firestore.FieldValue.serverTimestamp();
+                    if (!store(phoneSkipKey(u.uid))) openPhoneModal();
+                } else {
+                    base.lastSeenAt = firebase.firestore.FieldValue.serverTimestamp();
+                    var data = snap.data() || {};
+                    if (!data.phone && !store(phoneSkipKey(u.uid))) openPhoneModal();
+                }
+                ref.set(base, { merge: true }).catch(function () {});
+            }).catch(function () {
+                if (!store(phoneSkipKey(u.uid))) openPhoneModal();
+            });
+        } catch (e) {
+            if (!store(phoneSkipKey(u.uid))) openPhoneModal();
+        }
+    }
+
+    /* ---------- تحميل Firebase ---------- */
+    function loadScript(src) {
+        return new Promise(function (resolve, reject) {
+            var s = document.createElement('script');
+            s.src = src;
+            s.onload = resolve;
+            s.onerror = reject;
+            document.head.appendChild(s);
+        });
+    }
+
+    var V = '10.12.2';
+    loadScript('https://www.gstatic.com/firebasejs/' + V + '/firebase-app-compat.js')
+        .then(function () { return loadScript('https://www.gstatic.com/firebasejs/' + V + '/firebase-auth-compat.js'); })
+        .then(function () { return loadScript('https://www.gstatic.com/firebasejs/' + V + '/firebase-firestore-compat.js'); })
+        .then(function () {
+            firebase.initializeApp(FIREBASE_CONFIG);
+            var auth = firebase.auth();
+            auth.getRedirectResult().catch(function () {});
+
+            document.getElementById('mohLoginBtn').addEventListener('click', function () {
+                var provider = new firebase.auth.GoogleAuthProvider();
+                var btn = document.getElementById('mohLoginBtn');
+                btn.disabled = true;
+                auth.signInWithPopup(provider).catch(function (error) {
+                    btn.disabled = false;
+                    if (error && error.code === 'auth/popup-blocked') {
+                        auth.signInWithRedirect(provider).catch(function () {
+                            showLoginError('تعذر فتح صفحة تسجيل الدخول. جرّب متصفحاً آخر.');
+                        });
+                    } else if (error && error.code === 'auth/unauthorized-domain') {
+                        showLoginError('هذا الرابط غير مفعّل بعد لتسجيل الدخول. جاري تفعيله.');
+                    } else if (error && error.code !== 'auth/popup-closed-by-user' && error.code !== 'auth/cancelled-popup-request') {
+                        showLoginError('حدث خطأ أثناء تسجيل الدخول. حاول مرة أخرى.');
+                    }
+                });
+            });
+
+            auth.onAuthStateChanged(function (u) {
+                currentUser = u;
+                if (!u) {
+                    gateEl.style.display = 'flex';
+                    document.documentElement.style.overflow = 'hidden';
+                    return;
+                }
+                subscribed = store(subKey(u.uid)) === 'true';
+                useCount = Number(store(countKey(u.uid)) || 0);
+                gateEl.style.display = 'none';
+                document.documentElement.style.overflow = '';
+                addUserChip();
+                saveVisitor(u);
+            });
+        })
+        .catch(function () {
+            showLoginError('تعذر تحميل خدمة تسجيل الدخول. تحقق من الاتصال ثم أعد تحميل الصفحة.');
+            var btn = document.getElementById('mohLoginBtn');
+            if (btn) {
+                btn.textContent = 'إعادة المحاولة';
+                btn.disabled = false;
+                btn.addEventListener('click', function () { location.reload(); });
+            }
+        });
+})();
