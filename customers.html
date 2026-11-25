@@ -70,27 +70,27 @@ var firebaseConfig = {
 };
 firebase.initializeApp(firebaseConfig);
 var auth = firebase.auth();
-var db = firebase.firestore();
 
-var SITES = [
-  { id: 'my-cv-ai',        name: 'منشئ السيرة الذاتية',        url: 'my-cv-ai.vercel.app',        codes: ['RESUME-2026-A1B2','RESUME-2026-C3D4','RESUME-2026-E5F6','RESUME-2026-G7H8','RESUME-2026-I9J0'] },
-  { id: 'mohasaba-online', name: 'محاسبة أون لاين',            url: 'mohasaba-online.vercel.app', codes: ['MOHASABA-2026-A1B2','MOHASABA-2026-C3D4','MOHASABA-2026-E5F6','MOHASABA-2026-G7H8','MOHASABA-2026-I9J0'] },
-  { id: 'qawaim',          name: 'القوائم المالية',            url: 'qawaim.vercel.app',          codes: ['FINREP-2026-A1B2','FINREP-2026-C3D4','FINREP-2026-E5F6','FINREP-2026-G7H8','FINREP-2026-I9J0'] },
-  { id: 'eos-kw',          name: 'حاسبة نهاية الخدمة',         url: 'eos-kw.vercel.app',          codes: ['EOS-2026-A1B2','EOS-2026-C3D4','EOS-2026-E5F6','EOS-2026-G7H8','EOS-2026-I9J0'] }
+var SITES_META = [
+  { id: 'ai-resume-builder', name: 'منشئ السيرة الذاتية',        url: 'my-cv-ai.vercel.app' },
+  { id: 'mohasaba-online',   name: 'محاسبة أون لاين',            url: 'mohasaba-online.vercel.app' },
+  { id: 'financial-reports', name: 'القوائم المالية',            url: 'qawaim.vercel.app' },
+  { id: 'eos-kw',            name: 'حاسبة نهاية الخدمة',         url: 'eos-kw.vercel.app' }
 ];
-var WAMD_CODES = ['WAMD-1001','WAMD-1002','WAMD-1003','WAMD-1004','WAMD-1005'];
-var COUNTERS = [
-  { id: 'my-cv-ai',        name: 'منشئ السيرة الذاتية' },
-  { id: 'mohasaba-online', name: 'محاسبة أون لاين' },
-  { id: 'financial-reports', name: 'القوائم المالية' },
-  { id: 'eos-kw',          name: 'حاسبة نهاية الخدمة' },
-  { id: 'jobs-auto-search',name: 'البحث التلقائي عن الوظائف' }
-];
+var COUNTER_NAMES = {
+  'my-cv-ai': 'منشئ السيرة الذاتية',
+  'mohasaba-online': 'محاسبة أون لاين',
+  'financial-reports': 'القوائم المالية',
+  'eos-kw': 'حاسبة نهاية الخدمة',
+  'jobs-auto-search': 'البحث التلقائي عن الوظائف'
+};
 
 function esc(s) { return String(s == null ? '' : s).replace(/[&<>"']/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]; }); }
-function fmtDate(ts) {
-  if (!ts || !ts.toDate) return '—';
-  try { return ts.toDate().toLocaleString('ar-KW', { dateStyle:'medium', timeStyle:'short' }); } catch(e) { return '—'; }
+function sv(f) { return (f && f.stringValue) || ''; }
+function av(f) { return ((f && f.arrayValue && f.arrayValue.values) || []).map(function(v){ return v.stringValue || ''; }); }
+function tv(f) {
+  if (!f || !f.timestampValue) return '—';
+  try { return new Date(f.timestampValue).toLocaleString('ar-KW', { dateStyle:'medium', timeStyle:'short' }); } catch(e) { return '—'; }
 }
 
 auth.onAuthStateChanged(function(u) {
@@ -133,29 +133,37 @@ function renderDashboard() {
     '<div class="ck-section"><h2>الزبائن المسجلون</h2><div class="ck-scroll" id="custArea"></div></div>' +
     '<div class="ck-section"><h2>زيارات المواقع</h2><div class="ck-scroll" id="visitsArea"></div></div>' +
     '<div class="ck-section"><h2>أكواد التفعيل</h2><div id="codesArea"></div>' +
-    '<div class="ck-note">أكواد WAMD الخمسة تنفع على المواقع الأربعة اللي فيها اشتراك. موقع البحث التلقائي عن الوظائف مجاني بالكامل وما يحتاج كود.</div></div>';
+    '<div class="ck-note">أكواد ومض المشتركة تنفع على المواقع الأربعة اللي فيها اشتراك. موقع البحث التلقائي عن الوظائف مجاني بالكامل وما يحتاج كود.</div></div>';
   loadAll();
 }
 
 function loadAll() {
   document.getElementById('lastLoad').textContent = 'جاري التحميل...';
-  var usersP = db.collection('users').get().catch(function(){ return null; });
-  var counterP = Promise.all(COUNTERS.map(function(c){
-    return db.collection('counters').doc(c.id).get().then(function(s){
-      return { name: c.name, count: s.exists && s.data().count != null ? s.data().count : 0 };
-    }).catch(function(){ return { name: c.name, count: 0 }; });
-  }));
-  Promise.all([usersP, counterP]).then(function(res){
-    var snap = res[0], counters = res[1];
-    var users = [];
-    if (snap) snap.forEach(function(d){ var v = d.data(); v._id = d.id; users.push(v); });
-    users.sort(function(a,b){
-      var ta = a.createdAt && a.createdAt.toMillis ? a.createdAt.toMillis() : 0;
-      var tb = b.createdAt && b.createdAt.toMillis ? b.createdAt.toMillis() : 0;
-      return tb - ta;
+  var u = auth.currentUser;
+  if (!u) { document.getElementById('lastLoad').textContent = 'سجل الدخول أولاً'; return; }
+  u.getIdToken().then(function(token){
+    return fetch('/api/owner-data', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ idToken: token })
     });
-    var totalSubs = users.filter(function(u){ return u.subscriptions && u.subscriptions.length; }).length;
-    var totalVisits = counters.reduce(function(s,c){ return s + c.count; }, 0);
+  }).then(function(r){
+    if (!r.ok) throw new Error('denied-' + r.status);
+    return r.json();
+  }).then(function(data){
+    var users = (data.users && data.users.documents || []).map(function(doc){
+      var f = doc.fields || {};
+      return {
+        name: sv(f.name), email: sv(f.email), phone: sv(f.phone),
+        sites: av(f.sites), subscriptions: av(f.subscriptions),
+        created: f.createdAt && f.createdAt.timestampValue ? new Date(f.createdAt.timestampValue).getTime() : 0,
+        createdTxt: tv(f.createdAt), lastSeenTxt: tv(f.lastSeenAt)
+      };
+    });
+    users.sort(function(a,b){ return b.created - a.created; });
+    var totalSubs = users.filter(function(x){ return x.subscriptions.length; }).length;
+    var counters = data.counters || {};
+    var totalVisits = Object.keys(counters).reduce(function(s,k){ return s + (counters[k] || 0); }, 0);
 
     document.getElementById('statCards').innerHTML =
       '<div class="ck-card"><div class="num">' + users.length + '</div><div class="lbl">زبون مسجل</div></div>' +
@@ -167,32 +175,41 @@ function loadAll() {
       custHtml = '<div class="ck-empty">لا يوجد زبائن مسجلون بعد. أول ما أحد يسجل دخول بأي موقع يظهر هنا.</div>';
     } else {
       custHtml = '<table class="ck-table"><tr><th>الاسم</th><th>الإيميل</th><th>الجوال</th><th>المواقع</th><th>الاشتراكات</th><th>سجل في</th><th>آخر نشاط</th></tr>';
-      users.forEach(function(u){
-        var sites = (u.sites || []).map(function(s){ return '<span class="ck-badge">' + esc(s) + '</span>'; }).join('') || '—';
-        var subs = (u.subscriptions || []).map(function(s){ return '<span class="ck-badge sub">' + esc(s) + '</span>'; }).join('') || '—';
-        custHtml += '<tr><td>' + esc(u.name || '—') + '</td><td style="direction:ltr;text-align:left">' + esc(u.email || '—') + '</td>' +
-          '<td style="direction:ltr">' + esc(u.phone || '—') + '</td><td>' + sites + '</td><td>' + subs + '</td>' +
-          '<td>' + fmtDate(u.createdAt) + '</td><td>' + fmtDate(u.lastSeenAt) + '</td></tr>';
+      users.forEach(function(x){
+        var sites = x.sites.map(function(s){ return '<span class="ck-badge">' + esc(s) + '</span>'; }).join('') || '—';
+        var subs = x.subscriptions.map(function(s){ return '<span class="ck-badge sub">' + esc(s) + '</span>'; }).join('') || '—';
+        custHtml += '<tr><td>' + esc(x.name || '—') + '</td><td style="direction:ltr;text-align:left">' + esc(x.email || '—') + '</td>' +
+          '<td style="direction:ltr">' + esc(x.phone || '—') + '</td><td>' + sites + '</td><td>' + subs + '</td>' +
+          '<td>' + x.createdTxt + '</td><td>' + x.lastSeenTxt + '</td></tr>';
       });
       custHtml += '</table>';
     }
     document.getElementById('custArea').innerHTML = custHtml;
 
     var vHtml = '<table class="ck-table"><tr><th>الموقع</th><th>عدد الزيارات</th></tr>';
-    counters.forEach(function(c){ vHtml += '<tr><td>' + esc(c.name) + '</td><td><b>' + c.count + '</b></td></tr>'; });
+    Object.keys(COUNTER_NAMES).forEach(function(id){
+      vHtml += '<tr><td>' + esc(COUNTER_NAMES[id]) + '</td><td><b>' + (counters[id] || 0) + '</b></td></tr>';
+    });
     vHtml += '</table>';
     document.getElementById('visitsArea').innerHTML = vHtml;
 
+    var codes = data.codes || {};
     var cHtml = '';
-    SITES.forEach(function(s){
-      cHtml += '<div class="site-block ck-site-block"><h3>' + esc(s.name) + ' <span class="url">' + esc(s.url) + '</span></h3>' +
-        s.codes.map(function(c){ return '<span class="ck-code">' + c + '</span>'; }).join('') + '</div>';
+    var shared = [];
+    SITES_META.forEach(function(s){
+      var list = codes[s.id] || [];
+      var own = list.filter(function(c){ return c.indexOf('WAMD') !== 0; });
+      if (!shared.length) shared = list.filter(function(c){ return c.indexOf('WAMD') === 0; });
+      cHtml += '<div class="ck-site-block"><h3>' + esc(s.name) + ' <span class="url">' + esc(s.url) + '</span></h3>' +
+        (own.length ? own.map(function(c){ return '<span class="ck-code">' + esc(c) + '</span>'; }).join('') : '<span class="ck-empty">—</span>') + '</div>';
     });
     cHtml += '<div class="ck-site-block"><h3>أكواد ومض المشتركة (تنفع على الكل)</h3>' +
-      WAMD_CODES.map(function(c){ return '<span class="ck-code">' + c + '</span>'; }).join('') + '</div>';
+      shared.map(function(c){ return '<span class="ck-code">' + esc(c) + '</span>'; }).join('') + '</div>';
     document.getElementById('codesArea').innerHTML = cHtml;
 
     document.getElementById('lastLoad').textContent = 'آخر تحديث: ' + new Date().toLocaleString('ar-KW', { dateStyle:'medium', timeStyle:'short' });
+  }).catch(function(err){
+    document.getElementById('lastLoad').textContent = 'تعذر تحميل البيانات (' + err.message + ')';
   });
 }
 </script>
