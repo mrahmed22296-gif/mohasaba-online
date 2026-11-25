@@ -23,9 +23,10 @@ module.exports = async (req, res) => {
   try { codes = JSON.parse(process.env.REDEEM_CODES_JSON || "{}"); }
   catch (e) { res.status(500).json({ ok: false, error: "config" }); return; }
 
+  const norm = (v) => (typeof v === "string" ? v.replace(/[^A-Za-z0-9]/g, "").toUpperCase() : "");
   const body = req.body || {};
   const site = typeof body.site === "string" ? body.site : "";
-  const code = typeof body.code === "string" ? body.code.trim().toUpperCase() : "";
-  const list = codes[site] || [];
+  const code = norm(body.code);
+  const list = (codes[site] || []).map(norm);
   res.status(200).json({ ok: code.length > 0 && list.includes(code) });
 };
