@@ -1,6 +1,7 @@
 // Activation-code redemption for Ahmed's gated sites.
 // Codes live ONLY in the REDEEM_CODES_JSON env var (Vercel project settings),
 // never in client JS or the repo. Returns { ok: true|false }.
+// Sites: ai-resume-builder, mohasaba-online, financial-reports, eos-kw, jobs-auto-search
 const ALLOWED_ORIGINS = new Set([
   "https://my-cv-ai.vercel.app",
   "https://mohasaba-online.vercel.app",
