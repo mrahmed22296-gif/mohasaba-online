@@ -26,6 +26,18 @@ module.exports = async (req, res) => {
   let codes;
   try { codes = JSON.parse(process.env.REDEEM_CODES_JSON || "{}"); }
   catch (e) { res.status(500).json({ ok: false, error: "config" }); return; }
+  // Extra per-site code buckets can live in their own env vars (e.g. REDEEM_CODES_AAREF)
+  // so adding a new site never requires editing the shared REDEEM_CODES_JSON value.
+  for (const key of Object.keys(process.env)) {
+    if (!key.startsWith("REDEEM_CODES_") || key === "REDEEM_CODES_JSON") continue;
+    try {
+      const extra = JSON.parse(process.env[key] || "{}");
+      if (Array.isArray(extra)) continue;
+      for (const [site, list] of Object.entries(extra)) {
+        if (Array.isArray(list)) codes[site] = (codes[site] || []).concat(list);
+      }
+    } catch (e) { /* ignore malformed extras */ }
+  }
 
   const norm = (v) => (typeof v === "string" ? v.replace(/[^A-Za-z0-9]/g, "").toUpperCase() : "");
   const body = req.body || {};
