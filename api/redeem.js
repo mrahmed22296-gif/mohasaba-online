@@ -9,6 +9,8 @@ const ALLOWED_ORIGINS = new Set([
   "https://eos-kw.vercel.app",
   "https://jobs-auto-search.vercel.app",
   "https://aaref.vercel.app",
+  "https://fahhimni.vercel.app",
+  "https://fahhimni-kw.vercel.app",
   "https://mrahmed22296-gif.github.io"
 ]);
 
