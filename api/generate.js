@@ -141,7 +141,7 @@ module.exports = async (req, res) => {
 
   const apiKey = process.env.GEMINI_API_KEY;
   if (!apiKey) { res.status(200).json({ ok: false, error: "config" }); return; }
-  const model = process.env.GEMINI_MODEL || "gemini-2.5-flash";
+  const model = process.env.GEMINI_MODEL || "gemini-3.5-flash";
 
   const example = template === "psych" ? PSYCH_EXAMPLE : SOCIAL_EXAMPLE;
   const prompt = [
