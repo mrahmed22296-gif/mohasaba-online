@@ -5,7 +5,8 @@ const ALLOWED_ORIGINS = new Set([
   "https://my-cv-ai.vercel.app",
   "https://mohasaba-online.vercel.app",
   "https://qawaim.vercel.app",
-  "https://eos-kw.vercel.app"
+  "https://eos-kw.vercel.app",
+  "https://jobs-auto-search.vercel.app"
 ]);
 
 module.exports = async (req, res) => {
