@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;900&display=swap');
 /* محاسبة أون لاين — ملف التصميم الموحد لكل الصفحات */
 :root {
     --bg: #f1f5f9;
@@ -237,3 +238,34 @@ footer a:hover { text-decoration: underline; }
     .hero { background: none; color: #000; padding: 1rem 0; }
     .hero p { color: #333; }
 }
+
+
+/* ===== End-of-service calculator theme (Tajawal, sky + orange) ===== */
+:root {
+    --bg: #f0f9ff;
+    --ink: #0c2942;
+    --muted: #5b7285;
+    --text: #33566e;
+    --brand: #0ea5e9;
+    --brand-dark: #0369a1;
+    --link: #0369a1;
+    --heading: #0c4a6e;
+    --accent: #f97316;
+    --line: #dbeafe;
+    --soft: #e0f2fe;
+    --soft2: #f6fbff;
+    --soft-line: #7dd3fc;
+    --input-line: #7dd3fc;
+    --pill-bg: #e0f2fe;
+    --pill-ink: #0369a1;
+    --note-bg: #ffedd5;
+    --note-ink: #9a3412;
+    --note-line: #f97316;
+    --shadow: 0 4px 18px rgba(14, 165, 233, 0.12), 0 1px 3px rgba(12, 41, 66, 0.06);
+}
+body { font-family: 'Tajawal', 'Cairo', sans-serif; }
+.topbar { background: linear-gradient(135deg, #0ea5e9, #1e3a8a); border-bottom: none; box-shadow: 0 16px 44px rgba(3, 105, 161, 0.18); }
+.topbar .brand { color: #ffffff; }
+.topbar .menu a { color: rgba(224, 242, 254, 0.92); }
+.topbar .menu a:hover, .topbar .menu a.active { background: rgba(255, 255, 255, 0.16); color: #ffffff; }
+.topbar .icon-btn { color: #ffffff; border-color: rgba(255, 255, 255, 0.35); background: rgba(255, 255, 255, 0.12); }
