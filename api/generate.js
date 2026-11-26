@@ -175,7 +175,7 @@ module.exports = async (req, res) => {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           contents: [{ role: "user", parts: [{ text: prompt }] }],
-          generationConfig: { responseMimeType: "application/json", temperature: 0.7, maxOutputTokens: 3500 }
+          generationConfig: { responseMimeType: "application/json", temperature: 0.7, maxOutputTokens: 8000 }
         })
       }
     );
