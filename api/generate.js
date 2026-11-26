@@ -176,20 +176,40 @@ module.exports = async (req, res) => {
     "اترك الحقل نصًا فارغًا إذا لم يكن مناسبًا للدرس."
   ].filter(Boolean).join("\n");
 
-  try {
-    const r = await fetch(
-      "https://generativelanguage.googleapis.com/v1beta/models/" + model + ":generateContent?key=" + apiKey,
-      {
+  // Gemini أحيانًا يرد 503 "النموذج مشغول"؛ أعد المحاولة بفواصل قصيرة قبل إعلان الفشل.
+  const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
+  const geminiUrl = "https://generativelanguage.googleapis.com/v1beta/models/" + model + ":generateContent?key=" + apiKey;
+  const geminiBody = JSON.stringify({
+    contents: [{ role: "user", parts: [{ text: prompt }] }],
+    generationConfig: { responseMimeType: "application/json", temperature: 0.7, maxOutputTokens: 8000 }
+  });
+  let data = null, lastDetail = "";
+  for (let attempt = 1; attempt <= 3; attempt++) {
+    try {
+      const r = await fetch(geminiUrl, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          contents: [{ role: "user", parts: [{ text: prompt }] }],
-          generationConfig: { responseMimeType: "application/json", temperature: 0.7, maxOutputTokens: 8000 }
-        })
+        body: geminiBody
+      });
+      const txt = await r.text();
+      if (r.ok) { data = JSON.parse(txt); break; }
+      lastDetail = "http " + r.status + " " + txt.slice(0, 300);
+      if (![500, 502, 503, 504].includes(r.status)) {
+        res.status(200).json({ ok: false, error: "generate", detail: lastDetail });
+        return;
       }
-    );
-    const data = await r.json();
-    if (!r.ok) { res.status(200).json({ ok: false, error: "generate", detail: "http " + r.status + " " + JSON.stringify(data).slice(0, 300) }); return; }
+    } catch (e) {
+      lastDetail = String(e).slice(0, 200);
+    }
+    if (attempt < 3) await sleep(1500 * attempt);
+  }
+  if (!data) {
+    // فشلت كل المحاولات بسبب ضغط مؤقت: لا نخصمها من الحد اليومي ونخبر العميل أن الخدمة مشغولة.
+    u.count -= 1; usage.set(code, u);
+    res.status(200).json({ ok: false, error: "busy", detail: lastDetail.slice(0, 300) });
+    return;
+  }
+  try {
     const text = (data.candidates && data.candidates[0] && data.candidates[0].content &&
       data.candidates[0].content.parts && data.candidates[0].content.parts[0] &&
       data.candidates[0].content.parts[0].text) || "";
