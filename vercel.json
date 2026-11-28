@@ -1,6 +1,7 @@
 {
   "cleanUrls": false,
   "routes": [
+    { "src": "^/$", "status": 404 },
     { "src": "^/customers/?$", "dest": "/customers.html" },
     { "src": "^/api/owner-data/?$", "dest": "/api/owner-data.js" },
     { "src": ".*", "status": 404 }
