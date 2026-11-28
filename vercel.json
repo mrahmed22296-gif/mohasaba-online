@@ -1,33 +1,8 @@
 {
   "cleanUrls": false,
-  "rewrites": [
-    {
-      "source": "/books",
-      "destination": "/books.html"
-    },
-    {
-      "source": "/coa",
-      "destination": "/coa.html"
-    },
-    {
-      "source": "/customers",
-      "destination": "/customers.html"
-    },
-    {
-      "source": "/depreciation",
-      "destination": "/depreciation.html"
-    },
-    {
-      "source": "/entries",
-      "destination": "/entries.html"
-    },
-    {
-      "source": "/glossary",
-      "destination": "/glossary.html"
-    },
-    {
-      "source": "/quiz",
-      "destination": "/quiz.html"
-    }
+  "routes": [
+    { "src": "^/customers/?$", "dest": "/customers.html" },
+    { "src": "^/api/owner-data/?$", "dest": "/api/owner-data.js" },
+    { "src": "^/.*$", "status": 404 }
   ]
 }
